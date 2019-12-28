@@ -34,7 +34,6 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:scaleType="fitXY"
                     android:layout_alignParentBottom="true"
                     android:src="@drawable/logo" />
 

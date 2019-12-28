@@ -1,6 +1,8 @@
 package com.example.comicvine.data.repository;
 
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -32,10 +34,15 @@ public class IssuesRepo {
 
     private LiveData<List<IssuesResults>> getAllIssuesDb;
 
-    private MutableLiveData<List<IssuesResults>> issuesMutableData = new MutableLiveData<>() ;
+    private MutableLiveData<List<IssuesResults>> issuesMutableData = new MutableLiveData<>();
     private MutableLiveData<List<IssuesResults>> venomMutableData = new MutableLiveData<>();
     private MutableLiveData<List<IssuesResults>> ironManMutableData = new MutableLiveData<>();
     private MutableLiveData<List<IssuesResults>> wolverineManMutableData = new MutableLiveData<>();
+    private MutableLiveData<List<IssuesResults>> captainMarvelMutableData = new MutableLiveData<>();
+    private MutableLiveData<List<IssuesResults>> avangersMarvelMutableData = new MutableLiveData<>();
+    private MutableLiveData<List<IssuesResults>> promosMutableData = new MutableLiveData<>();
+    private MutableLiveData<List<IssuesResults>> byIdMutableData = new MutableLiveData<>();
+
 
     ///****
     public IssuesRepo(Context context) {
@@ -58,7 +65,7 @@ public class IssuesRepo {
 
     public MutableLiveData<List<IssuesResults>> getIssues() {
 
-        callApi.getResponse(API_KEY,25,"cover_date:desc","json").enqueue(new Callback<Response>() {
+        callApi.getIssuesResponse(API_KEY,25,"cover_date:desc","json").enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, final retrofit2.Response<Response> response) {
 
@@ -88,7 +95,7 @@ public class IssuesRepo {
 
     public MutableLiveData<List<IssuesResults>> getVenom() {
 
-        callApi.getVenom(API_KEY, 25, 51, "name:venom", "json").enqueue(new Callback<Response>() {
+        callApi.getIssuesByCharacter(API_KEY, 25, 51, "name:venom", "json").enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
 
@@ -109,7 +116,7 @@ public class IssuesRepo {
 
     public MutableLiveData<List<IssuesResults>> getIronMan() {
 
-        callApi.getVenom(API_KEY, 25, 51, "name:iron_man", "json").enqueue(new Callback<Response>() {
+        callApi.getIssuesByCharacter(API_KEY, 25, 51, "name:iron_man", "json").enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
 
@@ -130,7 +137,7 @@ public class IssuesRepo {
 
     public MutableLiveData<List<IssuesResults>> getWolverine() {
 
-        callApi.getVenom(API_KEY, 25, 51, "name:wolverine", "json").enqueue(new Callback<Response>() {
+        callApi.getIssuesByCharacter(API_KEY, 25, 100, "name:wolverine", "json").enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
 
@@ -149,18 +156,95 @@ public class IssuesRepo {
         return wolverineManMutableData;
     }
 
-    public void setCallApi(CallApi callApi) {
-        this.callApi = callApi;
+    public MutableLiveData<List<IssuesResults>> getCaptainMarvel() {
+
+        callApi.getIssuesByCharacter(API_KEY,25,100,"name:captain_marvel","json").enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+
+                if(response.body()!=null) {
+                    captainMarvelMutableData.setValue(response.body().getResultList());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+
+            }
+        });
+
+        return captainMarvelMutableData;
     }
 
-    public void setMyDao(MyDao myDao) {
-        this.myDao = myDao;
+    public MutableLiveData<List<IssuesResults>> getAvengers () {
+
+        callApi.getIssuesByCharacter(API_KEY,25,51,"name:avengers","json").enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+
+                if(response.body()!=null) {
+                    avangersMarvelMutableData.setValue(response.body().getResultList());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+
+            }
+        });
+
+        return avangersMarvelMutableData;
+    }
+
+    public MutableLiveData<List<IssuesResults>> getPromos() {
+
+        callApi.getPromos(API_KEY,"json").enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+
+                promosMutableData.setValue(response.body().getResultList());
+
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+
+                Log.d("PROMOS", "onFailure: " + t);
+
+            }
+        });
+
+        return promosMutableData;
+    }
+
+    public MutableLiveData<List<IssuesResults>> getIssuesById (String id){
+
+        callApi.getIssueById(id,API_KEY,"json").enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+
+                byIdMutableData.setValue(response.body().getResultList());
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+
+                Log.d("WWW", "onFailure: " + t);
+
+            }
+        });
+
+        return byIdMutableData;
     }
 
     ///****
+    ///TODO
     public LiveData<List<IssuesResults>> getIssuesIfResponse(){
 
         LiveData<List<IssuesResults>> getAllIssues;
+
         if(NetworkUtils.isConnectedAvailable(context)){
 
             getAllIssues=getIssues();
@@ -170,13 +254,19 @@ public class IssuesRepo {
         }
             return getAllIssues;
     }
-
     public LiveData<List<IssuesResults>> getAllFromDao() {
 
       return getAllIssuesDb =myDao.getAllIssuesFromDao();
     }
-
     public LiveData<List<IssuesResults>> getGetAllIssuesDb() {
         return getAllIssuesDb;
+    }
+
+    public void setCallApi(CallApi callApi) {
+        this.callApi = callApi;
+    }
+
+    public void setMyDao(MyDao myDao) {
+        this.myDao = myDao;
     }
 }

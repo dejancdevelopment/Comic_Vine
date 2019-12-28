@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Response {
 
-
     @SerializedName("results")
     List<IssuesResults> resultList;
 

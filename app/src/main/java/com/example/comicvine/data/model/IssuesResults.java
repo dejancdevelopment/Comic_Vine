@@ -15,6 +15,7 @@ public class IssuesResults {
     private String aliases;
     private String api_detail_url;
     private String date_added;
+    private String deck;
     private String date_last_updated;
     private String description;
     private ImageIssues image;
@@ -24,13 +25,14 @@ public class IssuesResults {
     private String store_date;
     private Volume volume;
 
-    public IssuesResults(String aliases, String api_detail_url, String date_added,
+    public IssuesResults(String aliases, String api_detail_url, String date_added,String deck,
                          String date_last_updated, String description, int id,
                          ImageIssues image, String name, String site_detail_url,
                          String issue_number, String store_date,Volume volume) {
         this.aliases = aliases;
         this.api_detail_url = api_detail_url;
         this.date_added = date_added;
+        this.deck=deck;
         this.date_last_updated = date_last_updated;
         this.description = description;
         this.id = id;
@@ -52,6 +54,10 @@ public class IssuesResults {
 
     public String getDate_added() {
         return date_added;
+    }
+
+    public String getDeck() {
+        return deck;
     }
 
     public String getDate_last_updated() {

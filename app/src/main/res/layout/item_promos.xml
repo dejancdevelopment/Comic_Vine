@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/darker_gray"
+            android:gravity="center"
+            android:textSize="11sp"
+            android:text="Loading..."/>
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:layout_marginBottom="4dp"
+            android:id="@+id/comics_image"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:textAlignment="center"
+        android:id="@+id/comics_title"
+        android:textSize="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@android:color/white"
+        tools:ignore="TextViewEdits" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:text="Issues #"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            tools:ignore="TextViewEdits" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:id="@+id/issues_number"
+            android:textColor="@android:color/darker_gray"
+            tools:ignore="TextViewEdits" />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -10,7 +10,6 @@ public class NetworkUtils {
 
         boolean isConnected = false;
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
         if (manager != null) {
             NetworkInfo networkInfo = manager.getActiveNetworkInfo();
 
@@ -18,8 +17,6 @@ public class NetworkUtils {
                 isConnected = true;
             }
         }
-
         return isConnected;
-
     }
 }
