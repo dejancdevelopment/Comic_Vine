@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.comicvine.data.model.IssuesResults;
 import com.example.comicvine.view.adapter.AvengersManRecyclerView;
@@ -36,7 +35,7 @@ public class MainPageActivity extends AppCompatActivity {
             recyclerAvengers,
             recyclerPromos;
 
-    TextView seeall;
+    TextView seeallIssues,seeAllVenom;
 
     IssuesRecyclerView adapterView;
     VenomRecyclerView venomAdapter;
@@ -58,14 +57,23 @@ public class MainPageActivity extends AppCompatActivity {
         recyclerCaptainMarvel=findViewById(R.id.recycler_view_captain_marvel);
         recyclerAvengers=findViewById(R.id.recycler_view_avengers);
         recyclerPromos=findViewById(R.id.recycler_view_promos);
-        seeall=findViewById(R.id.see_all_issues);
-        seeall.setOnClickListener(new View.OnClickListener() {
+        seeallIssues =findViewById(R.id.see_all_issues);
+        seeAllVenom=findViewById(R.id.see_all_venom);
+        seeallIssues.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                     seeAll(new DetailActivity(),"allIssues");
 //                Toast.makeText(MainPageActivity.this, "Ok", Toast.LENGTH_SHORT).show();
 
+            }
+        });
+
+        seeAllVenom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                seeAll(new DetailActivity(),"venom");
             }
         });
 

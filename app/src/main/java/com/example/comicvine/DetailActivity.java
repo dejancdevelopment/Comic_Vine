@@ -32,10 +32,25 @@ public class DetailActivity extends AppCompatActivity {
             }
             else if (allIssues != null && allIssues.contains("allIssues")) {
 
+                FragmentAllIssues allIssuesFragment=new FragmentAllIssues();
+                Bundle bundle=new Bundle();
+                bundle.putString("ALL","allIssues");
+                allIssuesFragment.setArguments(bundle);
+
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new FragmentAllIssues())
+                        .replace(R.id.fragment_container, allIssuesFragment)
                         .commit();
 
+            }else if(allIssues != null && allIssues.contains("venom")){
+
+                FragmentAllIssues allIssuesFragment=new FragmentAllIssues();
+                Bundle bundle=new Bundle();
+                bundle.putString("ALL","allVenom");
+                allIssuesFragment.setArguments(bundle);
+
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, allIssuesFragment)
+                        .commit();
             }
         }
     }

@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.comicvine.data.model.IssuesResults;
+import com.example.comicvine.data.model_by_id.ResultsById;
 import com.example.comicvine.data.repository.IssuesRepo;
 
 import java.util.List;
@@ -14,13 +15,17 @@ import java.util.List;
 public class IssuesViewModel extends AndroidViewModel {
 
     LiveData<List<IssuesResults>> getIssues;
+    LiveData<List<IssuesResults>> getAllIssues;
+
     LiveData<List<IssuesResults>> getVenom;
+    LiveData<List<IssuesResults>> getAllVenom;
+
     LiveData<List<IssuesResults>> getIronMan;
     LiveData<List<IssuesResults>> getWolverine;
     LiveData<List<IssuesResults>> getCaptainMarvel;
     LiveData<List<IssuesResults>> getAvengers;
     LiveData<List<IssuesResults>> getPromos;
-    LiveData<List<IssuesResults>> byIdLiveData;
+    LiveData<ResultsById> byIdLiveData;
 
     LiveData<List<IssuesResults>> getLiveDataDb;
 
@@ -29,7 +34,11 @@ public class IssuesViewModel extends AndroidViewModel {
 
         IssuesRepo issuesRepo=IssuesRepo.getInstance(application);
         getIssues=issuesRepo.getIssues();
+        getAllIssues=issuesRepo.getAllIssues();
+
         getVenom=issuesRepo.getVenom();
+        getAllVenom=issuesRepo.getAllVenom();
+
         getIronMan=issuesRepo.getIronMan();
         getWolverine=issuesRepo.getWolverine();
         getCaptainMarvel=issuesRepo.getCaptainMarvel();
@@ -79,7 +88,15 @@ public class IssuesViewModel extends AndroidViewModel {
         return getPromos;
     }
 
-    public LiveData<List<IssuesResults>> getByIdLiveData() {
+    public LiveData<ResultsById> getByIdLiveData() {
         return byIdLiveData;
+    }
+
+    public LiveData<List<IssuesResults>> getGetAllIssues() {
+        return getAllIssues;
+    }
+
+    public LiveData<List<IssuesResults>> getGetAllVenom() {
+        return getAllVenom;
     }
 }
