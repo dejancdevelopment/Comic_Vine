@@ -16,7 +16,6 @@ import com.example.comicvine.DetailActivity;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.IssuesResults;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class IssuesRecyclerView extends RecyclerView.Adapter<IssuesRecyclerView.MyHolder> {
@@ -28,7 +27,6 @@ public class IssuesRecyclerView extends RecyclerView.Adapter<IssuesRecyclerView.
         this.mList = mList;
         this.context=context;
     }
-
     @NonNull
     @Override
     public IssuesRecyclerView.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,7 +34,6 @@ public class IssuesRecyclerView extends RecyclerView.Adapter<IssuesRecyclerView.
 
         return new MyHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull IssuesRecyclerView.MyHolder holder, int position) {
 
@@ -56,7 +53,6 @@ public class IssuesRecyclerView extends RecyclerView.Adapter<IssuesRecyclerView.
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return mList.size();

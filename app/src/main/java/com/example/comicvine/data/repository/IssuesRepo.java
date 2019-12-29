@@ -50,15 +50,15 @@ public class IssuesRepo {
     private MutableLiveData<List<IssuesResults>> captainMarvelMutableData = new MutableLiveData<>();
     private MutableLiveData<List<IssuesResults>> captainMarvelAllMutableData = new MutableLiveData<>();
 
-    private MutableLiveData<List<IssuesResults>> avangersMarvelMutableData = new MutableLiveData<>();
-    private MutableLiveData<List<IssuesResults>> avangersAllMarvelMutableData = new MutableLiveData<>();
+    private MutableLiveData<List<IssuesResults>> avengersMarvelMutableData = new MutableLiveData<>();
+    private MutableLiveData<List<IssuesResults>> avengersAllMarvelMutableData = new MutableLiveData<>();
 
     private MutableLiveData<List<IssuesResults>> promosMutableData = new MutableLiveData<>();
     private MutableLiveData<ResultsById> byIdMutableData = new MutableLiveData<>();
 
 
     ///****
-    public IssuesRepo(Context context) {
+    private IssuesRepo(Context context) {
         this.context = context;
     }
 
@@ -148,7 +148,7 @@ public class IssuesRepo {
 
     public MutableLiveData<List<IssuesResults>> getAllVenom() {
 
-       callApi.getAllIssuesByCharacter(API_KEY,"cover_date:desc","venom","json")
+       callApi.getAllIssuesByCharacter(API_KEY,"cover_date:desc","name:venom","json")
                .enqueue(new Callback<Response>() {
            @Override
            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
@@ -189,6 +189,27 @@ public class IssuesRepo {
         return ironManMutableData;
     }
 
+    public MutableLiveData<List<IssuesResults>> getAllIronMan() {
+
+        callApi.getAllIssuesByCharacter(API_KEY,"cover_date:desc","name:iron_man","json")
+                .enqueue(new Callback<Response>() {
+                    @Override
+                    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+
+                        if (response.body() != null) {
+                            ironAllManMutableData.setValue(response.body().getResultList());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Response> call, Throwable t) {
+
+                    }
+                });
+
+        return ironAllManMutableData;
+    }
+
     public MutableLiveData<List<IssuesResults>> getWolverine() {
 
         callApi.getIssuesByCharacter(API_KEY, 25, "cover_date:desc", "name:wolverine", "json").enqueue(new Callback<Response>() {
@@ -208,6 +229,27 @@ public class IssuesRepo {
         });
 
         return wolverineManMutableData;
+    }
+
+    public MutableLiveData<List<IssuesResults>> getAllWolverine() {
+
+        callApi.getAllIssuesByCharacter(API_KEY,"cover_date:desc","name:wolverine","json")
+                .enqueue(new Callback<Response>() {
+                    @Override
+                    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+
+                        if (response.body() != null) {
+                            wolverineAllManMutableData.setValue(response.body().getResultList());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Response> call, Throwable t) {
+
+                    }
+                });
+
+        return wolverineAllManMutableData;
     }
 
     public MutableLiveData<List<IssuesResults>> getCaptainMarvel() {
@@ -231,14 +273,36 @@ public class IssuesRepo {
         return captainMarvelMutableData;
     }
 
+    public MutableLiveData<List<IssuesResults>> getAllCaptainMarvel() {
+
+        callApi.getAllIssuesByCharacter(API_KEY,"cover_date:desc","name:captain_marvel","json")
+                .enqueue(new Callback<Response>() {
+                    @Override
+                    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+
+                        if (response.body() != null) {
+                            captainMarvelAllMutableData.setValue(response.body().getResultList());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Response> call, Throwable t) {
+
+                    }
+                });
+
+        return captainMarvelAllMutableData;
+    }
+
     public MutableLiveData<List<IssuesResults>> getAvengers () {
 
-        callApi.getIssuesByCharacter(API_KEY,25,"cover_date:desc","name:avengers","json").enqueue(new Callback<Response>() {
+        callApi.getIssuesByCharacter(API_KEY,25,"cover_date:desc","name:avengers","json")
+                .enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
 
                 if(response.body()!=null) {
-                    avangersMarvelMutableData.setValue(response.body().getResultList());
+                    avengersMarvelMutableData.setValue(response.body().getResultList());
                 }
 
             }
@@ -249,10 +313,31 @@ public class IssuesRepo {
             }
         });
 
-        return avangersMarvelMutableData;
+        return avengersMarvelMutableData;
     }
 
-    public MutableLiveData<List<IssuesResults>> getPromos() {
+    public MutableLiveData<List<IssuesResults>> getAllAvengers () {
+
+        callApi.getAllIssuesByCharacter(API_KEY,"cover_date:desc","name:avengers","json")
+                .enqueue(new Callback<Response>() {
+                    @Override
+                    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+
+                        avengersAllMarvelMutableData.setValue(response.body().getResultList());
+                    }
+
+                    @Override
+                    public void onFailure(Call<Response> call, Throwable t) {
+
+                    }
+                });
+
+        return avengersAllMarvelMutableData;
+    }
+
+
+
+    public MutableLiveData<List<IssuesResults>> getPromos() {//TODO not working json parser problem
 
         callApi.getPromos(API_KEY,"json").enqueue(new Callback<Response>() {
             @Override
@@ -292,8 +377,8 @@ public class IssuesRepo {
      return byIdMutableData;
     }
 
-    ///****
-    ///TODO
+    //****
+    //TODO ROOM
     public LiveData<List<IssuesResults>> getIssuesIfResponse(){
 
         LiveData<List<IssuesResults>> getAllIssues;

@@ -14,16 +14,24 @@ import java.util.List;
 
 public class IssuesViewModel extends AndroidViewModel {
 
-    LiveData<List<IssuesResults>> getIssues;
-    LiveData<List<IssuesResults>> getAllIssues;
+    private LiveData<List<IssuesResults>> getIssues;
+    private LiveData<List<IssuesResults>> getAllIssues;
 
-    LiveData<List<IssuesResults>> getVenom;
-    LiveData<List<IssuesResults>> getAllVenom;
+    private LiveData<List<IssuesResults>> getVenom;
+    private LiveData<List<IssuesResults>> getAllVenom;
 
-    LiveData<List<IssuesResults>> getIronMan;
-    LiveData<List<IssuesResults>> getWolverine;
-    LiveData<List<IssuesResults>> getCaptainMarvel;
-    LiveData<List<IssuesResults>> getAvengers;
+    private LiveData<List<IssuesResults>> getIronMan;
+    private LiveData<List<IssuesResults>> getAllIronMan;
+
+    private LiveData<List<IssuesResults>> getWolverine;
+    private LiveData<List<IssuesResults>> getAllWolverine;
+
+    private LiveData<List<IssuesResults>> getCaptainMarvel;
+    private LiveData<List<IssuesResults>> getAllCaptainMarvel;
+
+    private LiveData<List<IssuesResults>> getAvengers;
+    private LiveData<List<IssuesResults>> getAllAvengers;
+
     LiveData<List<IssuesResults>> getPromos;
     LiveData<ResultsById> byIdLiveData;
 
@@ -40,9 +48,17 @@ public class IssuesViewModel extends AndroidViewModel {
         getAllVenom=issuesRepo.getAllVenom();
 
         getIronMan=issuesRepo.getIronMan();
+        getAllIronMan=issuesRepo.getAllIronMan();
+
         getWolverine=issuesRepo.getWolverine();
+        getAllWolverine=issuesRepo.getAllWolverine();
+
         getCaptainMarvel=issuesRepo.getCaptainMarvel();
+        getAllCaptainMarvel=issuesRepo.getAllCaptainMarvel();
+
         getAvengers=issuesRepo.getAvengers();
+        getAllAvengers=issuesRepo.getAllAvengers();
+
         getPromos=issuesRepo.getPromos();
 
 
@@ -98,5 +114,21 @@ public class IssuesViewModel extends AndroidViewModel {
 
     public LiveData<List<IssuesResults>> getGetAllVenom() {
         return getAllVenom;
+    }
+
+    public LiveData<List<IssuesResults>> getGetAllIronMan() {
+        return getAllIronMan;
+    }
+
+    public LiveData<List<IssuesResults>> getGetAllWolverine() {
+        return getAllWolverine;
+    }
+
+    public LiveData<List<IssuesResults>> getGetAllCaptainMarvel() {
+        return getAllCaptainMarvel;
+    }
+
+    public LiveData<List<IssuesResults>> getGetAllAvengers() {
+        return getAllAvengers;
     }
 }

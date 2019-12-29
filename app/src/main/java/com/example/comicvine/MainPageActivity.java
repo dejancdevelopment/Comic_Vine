@@ -35,7 +35,13 @@ public class MainPageActivity extends AppCompatActivity {
             recyclerAvengers,
             recyclerPromos;
 
-    TextView seeallIssues,seeAllVenom;
+    TextView seeallIssues,
+            seeAllVenom,
+            seeAllIronMan,
+            seeAllWolverine,
+            seeAllCaptainMarvel,
+            seeAllAvengers;
+
 
     IssuesRecyclerView adapterView;
     VenomRecyclerView venomAdapter;
@@ -59,16 +65,18 @@ public class MainPageActivity extends AppCompatActivity {
         recyclerPromos=findViewById(R.id.recycler_view_promos);
         seeallIssues =findViewById(R.id.see_all_issues);
         seeAllVenom=findViewById(R.id.see_all_venom);
+        seeAllIronMan=findViewById(R.id.see_all_iron_man);
+        seeAllWolverine=findViewById(R.id.see_all_wolverine);
+        seeAllCaptainMarvel=findViewById(R.id.see_all_captain_marvel);
+        seeAllAvengers=findViewById(R.id.see_all_avengers);
+
         seeallIssues.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                     seeAll(new DetailActivity(),"allIssues");
-//                Toast.makeText(MainPageActivity.this, "Ok", Toast.LENGTH_SHORT).show();
-
             }
         });
-
         seeAllVenom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +84,30 @@ public class MainPageActivity extends AppCompatActivity {
                 seeAll(new DetailActivity(),"venom");
             }
         });
-
+        seeAllIronMan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seeAll(new DetailActivity(),"ironMan");
+            }
+        });
+        seeAllWolverine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seeAll(new DetailActivity(),"wolverine");
+            }
+        });
+        seeAllCaptainMarvel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seeAll(new DetailActivity(),"captainMarvel");
+            }
+        });
+        seeAllAvengers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seeAll(new DetailActivity(),"avengers");
+            }
+        });
         IssuesViewModel viewModel = ViewModelProviders
                 .of(this)
                 .get(IssuesViewModel.class);
@@ -141,13 +172,13 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
-        viewModel.getGetPromos().observe(this, new Observer<List<IssuesResults>>() {
-            @Override
-            public void onChanged(List<IssuesResults> issuesResults) {
-
-                getRecyclerViewPromos(issuesResults);
-            }
-        });
+//        viewModel.getGetPromos().observe(this, new Observer<List<IssuesResults>>() {
+//            @Override
+//            public void onChanged(List<IssuesResults> issuesResults) {
+//
+//                getRecyclerViewPromos(issuesResults);
+//            }
+//        });
 
     }
 ////

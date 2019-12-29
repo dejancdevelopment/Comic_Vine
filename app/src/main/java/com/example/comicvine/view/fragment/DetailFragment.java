@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -54,6 +55,8 @@ public class DetailFragment extends Fragment {
 
         View view=inflater.inflate(R.layout.fragment_detail,container,false);
 
+        Toolbar toolbar=view.findViewById(R.id.toolbar_detail);
+        ((AppCompatActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
 
         imageView=view.findViewById(R.id.id_image);
         title=view.findViewById(R.id.id_title);
@@ -65,9 +68,7 @@ public class DetailFragment extends Fragment {
         locationsRec=view.findViewById(R.id.id_locations_recycler);
 
         IssuesViewModel viewModel= ViewModelProviders.of(this).get(IssuesViewModel.class);
-
         viewModel.getIssueById(id);
-
         viewModel.getByIdLiveData().observe(this, new Observer<ResultsById>() {
             @Override
             public void onChanged(ResultsById resultsById) {
@@ -92,36 +93,28 @@ public class DetailFragment extends Fragment {
 
         return view;
     }
-
     private void getCreatorList (ArrayList<PersonalCredits> list){
 
         CreatorsByIdRecyclerView adapter=new CreatorsByIdRecyclerView(list,getContext());
         creatorsRec.setLayoutManager(new LinearLayoutManager(getContext()));
         creatorsRec.setAdapter(adapter);
-
     }
-
     private void getCharactersList (ArrayList<CharacterCredits> list){
 
         CharactersByIdRecyclerView adapter=new CharactersByIdRecyclerView(list,getContext());
         charactersRec.setLayoutManager(new LinearLayoutManager(getContext()));
         charactersRec.setAdapter(adapter);
-
     }
-
     private void getTeamList (ArrayList<TeamCredits> list){
 
         TeamByIdRecyclerView adapter=new TeamByIdRecyclerView(list,getContext());
         teamsRec.setLayoutManager(new LinearLayoutManager(getContext()));
         teamsRec.setAdapter(adapter);
-
     }
-
     private void getLocationList (ArrayList<LocationCredits> list){
 
         LocationByIdRecyclerView adapter=new LocationByIdRecyclerView(list,getContext());
         locationsRec.setLayoutManager(new LinearLayoutManager(getContext()));
         locationsRec.setAdapter(adapter);
-
     }
 }
