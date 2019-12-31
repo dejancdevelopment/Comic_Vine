@@ -63,6 +63,7 @@ public class MainPageActivity extends AppCompatActivity {
         recyclerCaptainMarvel=findViewById(R.id.recycler_view_captain_marvel);
         recyclerAvengers=findViewById(R.id.recycler_view_avengers);
         recyclerPromos=findViewById(R.id.recycler_view_promos);
+
         seeallIssues =findViewById(R.id.see_all_issues);
         seeAllVenom=findViewById(R.id.see_all_venom);
         seeAllIronMan=findViewById(R.id.see_all_iron_man);
@@ -73,46 +74,45 @@ public class MainPageActivity extends AppCompatActivity {
         seeallIssues.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                    seeAll(new DetailActivity(),"allIssues");
+                    seeAll(new AllIssuesActivity(),"allIssues");
             }
         });
         seeAllVenom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                seeAll(new DetailActivity(),"venom");
+                seeAll(new AllIssuesActivity(),"venom");
             }
         });
         seeAllIronMan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                seeAll(new DetailActivity(),"ironMan");
+                seeAll(new AllIssuesActivity(),"ironMan");
             }
         });
         seeAllWolverine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                seeAll(new DetailActivity(),"wolverine");
+                seeAll(new AllIssuesActivity(),"wolverine");
             }
         });
         seeAllCaptainMarvel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                seeAll(new DetailActivity(),"captainMarvel");
+                seeAll(new AllIssuesActivity(),"captainMarvel");
             }
         });
         seeAllAvengers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                seeAll(new DetailActivity(),"avengers");
+                seeAll(new AllIssuesActivity(),"avengers");
             }
         });
+
         IssuesViewModel viewModel = ViewModelProviders
                 .of(this)
                 .get(IssuesViewModel.class);
 
-        viewModel.getGetIssues().observe(this, new Observer<List<IssuesResults>>() {
+        viewModel.getGetAllIssues().observe(this, new Observer<List<IssuesResults>>() {
             @Override
             public void onChanged(List<IssuesResults> issuesResults) {
 
@@ -121,17 +121,17 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
-        viewModel.getGetLiveDataDb().observe(this, new Observer<List<IssuesResults>>() {
-            @Override
-            public void onChanged(List<IssuesResults> issuesResults) {
+//        viewModel.getGetLiveDataDb().observe(this, new Observer<List<IssuesResults>>() {
+//            @Override
+//            public void onChanged(List<IssuesResults> issuesResults) {
+//
+//                Collections.reverse(issuesResults);  ///TODO plus ne mi gi dava slikite od DAO
+//                getRecyclerViewIssues(issuesResults);
+//            }
+//        });
 
-                Collections.reverse(issuesResults);  ///TODO plus ne mi gi dava slikite od DAO
-                getRecyclerViewIssues(issuesResults);
-            }
-        });
 
-
-        viewModel.getGetVenom().observe(this, new Observer<List<IssuesResults>>() {
+        viewModel.getGetAllVenom().observe(this, new Observer<List<IssuesResults>>() {
             @Override
             public void onChanged(List<IssuesResults> issuesResults) {
 
@@ -139,7 +139,7 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
-        viewModel.getGetIronMan().observe(this, new Observer<List<IssuesResults>>() {
+        viewModel.getGetAllIronMan().observe(this, new Observer<List<IssuesResults>>() {
             @Override
             public void onChanged(List<IssuesResults> issuesResults) {
 
@@ -147,16 +147,15 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
-        viewModel.getGetWolverine().observe(this, new Observer<List<IssuesResults>>() {
+        viewModel.getGetAllWolverine().observe(this, new Observer<List<IssuesResults>>() {
             @Override
             public void onChanged(List<IssuesResults> issuesResults) {
 
                 getRecyclerViewWolverine(issuesResults);
-
             }
         });
 
-        viewModel.getGetCaptainMarvel().observe(this, new Observer<List<IssuesResults>>() {
+        viewModel.getGetAllCaptainMarvel().observe(this, new Observer<List<IssuesResults>>() {
             @Override
             public void onChanged(List<IssuesResults> issuesResults) {
 
@@ -164,7 +163,7 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
-        viewModel.getGetAvengers().observe(this, new Observer<List<IssuesResults>>() {
+        viewModel.getGetAllAvengers().observe(this, new Observer<List<IssuesResults>>() {
             @Override
             public void onChanged(List<IssuesResults> issuesResults) {
 
@@ -181,62 +180,43 @@ public class MainPageActivity extends AppCompatActivity {
 //        });
 
     }
-////
-
     private void seeAll(Activity activity, String value){
 
         Intent intent=new Intent(MainPageActivity.this,activity.getClass());
-        intent.putExtra("ISSUES",value);
+        intent.putExtra("ALL",value);
         startActivity(intent);
-
     }
-
-
     private void getRecyclerViewIssues (List<IssuesResults> list) {
-
         adapterView = new IssuesRecyclerView(list,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         recyclerView.setAdapter(adapterView);
     }
-
     private void getRecyclerViewVenom (List<IssuesResults> list) {
-
         venomAdapter = new VenomRecyclerView(list,this);
         recyclerViewVenom.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         recyclerViewVenom.setAdapter(venomAdapter);
     }
-
     private void getRecyclerViewIronMan (List<IssuesResults> list) {
-
         ironAdapter = new IronManRecyclerView(list,this);
         recyclerViewIron.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         recyclerViewIron.setAdapter(ironAdapter);
     }
-
     private void getRecyclerViewWolverine (List<IssuesResults> list) {
-
         wolverineAdapter = new WolverineManRecyclerView (list,this);
         recyclerViewWolverine.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         recyclerViewWolverine.setAdapter(wolverineAdapter);
     }
-
     private void getRecyclerViewCaptainMarvel (List<IssuesResults> list) {
-
         captainMarvelAdapter = new CaptainMarvelManRecyclerView (list,this);
         recyclerCaptainMarvel.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         recyclerCaptainMarvel.setAdapter(captainMarvelAdapter);
     }
-
-
     private void getRecyclerViewAvengers (List<IssuesResults> list) {
-
         avengersAdapter = new AvengersManRecyclerView (list,this);
         recyclerAvengers.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         recyclerAvengers.setAdapter(avengersAdapter);
     }
-
     private void getRecyclerViewPromos (List<IssuesResults> list) {
-
         promosAdapter = new PromosRecyclerView (list,this);
         recyclerPromos.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         recyclerPromos.setAdapter(promosAdapter);

@@ -58,7 +58,7 @@ public class AvengersManRecyclerView extends RecyclerView.Adapter<AvengersManRec
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return 25;
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {

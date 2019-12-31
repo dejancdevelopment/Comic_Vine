@@ -1,6 +1,7 @@
 package com.example.comicvine.view.viewmodel;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -14,97 +15,47 @@ import java.util.List;
 
 public class IssuesViewModel extends AndroidViewModel {
 
-    private LiveData<List<IssuesResults>> getIssues;
     private LiveData<List<IssuesResults>> getAllIssues;
-
-    private LiveData<List<IssuesResults>> getVenom;
     private LiveData<List<IssuesResults>> getAllVenom;
-
-    private LiveData<List<IssuesResults>> getIronMan;
     private LiveData<List<IssuesResults>> getAllIronMan;
-
-    private LiveData<List<IssuesResults>> getWolverine;
     private LiveData<List<IssuesResults>> getAllWolverine;
-
-    private LiveData<List<IssuesResults>> getCaptainMarvel;
     private LiveData<List<IssuesResults>> getAllCaptainMarvel;
-
-    private LiveData<List<IssuesResults>> getAvengers;
     private LiveData<List<IssuesResults>> getAllAvengers;
 
-    LiveData<List<IssuesResults>> getPromos;
-    LiveData<ResultsById> byIdLiveData;
+    //    private LiveData<List<IssuesResults>> getLiveDataDb;
+    //    private LiveData<List<IssuesResults>> getPromos;
 
-    LiveData<List<IssuesResults>> getLiveDataDb;
+    private LiveData<ResultsById> byIdLiveData;
+
+    private IssuesRepo issuesRepo;
 
     public IssuesViewModel(@NonNull Application application) {
         super(application);
 
-        IssuesRepo issuesRepo=IssuesRepo.getInstance(application);
-        getIssues=issuesRepo.getIssues();
+        issuesRepo=IssuesRepo.getInstance(application);
         getAllIssues=issuesRepo.getAllIssues();
-
-        getVenom=issuesRepo.getVenom();
         getAllVenom=issuesRepo.getAllVenom();
-
-        getIronMan=issuesRepo.getIronMan();
         getAllIronMan=issuesRepo.getAllIronMan();
-
-        getWolverine=issuesRepo.getWolverine();
         getAllWolverine=issuesRepo.getAllWolverine();
-
-        getCaptainMarvel=issuesRepo.getCaptainMarvel();
         getAllCaptainMarvel=issuesRepo.getAllCaptainMarvel();
-
-        getAvengers=issuesRepo.getAvengers();
         getAllAvengers=issuesRepo.getAllAvengers();
 
-        getPromos=issuesRepo.getPromos();
-
-
-        getLiveDataDb=issuesRepo.getIssuesIfResponse();
+//        getPromos=issuesRepo.getPromos();
+//        getLiveDataDb=issuesRepo.getIssuesIfResponse();
     }
 
     public void getIssueById(String id){
 
-        IssuesRepo issuesRepo=IssuesRepo.getInstance(getApplication());
         byIdLiveData =issuesRepo.getIssuesById(id);
-
+        Log.d("QQQ", "onResponse: " + "viewModel");
     }
 
-    public LiveData<List<IssuesResults>> getGetIssues() {
-        return getIssues;
-    }
-
-    public LiveData<List<IssuesResults>> getGetVenom() {
-        return getVenom;
-    }
-
-    public LiveData<List<IssuesResults>> getGetIronMan() {
-        return getIronMan;
-    }
-
-    public LiveData<List<IssuesResults>> getGetWolverine() {
-        return getWolverine;
-    }
-
-    public LiveData<List<IssuesResults>> getGetLiveDataDb() {
-        return getLiveDataDb;
-    }
-
-    public LiveData<List<IssuesResults>> getGetCaptainMarvel() {
-        return getCaptainMarvel;
-    }
-
-    public LiveData<List<IssuesResults>> getGetAvengers() {
-        return getAvengers;
-    }
-
-    public LiveData<List<IssuesResults>> getGetPromos() {
-        return getPromos;
-    }
+//    public LiveData<List<IssuesResults>> getGetPromos() {
+//        return getPromos;
+//    }
 
     public LiveData<ResultsById> getByIdLiveData() {
+
         return byIdLiveData;
     }
 

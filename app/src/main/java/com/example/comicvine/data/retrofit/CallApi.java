@@ -10,37 +10,40 @@ import retrofit2.http.Query;
 
 public interface CallApi {
 
-    @GET("issues/")
-    Call<Response> getIssuesResponse(@Query("api_key") String API_KEY,
-                                     @Query("limit") int limitNumber,
-                                     @Query("sort") String sortBy,
-                                     @Query("format") String format);
 
     @GET("issues/")
     Call<Response> getAllIssuesResponse(@Query("api_key") String API_KEY,
-                                     @Query("sort") String sortBy,
-                                     @Query("format") String format);
-
-    @GET("issues/")
-    Call<Response> getIssuesByCharacter(@Query("api_key") String API_KEY,
-                                        @Query("limit") int limitNumber,
-                                        @Query("sort") String sort,
-                                        @Query("filter") String sortBy,
+                                        @Query("sort") String sortBy,
                                         @Query("format") String format);
 
     @GET("issues/")
     Call<Response> getAllIssuesByCharacter(@Query("api_key") String API_KEY,
-                                        @Query("sort") String sort,
-                                        @Query("filter") String sortBy,
-                                        @Query("format") String format);
-
-    @GET("promos/")
-    Call<Response> getPromos(@Query("api_key") String API_KEY,
-                                   @Query("format") String format);
-
+                                           @Query("sort") String sort,
+                                           @Query("filter") String sortBy,
+                                           @Query("format") String format);
 
     @GET("issue/{id}/")
     Call<ResponseById> getIssueById (@Path ("id") String id,
                                      @Query("api_key") String API_KEY,
                                      @Query("format") String format);
+
+//    @GET("issues/")
+//    Call<Response> getIssuesResponse(@Query("api_key") String API_KEY,
+//                                     @Query("limit") int limitNumber,
+//                                     @Query("sort") String sortBy,
+//                                     @Query("format") String format);
+
+
+//    @GET("issues/")
+//    Call<Response> getIssuesByCharacter(@Query("api_key") String API_KEY,
+//                                        @Query("limit") int limitNumber,
+//                                        @Query("sort") String sort,
+//                                        @Query("filter") String sortBy,
+//                                        @Query("format") String format);
+
+
+//    @GET("promos/")
+//    Call<Response> getPromos(@Query("api_key") String API_KEY,
+//                                   @Query("format") String format);
+
 }

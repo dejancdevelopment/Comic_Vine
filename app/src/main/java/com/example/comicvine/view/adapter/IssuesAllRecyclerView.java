@@ -18,30 +18,28 @@ import com.example.comicvine.data.model.IssuesResults;
 
 import java.util.List;
 
-public class VenomRecyclerView extends RecyclerView.Adapter<VenomRecyclerView.MyHolder> {
+public class IssuesAllRecyclerView extends RecyclerView.Adapter<IssuesAllRecyclerView.MyHolder> {
 
     List<IssuesResults> mList;
     Context context;
 
-    public VenomRecyclerView(List<IssuesResults> mList, Context context) {
+    public IssuesAllRecyclerView(List<IssuesResults> mList, Context context) {
         this.mList = mList;
         this.context=context;
     }
-
     @NonNull
     @Override
-    public VenomRecyclerView.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public IssuesAllRecyclerView.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_issues,parent,false);
 
         return new MyHolder(view);
     }
-
     @Override
-    public void onBindViewHolder(@NonNull VenomRecyclerView.MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull IssuesAllRecyclerView.MyHolder holder, int position) {
 
         final IssuesResults results=mList.get(holder.getAdapterPosition());
 
-        holder.cTitle.setText(results.getName() + "\n\n");
+        holder.cTitle.setText(results.getVolume().getName()+ "\n\n");
         holder.iNumber.setText(results.getIssue_number());
         Glide.with(context).load(results.getImage().getMedium_url()).into(holder.cImage);
 
@@ -49,16 +47,15 @@ public class VenomRecyclerView extends RecyclerView.Adapter<VenomRecyclerView.My
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(context, DetailActivity.class);
+                Intent intent=new Intent(context,DetailActivity.class);
                 intent.putExtra("ID","4000-"+results.getId());
                 context.startActivity(intent);
             }
         });
     }
-
     @Override
     public int getItemCount() {
-        return 25;
+        return mList.size();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {

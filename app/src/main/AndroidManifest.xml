@@ -12,10 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailActivity"
+        <activity android:name=".AllIssuesActivity"
             android:parentActivityName=".MainPageActivity"
-            android:theme="@style/AppThemeDetailActivity">
-        </activity>
+            android:theme="@style/AppThemeDetailActivity"></activity>
+        <activity
+            android:name=".DetailActivity"
+            android:parentActivityName=".MainPageActivity"
+            android:theme="@style/AppThemeDetailActivity" />
         <activity android:name=".MainPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

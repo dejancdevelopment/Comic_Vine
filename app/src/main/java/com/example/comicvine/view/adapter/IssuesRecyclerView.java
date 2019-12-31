@@ -55,7 +55,7 @@ public class IssuesRecyclerView extends RecyclerView.Adapter<IssuesRecyclerView.
     }
     @Override
     public int getItemCount() {
-        return mList.size();
+        return 25;
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {

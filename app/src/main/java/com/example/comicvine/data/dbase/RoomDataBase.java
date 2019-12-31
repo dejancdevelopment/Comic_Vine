@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.comicvine.data.model.IssuesResults;
 
-@Database(entities = IssuesResults.class,version = 2)
+@Database(entities = IssuesResults.class,version = 1)
 @TypeConverters({Converters.class})
 public abstract class RoomDataBase extends RoomDatabase {
 

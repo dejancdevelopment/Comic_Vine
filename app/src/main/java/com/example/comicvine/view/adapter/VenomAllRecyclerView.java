@@ -18,26 +18,26 @@ import com.example.comicvine.data.model.IssuesResults;
 
 import java.util.List;
 
-public class VenomRecyclerView extends RecyclerView.Adapter<VenomRecyclerView.MyHolder> {
+public class VenomAllRecyclerView extends RecyclerView.Adapter<VenomAllRecyclerView.MyHolder> {
 
     List<IssuesResults> mList;
     Context context;
 
-    public VenomRecyclerView(List<IssuesResults> mList, Context context) {
+    public VenomAllRecyclerView(List<IssuesResults> mList, Context context) {
         this.mList = mList;
         this.context=context;
     }
 
     @NonNull
     @Override
-    public VenomRecyclerView.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public VenomAllRecyclerView.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_issues,parent,false);
 
         return new MyHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VenomRecyclerView.MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull VenomAllRecyclerView.MyHolder holder, int position) {
 
         final IssuesResults results=mList.get(holder.getAdapterPosition());
 
@@ -58,7 +58,7 @@ public class VenomRecyclerView extends RecyclerView.Adapter<VenomRecyclerView.My
 
     @Override
     public int getItemCount() {
-        return 25;
+        return mList.size();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {
