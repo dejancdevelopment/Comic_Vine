@@ -2,6 +2,7 @@ package com.example.comicvine.view.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,63 +22,69 @@ import com.example.comicvine.data.model.IssuesResults;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IssuesAllRecyclerView extends RecyclerView.Adapter<IssuesAllRecyclerView.MyHolder>
-        implements Filterable {
+public class IssuesAllLinearAdapter extends RecyclerView.Adapter<IssuesAllLinearAdapter.MyHolder>
+implements Filterable {
 
     List<IssuesResults> mList;
     List<IssuesResults> searchList;
     Context context;
 
-    public IssuesAllRecyclerView(List<IssuesResults> mList, Context context) {
+    public IssuesAllLinearAdapter(List<IssuesResults> mList, Context context) {
         this.mList = mList;
-        this.searchList=new ArrayList<>(mList);
-        this.context=context;
+        this.searchList = new ArrayList<>(mList);
+        this.context = context;
     }
+
     @NonNull
     @Override
-    public IssuesAllRecyclerView.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_issues,parent,false);
+    public IssuesAllLinearAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_all_linear_change, parent, false);
 
         return new MyHolder(view);
     }
+
     @Override
-    public void onBindViewHolder(@NonNull IssuesAllRecyclerView.MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull IssuesAllLinearAdapter.MyHolder holder, int position) {
 
-        final IssuesResults results=mList.get(holder.getAdapterPosition());
+        final IssuesResults results = mList.get(holder.getAdapterPosition());
 
-        holder.cTitle.setText(results.getVolume().getName()+ "\n\n");
+        holder.cTitle.setText(results.getVolume().getName());
         holder.iNumber.setText(results.getIssue_number());
+        holder.description.setText(Html.fromHtml(results.getDescription(),Html.FROM_HTML_MODE_LEGACY));
         Glide.with(context).load(results.getImage().getMedium_url()).into(holder.cImage);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(context,DetailActivity.class);
-                intent.putExtra("ID","4000-"+results.getId());
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("ID", "4000-" + results.getId());
                 context.startActivity(intent);
             }
         });
 
     }
+
     @Override
     public int getItemCount() {
         return mList.size();
     }
 
-
     public class MyHolder extends RecyclerView.ViewHolder {
 
-        TextView cTitle,iNumber;
+        TextView cTitle, iNumber, description;
         ImageView cImage;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
-            iNumber=itemView.findViewById(R.id.issues_number);
-            cImage=itemView.findViewById(R.id.comics_image);
-            cTitle=itemView.findViewById(R.id.comics_title);
+            iNumber = itemView.findViewById(R.id.issues_number_linear_all);
+            cImage = itemView.findViewById(R.id.comics_image_linear_all);
+            cTitle = itemView.findViewById(R.id.comics_title_linear_all);
+            description = itemView.findViewById(R.id.item_description_linear_all);
         }
+
+
     }
 
     @Override

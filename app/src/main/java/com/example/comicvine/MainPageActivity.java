@@ -20,6 +20,7 @@ import com.example.comicvine.view.adapter.IssuesRecyclerView;
 import com.example.comicvine.view.adapter.PromosRecyclerView;
 import com.example.comicvine.view.adapter.VenomRecyclerView;
 import com.example.comicvine.view.adapter.WolverineManRecyclerView;
+import com.example.comicvine.view.animation.ZoomCenterCardLayoutManager;
 import com.example.comicvine.view.viewmodel.IssuesViewModel;
 
 import java.util.Collections;
@@ -188,32 +189,38 @@ public class MainPageActivity extends AppCompatActivity {
     }
     private void getRecyclerViewIssues (List<IssuesResults> list) {
         adapterView = new IssuesRecyclerView(list,this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new ZoomCenterCardLayoutManager
+                (this,LinearLayoutManager.HORIZONTAL,false));
         recyclerView.setAdapter(adapterView);
     }
     private void getRecyclerViewVenom (List<IssuesResults> list) {
         venomAdapter = new VenomRecyclerView(list,this);
-        recyclerViewVenom.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        recyclerViewVenom.setLayoutManager
+                (new ZoomCenterCardLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         recyclerViewVenom.setAdapter(venomAdapter);
     }
     private void getRecyclerViewIronMan (List<IssuesResults> list) {
         ironAdapter = new IronManRecyclerView(list,this);
-        recyclerViewIron.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        recyclerViewIron.setLayoutManager
+                (new ZoomCenterCardLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         recyclerViewIron.setAdapter(ironAdapter);
     }
     private void getRecyclerViewWolverine (List<IssuesResults> list) {
         wolverineAdapter = new WolverineManRecyclerView (list,this);
-        recyclerViewWolverine.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        recyclerViewWolverine.setLayoutManager
+                (new ZoomCenterCardLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         recyclerViewWolverine.setAdapter(wolverineAdapter);
     }
     private void getRecyclerViewCaptainMarvel (List<IssuesResults> list) {
         captainMarvelAdapter = new CaptainMarvelManRecyclerView (list,this);
-        recyclerCaptainMarvel.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        recyclerCaptainMarvel.setLayoutManager
+                (new ZoomCenterCardLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         recyclerCaptainMarvel.setAdapter(captainMarvelAdapter);
     }
     private void getRecyclerViewAvengers (List<IssuesResults> list) {
         avengersAdapter = new AvengersManRecyclerView (list,this);
-        recyclerAvengers.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        recyclerAvengers.setLayoutManager
+                (new ZoomCenterCardLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         recyclerAvengers.setAdapter(avengersAdapter);
     }
     private void getRecyclerViewPromos (List<IssuesResults> list) {

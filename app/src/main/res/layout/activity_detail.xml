@@ -42,10 +42,25 @@
                 android:padding="8dp"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="300dp"
-                    android:id="@+id/id_image"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loading"
+                        android:layout_centerInParent="true"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="300dp"
+                        android:id="@+id/id_image"/>
+
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/id_title"
@@ -53,7 +68,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
                     android:textColor="@android:color/white"
-                    android:text="Title"
+                    android:text="@string/title"
                     android:textSize="21sp"
                     android:textStyle="bold"/>
 
@@ -69,7 +84,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp"
                         android:textColor="@android:color/darker_gray"
-                        android:text="Issue # "
+                        android:text="@string/issue"
                         android:textSize="14sp"
                         />
                     <TextView
@@ -79,7 +94,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp"
                         android:textColor="@android:color/darker_gray"
-                        android:text="Title"
+                        android:text="@string/title"
                         android:textSize="14sp"
                         />
                 </LinearLayout>
@@ -91,7 +106,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="4dp"
                     android:textColor="@android:color/holo_orange_dark"
-                    android:text="Description"
+                    android:text="@string/description"
                     android:textSize="16sp"
                     />
 
@@ -105,8 +120,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="12dp"
-                    android:textColor="@android:color/darker_gray"
-                    android:text="Description"
+                    android:textColor="@android:color/white"
+                    android:text="@string/description"
                     android:textSize="18sp"
                     />
 
@@ -137,7 +152,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="8dp"
                     android:textColor="@android:color/holo_orange_dark"
-                    android:text="Creators"
+                    android:text="@string/creators"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
 
@@ -156,7 +171,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Characters"
+                    android:text="@string/characters"
                     android:textColor="@android:color/holo_orange_dark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -176,7 +191,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Teams"
+                    android:text="@string/teams"
                     android:textColor="@android:color/holo_orange_dark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -197,7 +212,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Locations"
+                    android:text="@string/locations"
                     android:textColor="@android:color/holo_orange_dark"
                     android:textSize="18sp"
                     android:textStyle="bold" />

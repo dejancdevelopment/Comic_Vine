@@ -14,6 +14,8 @@
         <item name="colorPrimaryDark">#333333</item>
         <item name="colorAccent">#ED1D24</item>
         <item name="colorControlNormal">#ffffff</item>
+        <item name="android:editTextColor">@android:color/white</item>
+
     </style>
 
 </resources>

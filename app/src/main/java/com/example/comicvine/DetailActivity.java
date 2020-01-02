@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -54,7 +55,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar_detail);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         final ProgressBar progressBar = findViewById(R.id.progress_bar);
         layout = findViewById(R.id.detail_layout);
@@ -89,14 +90,14 @@ public class DetailActivity extends AppCompatActivity {
                     @Override
                     public void onChanged(ResultsById resultsById) {
 
-                        getSupportActionBar().setTitle(resultsById.getVolume().getName());
+                        Objects.requireNonNull(getSupportActionBar()).setTitle(resultsById.getVolume().getName());
 
                         Glide.with(Objects.requireNonNull(DetailActivity.this))
                                 .load(resultsById.getImage().getSmall_url())
                                 .into(imageView);
                         title.setText(resultsById.getVolume().getName());
                         issue_num.setText(resultsById.getIssue_number());
-                        description.setText(resultsById.getDescription());
+                        description.setText(Html.fromHtml(resultsById.getDescription(),Html.FROM_HTML_MODE_LEGACY));
 
                         getCreatorList(resultsById.getPerson_credits());
                         getCharactersList(resultsById.getCharacter_credits());
@@ -106,7 +107,7 @@ public class DetailActivity extends AppCompatActivity {
                 });
 
             }
-        },2000);
+        },1500);
     }
 
     private void getCreatorList(ArrayList<PersonalCredits> list) {
