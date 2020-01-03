@@ -24,8 +24,6 @@ public class CharactersRepo {
     private String API_KEY= BuildConfig.apikey;
 
     MutableLiveData<List<ResultsByCharacters>> setAllCharacters =new MutableLiveData<>();
-    MutableLiveData<List<ResultsByCharacters>> setCharactersbyId =new MutableLiveData<>();
-
 
     public static CharactersRepo getInstance(Context context){
 
@@ -59,29 +57,7 @@ public class CharactersRepo {
         return setAllCharacters;
     }
 
-    public MutableLiveData<List<ResultsByCharacters>> getCharactersById(String id) {
-
-        callApi.getCharactersById(id,API_KEY,"json").enqueue(new Callback<ResponseByCharacters>() {
-            @Override
-            public void onResponse(Call<ResponseByCharacters> call, Response<ResponseByCharacters> response) {
-
-                if (response.body() != null) {
-                    setCharactersbyId.setValue(response.body().getResultList());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseByCharacters> call, Throwable t) {
-
-            }
-        });
-
-        return setCharactersbyId;
-    }
-
     public void setCallApi(CallApi callApi) {
         this.callApi = callApi;
     }
-
-
 }

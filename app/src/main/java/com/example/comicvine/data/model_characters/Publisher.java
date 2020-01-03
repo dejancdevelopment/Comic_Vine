@@ -1,6 +1,6 @@
 package com.example.comicvine.data.model_characters;
 
-class Publisher {
+public class Publisher {
 
     String name;
 

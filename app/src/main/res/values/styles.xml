@@ -5,14 +5,14 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#333333</item>
         <item name="colorPrimaryDark">#333333</item>
-        <item name="colorAccent">#ED1D24</item>
+        <item name="colorAccent">@android:color/holo_blue_dark</item>
     </style>
 
     <style name="AppThemeDetailActivity" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#333333</item>
         <item name="colorPrimaryDark">#333333</item>
-        <item name="colorAccent">#ED1D24</item>
+        <item name="colorAccent">@android:color/holo_blue_dark</item>
         <item name="colorControlNormal">#ffffff</item>
         <item name="android:editTextColor">@android:color/white</item>
 

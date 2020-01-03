@@ -7,8 +7,8 @@
     tools:context=".MainPageActivity">
 
     <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:visibility="gone"
         android:id="@+id/progress_bar_issues"
         android:layout_centerInParent="true"/>

@@ -12,6 +12,7 @@ import com.example.comicvine.data.model_by_id.ResultsById;
 import com.example.comicvine.data.model_characters.ResultsByCharacters;
 import com.example.comicvine.data.repository.CharactersRepo;
 import com.example.comicvine.data.repository.IssuesRepo;
+import com.example.comicvine.data.repository.StoriesRepo;
 
 import java.util.List;
 
@@ -24,13 +25,15 @@ public class VineViewModel extends AndroidViewModel {
     private LiveData<List<IssuesResults>> getAllCaptainMarvel;
     private LiveData<List<IssuesResults>> getAllAvengers;
     private LiveData<List<ResultsByCharacters>> getAllCharacters;
-    private LiveData<List<ResultsByCharacters>> getCharactersById;
+    private LiveData<List<ResultsByCharacters>> getAllStories;
+
 
 
     private LiveData<ResultsById> byIdLiveData;
 
     private IssuesRepo issuesRepo;
     private CharactersRepo charactersRepo;
+    private StoriesRepo storiesRepo;
 
     public VineViewModel(@NonNull Application application) {
         super(application);
@@ -46,18 +49,15 @@ public class VineViewModel extends AndroidViewModel {
         charactersRepo=CharactersRepo.getInstance(application);
         getAllCharacters=charactersRepo.getAllCharacters();
 
+        storiesRepo=StoriesRepo.getInstance(application);
+        getAllStories=storiesRepo.getAllStories();
+
     }
 
     public void getIssueById(String id){
 
         byIdLiveData =issuesRepo.getIssuesById(id);
         Log.d("QQQ", "onResponse: " + "viewModel");
-    }
-
-    public void getCharacterById(String id){
-
-        getCharactersById=charactersRepo.getCharactersById(id);
-
     }
 
 
@@ -92,5 +92,9 @@ public class VineViewModel extends AndroidViewModel {
 
     public LiveData<List<ResultsByCharacters>> getGetAllCharacters() {
         return getAllCharacters;
+    }
+
+    public LiveData<List<ResultsByCharacters>> getGetAllStories() {
+        return getAllStories;
     }
 }
