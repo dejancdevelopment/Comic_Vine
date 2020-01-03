@@ -9,41 +9,22 @@
     android:orientation="vertical"
     tools:context=".MainPageActivity">
 
-    <androidx.core.widget.NestedScrollView
+    <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        android:layout_height="wrap_content"
+        android:id="@+id/tab_layout_main"
+        android:background="#333333"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabTextColor="@android:color/white"
+        app:tabGravity="fill"
+        />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/view_pager_"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200sp"
-                    android:layout_marginBottom="2dp"
-                    android:background="#66666666"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/comic_builnigs"
-                    app:layout_collapseMode="pin" />
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:src="@drawable/logo" />
-
-            </RelativeLayout>
-
-            <include layout="@layout/start_page_recycler_views" />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </androidx.viewpager.widget.ViewPager>
 
 </LinearLayout>

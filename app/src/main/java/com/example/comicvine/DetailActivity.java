@@ -28,14 +28,14 @@ import com.example.comicvine.view.adapter.CharactersByIdRecyclerView;
 import com.example.comicvine.view.adapter.CreatorsByIdRecyclerView;
 import com.example.comicvine.view.adapter.LocationByIdRecyclerView;
 import com.example.comicvine.view.adapter.TeamByIdRecyclerView;
-import com.example.comicvine.view.viewmodel.IssuesViewModel;
+import com.example.comicvine.view.viewmodel.VineViewModel;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class DetailActivity extends AppCompatActivity {
 
-    IssuesViewModel viewModel;
+    VineViewModel viewModel;
 
     private ImageView imageView;
     private TextView description;
@@ -72,7 +72,7 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String id = intent.getStringExtra("ID");
 
-        viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(VineViewModel.class);
         viewModel.getIssueById(id);
         Log.d("QQQ", "onResponse: " + "activity");
 

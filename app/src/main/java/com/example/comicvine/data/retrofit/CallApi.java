@@ -27,6 +27,11 @@ public interface CallApi {
                                      @Query("api_key") String API_KEY,
                                      @Query("format") String format);
 
+    @GET("characters/")
+    Call<Response> getCharactersResponse(@Query("api_key") String API_KEY,
+                                       @Query("sort") String sortBy,
+                                       @Query("format") String format);
+
 //    @GET("issues/")
 //    Call<Response> getIssuesResponse(@Query("api_key") String API_KEY,
 //                                     @Query("limit") int limitNumber,
