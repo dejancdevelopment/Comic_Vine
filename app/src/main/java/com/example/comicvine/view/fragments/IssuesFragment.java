@@ -137,7 +137,7 @@ public class IssuesFragment extends Fragment {
                 linearLayout.setVisibility(View.VISIBLE);
 
             }
-        },2500);
+        },2000);
 
         viewModel.getGetAllIssues().observe(this, new Observer<List<IssuesResults>>() {
             @Override
