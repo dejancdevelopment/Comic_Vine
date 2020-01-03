@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.IssuesResults;
 import com.example.comicvine.view.adapter.IssuesAllLinearAdapter;
-import com.example.comicvine.view.adapter.SeriesAdapter;
 import com.example.comicvine.view.viewmodel.VineViewModel;
 
 import java.util.List;
@@ -29,26 +28,14 @@ public class CharactersFragment extends Fragment {
     RecyclerView recyclerView;
     IssuesAllLinearAdapter adapter;
 
+    //TODO
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view=inflater.inflate(R.layout.fragment_characters, container, false);
 
-        recyclerView=view.findViewById(R.id.characters_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        VineViewModel viewModel= ViewModelProviders.of(this).get(VineViewModel.class);
-        viewModel.getGetAllSeries().observe(this, new Observer<List<IssuesResults>>() {
-            @Override
-            public void onChanged(List<IssuesResults> issuesResults) {
-
-                adapter=new IssuesAllLinearAdapter(issuesResults,getContext());
-                recyclerView.setAdapter(adapter);
-            }
-        });
-
-        return view;
+            return view;
     }
 
 }

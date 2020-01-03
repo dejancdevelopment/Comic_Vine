@@ -62,7 +62,7 @@ public class IssuesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view=inflater.inflate(R.layout.main_fragment_,container,false);
+        View view=inflater.inflate(R.layout.issues_fragment_,container,false);
 
         recyclerView =view.findViewById(R.id.recycler_view_issues);
         recyclerViewVenom=view.findViewById(R.id.recycler_view_venom);

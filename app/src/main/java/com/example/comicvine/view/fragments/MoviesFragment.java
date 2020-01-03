@@ -16,17 +16,12 @@ import com.example.comicvine.R;
  */
 public class MoviesFragment extends Fragment {
 
-
-    public MoviesFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movies, container, false);
+        View view=inflater.inflate(R.layout.fragment_movies, container, false);
+
+        return view;
     }
 
 }

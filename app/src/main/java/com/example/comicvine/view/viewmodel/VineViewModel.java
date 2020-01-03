@@ -9,7 +9,6 @@ import androidx.lifecycle.LiveData;
 
 import com.example.comicvine.data.model.IssuesResults;
 import com.example.comicvine.data.model_by_id.ResultsById;
-import com.example.comicvine.data.repository.SeriesRepo;
 import com.example.comicvine.data.repository.IssuesRepo;
 
 import java.util.List;
@@ -23,7 +22,6 @@ public class VineViewModel extends AndroidViewModel {
     private LiveData<List<IssuesResults>> getAllCaptainMarvel;
     private LiveData<List<IssuesResults>> getAllAvengers;
 
-    private LiveData<List<IssuesResults>> getAllSeries;
 
     //    private LiveData<List<IssuesResults>> getLiveDataDb;
     //    private LiveData<List<IssuesResults>> getPromos;
@@ -31,7 +29,6 @@ public class VineViewModel extends AndroidViewModel {
     private LiveData<ResultsById> byIdLiveData;
 
     private IssuesRepo issuesRepo;
-    private SeriesRepo episodesRepo;
 
     public VineViewModel(@NonNull Application application) {
         super(application);
@@ -44,8 +41,6 @@ public class VineViewModel extends AndroidViewModel {
         getAllCaptainMarvel=issuesRepo.getAllCaptainMarvel();
         getAllAvengers=issuesRepo.getAllAvengers();
 
-        episodesRepo= SeriesRepo.getInstance(application);
-        getAllSeries =episodesRepo.getAllSeries();
 
 //        getPromos=issuesRepo.getPromos();
 //        getLiveDataDb=issuesRepo.getIssuesIfResponse();
@@ -90,7 +85,4 @@ public class VineViewModel extends AndroidViewModel {
         return getAllAvengers;
     }
 
-    public LiveData<List<IssuesResults>> getGetAllSeries() {
-        return getAllSeries;
-    }
 }

@@ -48,21 +48,6 @@ implements Filterable {
 
         final IssuesResults results = mList.get(holder.getAdapterPosition());
 
-        holder.cTitle.setText(results.getName());
-//        holder.iNumber.setText(results.get);
-        holder.description.setText(Html.fromHtml(results.getDescription(),Html.FROM_HTML_MODE_LEGACY));
-        Glide.with(context).load(results.getImage().getMedium_url()).into(holder.cImage);
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("ID", "4000-" + results.getId());
-                context.startActivity(intent);
-            }
-        });
-
     }
 
     @Override
@@ -72,16 +57,10 @@ implements Filterable {
 
     public class MyHolder extends RecyclerView.ViewHolder {
 
-        TextView cTitle, iNumber, description;
-        ImageView cImage;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
-            iNumber = itemView.findViewById(R.id.issues_number_linear_all);
-            cImage = itemView.findViewById(R.id.comics_image_linear_all);
-            cTitle = itemView.findViewById(R.id.comics_title_linear_all);
-            description = itemView.findViewById(R.id.item_description_linear_all);
         }
 
 
