@@ -32,7 +32,6 @@ implements Filterable {
 
     public CharactersAdapter(List<ResultsByCharacters> mList, Context context) {
         this.mList = mList;
-        this.searchList = new ArrayList<>(mList);
         this.context = context;
     }
 
@@ -55,6 +54,16 @@ implements Filterable {
 
         Glide.with(context).load(results.getImage().getMedium_url())
                 .into(holder.character_image);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(context,DetailActivity.class);
+                intent.putExtra("ID","4005-"+results.getId());
+                context.startActivity(intent);
+            }
+        });
 
     }
 

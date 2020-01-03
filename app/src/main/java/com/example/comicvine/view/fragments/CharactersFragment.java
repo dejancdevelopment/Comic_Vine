@@ -27,8 +27,8 @@ import java.util.List;
  */
 public class CharactersFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    CharactersAdapter adapter;
+   private RecyclerView recyclerView;
+   private CharactersAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

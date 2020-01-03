@@ -28,9 +28,15 @@ public interface CallApi {
                                      @Query("api_key") String API_KEY,
                                      @Query("format") String format);
 
+
     @GET("characters/")
     Call<ResponseByCharacters> getCharactersResponse(@Query("api_key") String API_KEY,
                                                      @Query("format") String format);
+
+    @GET("character/{id}")
+    Call<ResponseByCharacters> getCharactersById(@Path ("id") String id,
+                                                 @Query("api_key") String API_KEY,
+                                                 @Query("format") String format);
 
 //    @GET("issues/")
 //    Call<Response> getIssuesResponse(@Query("api_key") String API_KEY,

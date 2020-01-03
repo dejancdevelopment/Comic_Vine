@@ -24,6 +24,7 @@ public class VineViewModel extends AndroidViewModel {
     private LiveData<List<IssuesResults>> getAllCaptainMarvel;
     private LiveData<List<IssuesResults>> getAllAvengers;
     private LiveData<List<ResultsByCharacters>> getAllCharacters;
+    private LiveData<List<ResultsByCharacters>> getCharactersById;
 
 
     private LiveData<ResultsById> byIdLiveData;
@@ -51,6 +52,12 @@ public class VineViewModel extends AndroidViewModel {
 
         byIdLiveData =issuesRepo.getIssuesById(id);
         Log.d("QQQ", "onResponse: " + "viewModel");
+    }
+
+    public void getCharacterById(String id){
+
+        getCharactersById=charactersRepo.getCharactersById(id);
+
     }
 
 
