@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.example.comicvine.DetailActivity;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.IssuesResults;
+import com.example.comicvine.data.model_characters.ResultsByCharacters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +26,11 @@ import java.util.List;
 public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.MyHolder>
 implements Filterable {
 
-    List<IssuesResults> mList;
-    List<IssuesResults> searchList;
+    List<ResultsByCharacters> mList;
+    List<ResultsByCharacters> searchList;
     Context context;
 
-    public CharactersAdapter(List<IssuesResults> mList, Context context) {
+    public CharactersAdapter(List<ResultsByCharacters> mList, Context context) {
         this.mList = mList;
         this.searchList = new ArrayList<>(mList);
         this.context = context;
@@ -38,7 +39,7 @@ implements Filterable {
     @NonNull
     @Override
     public CharactersAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_all_linear_change, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_characters, parent, false);
 
         return new MyHolder(view);
     }
@@ -46,7 +47,14 @@ implements Filterable {
     @Override
     public void onBindViewHolder(@NonNull CharactersAdapter.MyHolder holder, int position) {
 
-        final IssuesResults results = mList.get(holder.getAdapterPosition());
+        final ResultsByCharacters results = mList.get(holder.getAdapterPosition());
+
+        holder.name.setText(results.getName());
+        holder.real_name.setText(results.getReal_name());
+        holder.deck.setText(results.getDeck());
+
+        Glide.with(context).load(results.getImage().getMedium_url())
+                .into(holder.character_image);
 
     }
 
@@ -57,13 +65,19 @@ implements Filterable {
 
     public class MyHolder extends RecyclerView.ViewHolder {
 
+        TextView name,real_name,deck;
+        ImageView character_image;
+
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
+            name=itemView.findViewById(R.id.characters_name);
+            real_name=itemView.findViewById(R.id.characters_real_name);
+            deck=itemView.findViewById(R.id.characters_deck);
+            character_image=itemView.findViewById(R.id.characters_image_);
+
         }
-
-
     }
 
     @Override
@@ -74,16 +88,16 @@ implements Filterable {
     private Filter issuesFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<IssuesResults> filterList = new ArrayList<>();
+            List<ResultsByCharacters> filterList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
                 filterList.addAll(searchList);
             } else {
 
                 String filterName = constraint.toString().toLowerCase().trim();
 
-                for (IssuesResults results : searchList) {
+                for (ResultsByCharacters results : searchList) {
 
-                    if (results.getVolume().getName().toLowerCase().contains(filterName)) {
+                    if (results.getName().toLowerCase().contains(filterName)) {
                         filterList.add(results);
                     }
                 }

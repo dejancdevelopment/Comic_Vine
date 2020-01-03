@@ -41,8 +41,7 @@ public class IssuesFragment extends Fragment {
             recyclerViewIron,
             recyclerViewWolverine ,
             recyclerCaptainMarvel,
-            recyclerAvengers,
-            recyclerPromos;
+            recyclerAvengers;
 
     private TextView seeallIssues,
             seeAllVenom,

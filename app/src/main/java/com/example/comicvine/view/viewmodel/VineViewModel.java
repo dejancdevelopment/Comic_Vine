@@ -9,6 +9,8 @@ import androidx.lifecycle.LiveData;
 
 import com.example.comicvine.data.model.IssuesResults;
 import com.example.comicvine.data.model_by_id.ResultsById;
+import com.example.comicvine.data.model_characters.ResultsByCharacters;
+import com.example.comicvine.data.repository.CharactersRepo;
 import com.example.comicvine.data.repository.IssuesRepo;
 
 import java.util.List;
@@ -21,14 +23,13 @@ public class VineViewModel extends AndroidViewModel {
     private LiveData<List<IssuesResults>> getAllWolverine;
     private LiveData<List<IssuesResults>> getAllCaptainMarvel;
     private LiveData<List<IssuesResults>> getAllAvengers;
+    private LiveData<List<ResultsByCharacters>> getAllCharacters;
 
-
-    //    private LiveData<List<IssuesResults>> getLiveDataDb;
-    //    private LiveData<List<IssuesResults>> getPromos;
 
     private LiveData<ResultsById> byIdLiveData;
 
     private IssuesRepo issuesRepo;
+    private CharactersRepo charactersRepo;
 
     public VineViewModel(@NonNull Application application) {
         super(application);
@@ -41,9 +42,9 @@ public class VineViewModel extends AndroidViewModel {
         getAllCaptainMarvel=issuesRepo.getAllCaptainMarvel();
         getAllAvengers=issuesRepo.getAllAvengers();
 
+        charactersRepo=CharactersRepo.getInstance(application);
+        getAllCharacters=charactersRepo.getAllCharacters();
 
-//        getPromos=issuesRepo.getPromos();
-//        getLiveDataDb=issuesRepo.getIssuesIfResponse();
     }
 
     public void getIssueById(String id){
@@ -52,9 +53,6 @@ public class VineViewModel extends AndroidViewModel {
         Log.d("QQQ", "onResponse: " + "viewModel");
     }
 
-//    public LiveData<List<IssuesResults>> getGetPromos() {
-//        return getPromos;
-//    }
 
     public LiveData<ResultsById> getByIdLiveData() {
 
@@ -85,4 +83,7 @@ public class VineViewModel extends AndroidViewModel {
         return getAllAvengers;
     }
 
+    public LiveData<List<ResultsByCharacters>> getGetAllCharacters() {
+        return getAllCharacters;
+    }
 }

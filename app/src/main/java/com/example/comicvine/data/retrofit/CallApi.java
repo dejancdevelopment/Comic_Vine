@@ -2,6 +2,7 @@ package com.example.comicvine.data.retrofit;
 
 import com.example.comicvine.data.model.Response;
 import com.example.comicvine.data.model_by_id.ResponseById;
+import com.example.comicvine.data.model_characters.ResponseByCharacters;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -28,9 +29,8 @@ public interface CallApi {
                                      @Query("format") String format);
 
     @GET("characters/")
-    Call<Response> getCharactersResponse(@Query("api_key") String API_KEY,
-                                       @Query("sort") String sortBy,
-                                       @Query("format") String format);
+    Call<ResponseByCharacters> getCharactersResponse(@Query("api_key") String API_KEY,
+                                                     @Query("format") String format);
 
 //    @GET("issues/")
 //    Call<Response> getIssuesResponse(@Query("api_key") String API_KEY,
