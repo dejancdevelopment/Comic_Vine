@@ -3,9 +3,12 @@ package com.example.comicvine.view.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -55,14 +58,20 @@ public class IssuesFragment extends Fragment {
     private WolverineManRecyclerView wolverineAdapter;
     private CaptainMarvelManRecyclerView captainMarvelAdapter;
     private AvengersManRecyclerView avengersAdapter;
-    private PromosRecyclerView promosAdapter;
+
+    ProgressBar progressBar;
+    LinearLayout linearLayout;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view=inflater.inflate(R.layout.issues_fragment_,container,false);
+        View view=inflater.inflate(R.layout.fragment_issues,container,false);
+        progressBar=view.findViewById(R.id.progress_bar_issues);
+        progressBar.setVisibility(View.VISIBLE);
+        linearLayout=view.findViewById(R.id.layout_issues);
+        linearLayout.setVisibility(View.GONE);
 
         recyclerView =view.findViewById(R.id.recycler_view_issues);
         recyclerViewVenom=view.findViewById(R.id.recycler_view_venom);
@@ -70,7 +79,6 @@ public class IssuesFragment extends Fragment {
         recyclerViewWolverine=view.findViewById(R.id.recycler_view_wolverine);
         recyclerCaptainMarvel=view.findViewById(R.id.recycler_view_captain_marvel);
         recyclerAvengers=view.findViewById(R.id.recycler_view_avengers);
-        recyclerPromos=view.findViewById(R.id.recycler_view_promos);
 
         seeallIssues =view.findViewById(R.id.see_all_issues);
         seeAllVenom=view.findViewById(R.id.see_all_venom);
@@ -120,6 +128,16 @@ public class IssuesFragment extends Fragment {
         VineViewModel viewModel = ViewModelProviders
                 .of(this)
                 .get(VineViewModel.class);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                progressBar.setVisibility(View.GONE);
+                linearLayout.setVisibility(View.VISIBLE);
+
+            }
+        },2500);
 
         viewModel.getGetAllIssues().observe(this, new Observer<List<IssuesResults>>() {
             @Override
@@ -214,10 +232,5 @@ public class IssuesFragment extends Fragment {
         recyclerAvengers.setLayoutManager
                 (new ZoomCenterCardLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         recyclerAvengers.setAdapter(avengersAdapter);
-    }
-    private void getRecyclerViewPromos (List<IssuesResults> list) {
-        promosAdapter = new PromosRecyclerView (list,getContext());
-        recyclerPromos.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-        recyclerPromos.setAdapter(promosAdapter);
     }
 }

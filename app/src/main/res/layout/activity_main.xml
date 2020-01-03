@@ -19,12 +19,13 @@
         app:tabGravity="fill"
         />
 
-    <androidx.viewpager.widget.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/view_pager_"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/view_pager_"
+            android:background="@drawable/world_map"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        </androidx.viewpager.widget.ViewPager>
 
-    </androidx.viewpager.widget.ViewPager>
 
 </LinearLayout>
