@@ -1,4 +1,4 @@
-package com.example.comicvine.data.model;
+package com.example.comicvine.data.model_issues;
 
 public class ImageIssues {
 

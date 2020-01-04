@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.comicvine.DetailActivity;
 import com.example.comicvine.R;
-import com.example.comicvine.data.model.IssuesResults;
+import com.example.comicvine.data.model_issues.IssuesResults;
 
 import java.util.List;
 

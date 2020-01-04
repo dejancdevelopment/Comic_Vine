@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="210dp"
     android:layout_margin="12dp"
-    app:cardBackgroundColor="@color/card_series_color"
+    app:cardBackgroundColor="@color/card_movies_color"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="16sp">
 
@@ -30,7 +30,7 @@
             android:layout_height="216dp"
             android:scaleType="fitXY"
             android:layout_marginBottom="4dp"
-            android:id="@+id/series_image"
+            android:id="@+id/movies_image"
             />
 
     </RelativeLayout>
@@ -46,7 +46,7 @@
                 android:orientation="vertical">
 
             <TextView
-                android:id="@+id/series_title"
+                android:id="@+id/movies_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -59,14 +59,39 @@
                 android:textStyle="bold"
                 tools:ignore="TextViewEdits" />
 
-            <TextView
-                android:id="@+id/year_series"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="year"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textStyle="bold"
+                        android:text="Runtime:"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/runtime_movies"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="time"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="min"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -75,31 +100,53 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/number_of_episodes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Studios"
+                    android:textStyle="bold"
                     android:textColor="@android:color/darker_gray"
                     tools:ignore="TextViewEdits" />
 
-                <TextView
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Episodes"
-                    android:textColor="@android:color/darker_gray"
-                    tools:ignore="TextViewEdits" />
+                    android:id="@+id/studios_recycler"/>
+
 
             </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Writers: "
+                        android:textStyle="bold"
+                        android:textColor="@android:color/darker_gray"
+                        tools:ignore="TextViewEdits" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/writers_recycler"/>
+
+                </LinearLayout>
+
 
             <TextView
-                android:id="@+id/description_series"
+                android:id="@+id/description_movies"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
                 android:drawablePadding="10dp"
-                android:maxLines="7"
+                android:maxLines="5"
                 android:ellipsize="end"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@android:color/holo_green_dark"
                 android:textSize="14dp"
                 android:textStyle="italic" />
 

@@ -1,6 +1,7 @@
 package com.example.comicvine.view.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,42 +15,42 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.comicvine.R;
-import com.example.comicvine.data.model_characters.ResultsByCharacters;
+import com.example.comicvine.data.model_movies.ResultByMovies;
+import com.example.comicvine.data.model_series.ResultBySeries;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.MyHolder>
+public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyHolder>
 implements Filterable {
 
-    List<ResultsByCharacters> mList;
-    List<ResultsByCharacters> searchList;
+    List<ResultByMovies> mList;
+    List<ResultByMovies> searchList;
     Context context;
 
-    public CharactersAdapter(List<ResultsByCharacters> mList, Context context) {
+    public MoviesAdapter(List<ResultByMovies> mList, Context context) {
         this.mList = mList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public CharactersAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_characters, parent, false);
+    public MoviesAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movies, parent, false);
 
         return new MyHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CharactersAdapter.MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MoviesAdapter.MyHolder holder, int position) {
 
-        final ResultsByCharacters results = mList.get(holder.getAdapterPosition());
+        final ResultByMovies results = mList.get(holder.getAdapterPosition());
 
         holder.name.setText(results.getName());
-        holder.real_name.setText(results.getReal_name());
-        holder.deck.setText(results.getDeck());
-
-        Glide.with(context).load(results.getImage().getMedium_url())
-                .into(holder.character_image);
+        holder.runtime.setText(results.getRuntime());
+        holder.deck.setText(Html.fromHtml(results.getDeck(),Html.FROM_HTML_MODE_LEGACY));
+        Glide.with(context).load(results.getImage()
+                .getMedium_url()).into(holder.movie_image);
 
     }
 
@@ -60,18 +61,16 @@ implements Filterable {
 
     public class MyHolder extends RecyclerView.ViewHolder {
 
-        TextView name,real_name,deck;
-        ImageView character_image;
-
+        TextView name,deck,runtime;
+        ImageView movie_image;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
-            name=itemView.findViewById(R.id.characters_name);
-            real_name=itemView.findViewById(R.id.characters_real_name);
-            deck=itemView.findViewById(R.id.characters_deck);
-            character_image=itemView.findViewById(R.id.characters_image_);
-
+            name=itemView.findViewById(R.id.movies_title);
+            deck=itemView.findViewById(R.id.description_movies);
+            movie_image=itemView.findViewById(R.id.movies_image);
+            runtime=itemView.findViewById(R.id.runtime_movies);
         }
     }
 
@@ -83,14 +82,14 @@ implements Filterable {
     private Filter issuesFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<ResultsByCharacters> filterList = new ArrayList<>();
+            List<ResultByMovies> filterList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
                 filterList.addAll(searchList);
             } else {
 
                 String filterName = constraint.toString().toLowerCase().trim();
 
-                for (ResultsByCharacters results : searchList) {
+                for (ResultByMovies results : searchList) {
 
                     if (results.getName().toLowerCase().contains(filterName)) {
                         filterList.add(results);

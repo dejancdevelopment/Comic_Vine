@@ -21,12 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.comicvine.AllIssuesActivity;
 import com.example.comicvine.R;
-import com.example.comicvine.data.model.IssuesResults;
+import com.example.comicvine.data.model_issues.IssuesResults;
 import com.example.comicvine.view.adapter.AvengersManRecyclerView;
 import com.example.comicvine.view.adapter.CaptainMarvelManRecyclerView;
 import com.example.comicvine.view.adapter.IronManRecyclerView;
 import com.example.comicvine.view.adapter.IssuesRecyclerView;
-import com.example.comicvine.view.adapter.PromosRecyclerView;
 import com.example.comicvine.view.adapter.VenomRecyclerView;
 import com.example.comicvine.view.adapter.WolverineManRecyclerView;
 import com.example.comicvine.view.animation.ZoomCenterCardLayoutManager;

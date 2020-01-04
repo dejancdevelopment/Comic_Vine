@@ -7,12 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.comicvine.data.model.IssuesResults;
+import com.example.comicvine.data.model_issues.IssuesResults;
 import com.example.comicvine.data.model_by_id.ResultsById;
 import com.example.comicvine.data.model_characters.ResultsByCharacters;
+import com.example.comicvine.data.model_movies.ResultByMovies;
 import com.example.comicvine.data.model_series.ResultBySeries;
 import com.example.comicvine.data.repository.CharactersRepo;
 import com.example.comicvine.data.repository.IssuesRepo;
+import com.example.comicvine.data.repository.MoviesRepo;
 import com.example.comicvine.data.repository.SeriesRepo;
 import com.example.comicvine.data.repository.StoriesRepo;
 
@@ -29,6 +31,7 @@ public class VineViewModel extends AndroidViewModel {
     private LiveData<List<ResultsByCharacters>> getAllCharacters;
     private LiveData<List<ResultsByCharacters>> getAllStories;
     private LiveData<List<ResultBySeries>> getAllSeries;
+    private LiveData<List<ResultByMovies>> getAllMovies;
 
     private LiveData<ResultsById> byIdLiveData;
 
@@ -36,6 +39,7 @@ public class VineViewModel extends AndroidViewModel {
     private CharactersRepo charactersRepo;
     private StoriesRepo storiesRepo;
     private SeriesRepo seriesRepo;
+    private MoviesRepo moviesRepo;
 
     public VineViewModel(@NonNull Application application) {
         super(application);
@@ -56,6 +60,9 @@ public class VineViewModel extends AndroidViewModel {
 
         seriesRepo=SeriesRepo.getInstance(application);
         getAllSeries=seriesRepo.getAllSeries();
+
+        moviesRepo=MoviesRepo.getInstance(application);
+        getAllMovies=moviesRepo.getAllMovies();
 
     }
 
@@ -105,5 +112,9 @@ public class VineViewModel extends AndroidViewModel {
 
     public LiveData<List<ResultBySeries>> getGetAllSeries() {
         return getAllSeries;
+    }
+
+    public LiveData<List<ResultByMovies>> getGetAllMovies() {
+        return getAllMovies;
     }
 }

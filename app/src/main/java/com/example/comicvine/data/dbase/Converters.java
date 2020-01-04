@@ -2,8 +2,8 @@ package com.example.comicvine.data.dbase;
 
 import androidx.room.TypeConverter;
 
-import com.example.comicvine.data.model.ImageIssues;
-import com.example.comicvine.data.model.Volume;
+import com.example.comicvine.data.model_issues.ImageIssues;
+import com.example.comicvine.data.model_issues.Volume;
 
 public class Converters {
 

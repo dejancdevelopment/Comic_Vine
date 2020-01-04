@@ -1,8 +1,7 @@
-package com.example.comicvine.data.model;
+package com.example.comicvine.data.model_issues;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "issues_")

@@ -2,7 +2,6 @@ package com.example.comicvine.data.repository;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.ProgressBar;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,13 +9,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.comicvine.BuildConfig;
 import com.example.comicvine.data.dbase.MyDao;
 import com.example.comicvine.data.dbase.RoomDataBase;
-import com.example.comicvine.data.model.IssuesResults;
-import com.example.comicvine.data.model.Response;
+import com.example.comicvine.data.model_issues.IssuesResults;
+import com.example.comicvine.data.model_issues.Response;
 import com.example.comicvine.data.model_by_id.ResponseById;
 import com.example.comicvine.data.model_by_id.ResultsById;
 import com.example.comicvine.data.retrofit.CallApi;
 import com.example.comicvine.data.retrofit.ClientRetrofit;
-import com.example.comicvine.data.utils.NetworkUtils;
 
 import java.util.List;
 

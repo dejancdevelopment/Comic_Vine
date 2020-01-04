@@ -19,7 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.example.comicvine.data.model.IssuesResults;
+import com.example.comicvine.data.model_issues.IssuesResults;
 import com.example.comicvine.view.adapter.IssuesAllLinearAdapter;
 import com.example.comicvine.view.adapter.IssuesAllRecyclerView;
 import com.example.comicvine.view.viewmodel.VineViewModel;

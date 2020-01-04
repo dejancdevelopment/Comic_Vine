@@ -5,7 +5,6 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.comicvine.BuildConfig;
-import com.example.comicvine.data.model.IssuesResults;
 import com.example.comicvine.data.model_characters.ResponseByCharacters;
 import com.example.comicvine.data.model_characters.ResultsByCharacters;
 import com.example.comicvine.data.retrofit.CallApi;
@@ -44,7 +43,7 @@ public class CharactersRepo {
             public void onResponse(Call<ResponseByCharacters> call, Response<ResponseByCharacters> response) {
 
                 if (response.body() != null) {
-                    getAllCharacters().setValue(response.body().getResultList());
+                    setAllCharacters.setValue(response.body().getResultList());
                 }
             }
 

@@ -1,8 +1,9 @@
 package com.example.comicvine.data.retrofit;
 
-import com.example.comicvine.data.model.Response;
+import com.example.comicvine.data.model_issues.Response;
 import com.example.comicvine.data.model_by_id.ResponseById;
 import com.example.comicvine.data.model_characters.ResponseByCharacters;
+import com.example.comicvine.data.model_movies.ResponseByMovies;
 import com.example.comicvine.data.model_series.ResponseBySeries;
 
 import retrofit2.Call;
@@ -39,6 +40,10 @@ public interface CallApi {
 
     @GET("series_list/")
     Call<ResponseBySeries> getSeriesResponse(@Query("api_key") String API_KEY,
+                                             @Query("format") String format);
+
+    @GET("movies/")
+    Call<ResponseByMovies> getMoviesResponse(@Query("api_key") String API_KEY,
                                              @Query("format") String format);
 
 

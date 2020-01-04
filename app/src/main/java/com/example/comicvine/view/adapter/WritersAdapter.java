@@ -10,35 +10,34 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.comicvine.R;
-import com.example.comicvine.data.model_by_id.PersonalCredits;
+import com.example.comicvine.data.model_movies.Writers;
 
 import java.util.List;
 
-public class CreatorsByIdRecyclerView extends RecyclerView.Adapter<CreatorsByIdRecyclerView.MyHolder> {
+public class WritersAdapter extends RecyclerView.Adapter<WritersAdapter.MyHolder> {
 
-    List<PersonalCredits> mList;
+    List<Writers> mList;
     Context context;
 
-    public CreatorsByIdRecyclerView(List<PersonalCredits> mList, Context context) {
+    public WritersAdapter(List<Writers> mList, Context context) {
         this.mList = mList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public CreatorsByIdRecyclerView.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public WritersAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.id_creator_litem_row,parent,false);
 
         return new MyHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CreatorsByIdRecyclerView.MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull WritersAdapter.MyHolder holder, int position) {
 
-        PersonalCredits personalCredits=mList.get(position);
+        Writers writers=mList.get(position);
 
-        holder.cName.setText(personalCredits.getName());
-        holder.cRole.setText(personalCredits.getRole());
+        holder.cName.setText(writers.getName());
     }
 
     @Override
@@ -48,14 +47,12 @@ public class CreatorsByIdRecyclerView extends RecyclerView.Adapter<CreatorsByIdR
 
     public class MyHolder extends RecyclerView.ViewHolder {
 
-        TextView cName,cRole;
+        TextView cName;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
             cName=itemView.findViewById(R.id.id_name_creators);
-            cRole=itemView.findViewById(R.id.id_role_creators);
-
         }
     }
 }

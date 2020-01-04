@@ -14,10 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.comicvine.R;
-import com.example.comicvine.data.model.IssuesResults;
 import com.example.comicvine.data.model_characters.ResultsByCharacters;
 import com.example.comicvine.view.adapter.CharactersAdapter;
-import com.example.comicvine.view.adapter.IssuesAllLinearAdapter;
 import com.example.comicvine.view.viewmodel.VineViewModel;
 
 import java.util.List;
