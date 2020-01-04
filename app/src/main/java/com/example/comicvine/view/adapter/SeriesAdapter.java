@@ -30,6 +30,7 @@ implements Filterable {
 
     public SeriesAdapter(List<ResultBySeries> mList, Context context) {
         this.mList = mList;
+        this.searchList=new ArrayList<>(mList);
         this.context = context;
     }
 
@@ -52,12 +53,11 @@ implements Filterable {
         holder.number_of.setText(results.getCount_of_episodes());
         Glide.with(context).load(results.getImage()
                 .getMedium_url()).into(holder.series_image);
-
     }
 
     @Override
     public int getItemCount() {
-        return 11;
+        return mList.size();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {

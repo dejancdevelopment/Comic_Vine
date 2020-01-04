@@ -40,7 +40,7 @@ public class SeriesRepo {
 
     public MutableLiveData<List<ResultBySeries>> getAllSeries() {
 
-        callApi.getSeriesResponse(API_KEY,"json").enqueue(new Callback<ResponseBySeries>() {
+        callApi.getSeriesResponse(API_KEY,11,"json").enqueue(new Callback<ResponseBySeries>() {
             @Override
             public void onResponse(Call<ResponseBySeries> call, Response<ResponseBySeries> response) {
 

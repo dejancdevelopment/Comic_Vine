@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model_movies.ResultByMovies;
-import com.example.comicvine.data.model_series.ResultBySeries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +24,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyHolder>
 implements Filterable {
 
     List<ResultByMovies> mList;
-    List<ResultByMovies> searchList;
+    private List<ResultByMovies> searchList;
     Context context;
 
     public MoviesAdapter(List<ResultByMovies> mList, Context context) {
         this.mList = mList;
+        this.searchList=new ArrayList<>(mList);
         this.context = context;
     }
 
@@ -61,13 +61,14 @@ implements Filterable {
 
     public class MyHolder extends RecyclerView.ViewHolder {
 
-        TextView name,deck,runtime;
+        TextView name,deck,runtime,writers;
         ImageView movie_image;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
             name=itemView.findViewById(R.id.movies_title);
+            writers=itemView.findViewById(R.id.writers_movies);
             deck=itemView.findViewById(R.id.description_movies);
             movie_image=itemView.findViewById(R.id.movies_image);
             runtime=itemView.findViewById(R.id.runtime_movies);

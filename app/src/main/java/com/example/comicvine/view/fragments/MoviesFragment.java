@@ -9,20 +9,19 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.comicvine.R;
 import com.example.comicvine.data.model_movies.ResultByMovies;
-import com.example.comicvine.data.model_movies.Studios;
-import com.example.comicvine.data.model_movies.Writers;
+
 import com.example.comicvine.view.adapter.MoviesAdapter;
-import com.example.comicvine.view.adapter.StudiosAdapter;
-import com.example.comicvine.view.adapter.WritersAdapter;
 import com.example.comicvine.view.viewmodel.VineViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,9 +29,8 @@ import java.util.List;
  */
 public class MoviesFragment extends Fragment {
 
-    private RecyclerView recyclerView,
-            studios_recycler,
-            writers_recycler;
+    private RecyclerView recyclerView;
+    EditText filter_text;
     MoviesAdapter adapter;
 
     @Override
@@ -41,9 +39,7 @@ public class MoviesFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_movies, container, false);
 
         recyclerView=view.findViewById(R.id.movies_recycler_view);
-        studios_recycler=view.findViewById(R.id.studios_recycler);
-        writers_recycler=view.findViewById(R.id.writers_recycler);
-
+        filter_text=view.findViewById(R.id.filter_text_movies);
         VineViewModel viewModel= ViewModelProviders.of(this).get(VineViewModel.class);
         viewModel.getGetAllMovies().observe(this, new Observer<List<ResultByMovies>>() {
             @Override
@@ -52,26 +48,29 @@ public class MoviesFragment extends Fragment {
                 adapter=new MoviesAdapter(resultByMovies,getContext());
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 recyclerView.setAdapter(adapter);
-
-//                getWritersList(resultByMovies.get(0).getWriters());
             }
         });
 
+
+        filter_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         return view;
-    }
 
-    private void getStudiosList(List<Studios> list) {
 
-        StudiosAdapter adapter = new StudiosAdapter(list,getContext());
-        studios_recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        studios_recycler.setAdapter(adapter);
-    }
-
-    private void getWritersList(List<Writers> list) {
-
-        WritersAdapter adapter = new WritersAdapter(list, getContext());
-        writers_recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        writers_recycler.setAdapter(adapter);
     }
 
 }

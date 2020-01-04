@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="card_series_color">#150000A0</color>
     <color name="card_movies_color">#1500A010</color>
+    <color name="card_search_color">#4D2196F3</color>
 </resources>

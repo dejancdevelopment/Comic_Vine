@@ -10,10 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.comicvine.R;
 import com.example.comicvine.data.model_series.ResultBySeries;
@@ -28,6 +32,7 @@ import java.util.List;
 public class SeriesFragment extends Fragment {
 
     RecyclerView recyclerView;
+    EditText filter_text;
     SeriesAdapter adapter;
 
     @Override
@@ -36,7 +41,7 @@ public class SeriesFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_episodes, container, false);
 
         recyclerView=view.findViewById(R.id.series_recycler_view);
-
+        filter_text=view.findViewById(R.id.filter_text_series);
         VineViewModel viewModel= ViewModelProviders.of(this).get(VineViewModel.class);
         viewModel.getGetAllSeries().observe(this, new Observer<List<ResultBySeries>>() {
             @Override
@@ -45,6 +50,23 @@ public class SeriesFragment extends Fragment {
                 adapter=new SeriesAdapter(resultBySeries,getContext());
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 recyclerView.setAdapter(adapter);
+            }
+        });
+
+        filter_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 

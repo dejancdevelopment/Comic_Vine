@@ -12,14 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model_movies.Writers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WritersAdapter extends RecyclerView.Adapter<WritersAdapter.MyHolder> {
 
-    List<Writers> mList;
+    ArrayList<Writers> mList;
     Context context;
 
-    public WritersAdapter(List<Writers> mList, Context context) {
+    public WritersAdapter(ArrayList<Writers> mList, Context context) {
         this.mList = mList;
         this.context = context;
     }

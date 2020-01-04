@@ -28,6 +28,7 @@ implements Filterable {
 
     public CharactersAdapter(List<ResultsByCharacters> mList, Context context) {
         this.mList = mList;
+        this.searchList=new ArrayList<>(mList);
         this.context = context;
     }
 

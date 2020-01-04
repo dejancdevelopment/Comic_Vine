@@ -40,6 +40,7 @@ public interface CallApi {
 
     @GET("series_list/")
     Call<ResponseBySeries> getSeriesResponse(@Query("api_key") String API_KEY,
+                                             @Query("limit") int limitNumber,
                                              @Query("format") String format);
 
     @GET("movies/")

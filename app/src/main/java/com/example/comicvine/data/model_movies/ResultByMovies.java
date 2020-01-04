@@ -1,5 +1,7 @@
 package com.example.comicvine.data.model_movies;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ResultByMovies {
@@ -12,12 +14,12 @@ public class ResultByMovies {
     private String budget;
     private String release_date;
     private String runtime;
-    private List<Studios> studios;
-    private List<Writers> writers;
+    private ArrayList<Studios> studios;
+    private ArrayList<Writers> writers;
 
     public ResultByMovies(String deck, String description, int id, ImagesMovies image,
                           String name, String budget, String release_date, String runtime,
-                          List<Studios> studios, List<Writers> writers) {
+                          ArrayList<Studios> studios, ArrayList<Writers> writers) {
         this.deck = deck;
         this.description = description;
         this.id = id;
@@ -62,11 +64,11 @@ public class ResultByMovies {
         return runtime;
     }
 
-    public List<Studios> getStudios() {
+    public ArrayList<Studios> getStudios() {
         return studios;
     }
 
-    public List<Writers> getWriters() {
+    public ArrayList<Writers> getWriters() {
         return writers;
     }
 }

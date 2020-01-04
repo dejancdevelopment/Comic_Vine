@@ -130,10 +130,12 @@
                         android:textColor="@android:color/darker_gray"
                         tools:ignore="TextViewEdits" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/writers_recycler"/>
+                    <TextView
+                        android:id="@+id/writers_movies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/darker_gray"
+                        tools:ignore="TextViewEdits" />
 
                 </LinearLayout>
 
