@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.comicvine.data.model_issues.IssuesResults;
+import com.example.comicvine.data.model.model_issues.IssuesResults;
 
 import java.util.List;
 

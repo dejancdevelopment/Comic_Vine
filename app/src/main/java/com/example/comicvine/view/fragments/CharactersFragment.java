@@ -14,12 +14,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.EditText;
 
 import com.example.comicvine.R;
-import com.example.comicvine.data.model_characters.ResultsByCharacters;
-import com.example.comicvine.view.adapter.CharactersAdapter;
+import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
+import com.example.comicvine.view.adapter.adapter_characters.CharactersAdapter;
 import com.example.comicvine.view.viewmodel.VineViewModel;
 
 import java.util.List;

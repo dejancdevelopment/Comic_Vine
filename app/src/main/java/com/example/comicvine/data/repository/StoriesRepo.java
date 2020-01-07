@@ -5,8 +5,8 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.comicvine.BuildConfig;
-import com.example.comicvine.data.model_characters.ResponseByCharacters;
-import com.example.comicvine.data.model_characters.ResultsByCharacters;
+import com.example.comicvine.data.model.model_characters.ResponseByCharacters;
+import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
 import com.example.comicvine.data.retrofit.CallApi;
 import com.example.comicvine.data.retrofit.ClientRetrofit;
 

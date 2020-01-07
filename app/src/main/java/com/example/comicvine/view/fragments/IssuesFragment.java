@@ -21,13 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.comicvine.AllIssuesActivity;
 import com.example.comicvine.R;
-import com.example.comicvine.data.model_issues.IssuesResults;
-import com.example.comicvine.view.adapter.AvengersManRecyclerView;
-import com.example.comicvine.view.adapter.CaptainMarvelManRecyclerView;
-import com.example.comicvine.view.adapter.IronManRecyclerView;
-import com.example.comicvine.view.adapter.IssuesRecyclerView;
-import com.example.comicvine.view.adapter.VenomRecyclerView;
-import com.example.comicvine.view.adapter.WolverineManRecyclerView;
+import com.example.comicvine.data.model.model_issues.IssuesResults;
+import com.example.comicvine.view.adapter.adapter_avengers.AvengersManRecyclerView;
+import com.example.comicvine.view.adapter.adapter_captain_m.CaptainMarvelManRecyclerView;
+import com.example.comicvine.view.adapter.adapter_iron_man.IronManRecyclerView;
+import com.example.comicvine.view.adapter.adapter_issues.Main_Issues_RecyclerAdapter;
+import com.example.comicvine.view.adapter.adapter_venom.VenomRecyclerView;
+import com.example.comicvine.view.adapter.adapter_wolverine.WolverineManRecyclerView;
 import com.example.comicvine.view.animation.ZoomCenterCardLayoutManager;
 import com.example.comicvine.view.viewmodel.VineViewModel;
 
@@ -50,7 +50,7 @@ public class IssuesFragment extends Fragment {
             seeAllAvengers;
 
 
-    private IssuesRecyclerView adapterView;
+    private Main_Issues_RecyclerAdapter adapterView;
     private VenomRecyclerView venomAdapter;
     private IronManRecyclerView ironAdapter;
     private WolverineManRecyclerView wolverineAdapter;
@@ -196,7 +196,7 @@ public class IssuesFragment extends Fragment {
         startActivity(intent);
     }
     private void getRecyclerViewIssues (List<IssuesResults> list) {
-        adapterView = new IssuesRecyclerView(list,getContext());
+        adapterView = new Main_Issues_RecyclerAdapter(list,getContext());
         recyclerView.setLayoutManager(new ZoomCenterCardLayoutManager
                 (getContext(), LinearLayoutManager.HORIZONTAL,false));
         recyclerView.setAdapter(adapterView);

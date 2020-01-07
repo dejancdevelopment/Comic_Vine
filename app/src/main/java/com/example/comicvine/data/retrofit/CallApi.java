@@ -1,10 +1,10 @@
 package com.example.comicvine.data.retrofit;
 
-import com.example.comicvine.data.model_issues.Response;
-import com.example.comicvine.data.model_by_id.ResponseById;
-import com.example.comicvine.data.model_characters.ResponseByCharacters;
-import com.example.comicvine.data.model_movies.ResponseByMovies;
-import com.example.comicvine.data.model_series.ResponseBySeries;
+import com.example.comicvine.data.model.model_issues.Response;
+import com.example.comicvine.data.model.model_by_id.ResponseById;
+import com.example.comicvine.data.model.model_characters.ResponseByCharacters;
+import com.example.comicvine.data.model.model_movies.ResponseByMovies;
+import com.example.comicvine.data.model.model_series.ResponseBySeries;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -25,6 +25,12 @@ public interface CallApi {
                                            @Query("filter") String sortBy,
                                            @Query("format") String format);
 
+    @GET("issues/")
+    Call<Response> getCharacterIssuesAppearance(@Query("api_key") String API_KEY,
+                                           @Query("sort") String sort,
+                                           @Query("filter") String sortBy,
+                                           @Query("format") String format);
+
     @GET("issue/{id}/")
     Call<ResponseById> getIssueById (@Path ("id") String id,
                                      @Query("api_key") String API_KEY,
@@ -32,6 +38,13 @@ public interface CallApi {
 
     @GET("characters/")
     Call<ResponseByCharacters> getCharactersResponse(@Query("api_key") String API_KEY,
+                                                     @Query("offset") String offset,
+                                                     @Query("sort") String name,
+                                                     @Query("format") String format);
+
+    @GET("characters/")
+    Call<ResponseByCharacters> getCharactersByName(@Query("api_key") String API_KEY,
+                                                     @Query("filter") String name,
                                                      @Query("format") String format);
 
     @GET("story_arcs/")

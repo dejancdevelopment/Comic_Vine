@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,12 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.comicvine.R;
-import com.example.comicvine.data.model_series.ResultBySeries;
-import com.example.comicvine.view.adapter.SeriesAdapter;
+import com.example.comicvine.data.model.model_series.ResultBySeries;
+import com.example.comicvine.view.adapter.adapter_series.SeriesAdapter;
 import com.example.comicvine.view.viewmodel.VineViewModel;
 
 import java.util.List;

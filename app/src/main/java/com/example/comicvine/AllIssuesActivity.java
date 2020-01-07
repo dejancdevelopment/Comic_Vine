@@ -19,9 +19,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.example.comicvine.data.model_issues.IssuesResults;
-import com.example.comicvine.view.adapter.IssuesAllLinearAdapter;
-import com.example.comicvine.view.adapter.IssuesAllRecyclerView;
+import com.example.comicvine.data.model.model_issues.IssuesResults;
+import com.example.comicvine.view.adapter.adapter_issues.IssuesAllLinearAdapter;
+import com.example.comicvine.view.adapter.adapter_issues.IssuesAllRecyclerView;
 import com.example.comicvine.view.viewmodel.VineViewModel;
 
 import java.util.List;

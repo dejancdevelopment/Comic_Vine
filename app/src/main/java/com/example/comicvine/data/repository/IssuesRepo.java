@@ -9,10 +9,10 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.comicvine.BuildConfig;
 import com.example.comicvine.data.dbase.MyDao;
 import com.example.comicvine.data.dbase.RoomDataBase;
-import com.example.comicvine.data.model_issues.IssuesResults;
-import com.example.comicvine.data.model_issues.Response;
-import com.example.comicvine.data.model_by_id.ResponseById;
-import com.example.comicvine.data.model_by_id.ResultsById;
+import com.example.comicvine.data.model.model_issues.IssuesResults;
+import com.example.comicvine.data.model.model_issues.Response;
+import com.example.comicvine.data.model.model_by_id.ResponseById;
+import com.example.comicvine.data.model.model_by_id.ResultsById;
 import com.example.comicvine.data.retrofit.CallApi;
 import com.example.comicvine.data.retrofit.ClientRetrofit;
 

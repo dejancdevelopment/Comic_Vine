@@ -5,10 +5,8 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.comicvine.BuildConfig;
-import com.example.comicvine.data.model_movies.ResponseByMovies;
-import com.example.comicvine.data.model_movies.ResultByMovies;
-import com.example.comicvine.data.model_series.ResponseBySeries;
-import com.example.comicvine.data.model_series.ResultBySeries;
+import com.example.comicvine.data.model.model_movies.ResponseByMovies;
+import com.example.comicvine.data.model.model_movies.ResultByMovies;
 import com.example.comicvine.data.retrofit.CallApi;
 import com.example.comicvine.data.retrofit.ClientRetrofit;
 

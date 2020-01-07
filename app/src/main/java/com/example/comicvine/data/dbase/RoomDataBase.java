@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.comicvine.data.model_issues.IssuesResults;
+import com.example.comicvine.data.model.model_issues.IssuesResults;
 
 @Database(entities = IssuesResults.class,version = 2)
 @TypeConverters({Converters.class})

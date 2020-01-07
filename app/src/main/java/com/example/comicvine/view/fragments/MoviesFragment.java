@@ -17,9 +17,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.comicvine.R;
-import com.example.comicvine.data.model_movies.ResultByMovies;
+import com.example.comicvine.data.model.model_movies.ResultByMovies;
 
-import com.example.comicvine.view.adapter.MoviesAdapter;
+import com.example.comicvine.view.adapter.adapter_movies.MoviesAdapter;
 import com.example.comicvine.view.viewmodel.VineViewModel;
 
 import java.util.List;
