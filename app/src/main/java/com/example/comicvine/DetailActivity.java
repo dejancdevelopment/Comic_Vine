@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.example.comicvine.view.fragments.CharactersDetailFragment;
 import com.example.comicvine.view.fragments.IssuesDetailFragment;
+import com.example.comicvine.view.fragments.StoryDetailFragment;
 
 
 public class DetailActivity extends AppCompatActivity {
@@ -44,6 +45,18 @@ public class DetailActivity extends AppCompatActivity {
 
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.detail_fragment_container, charactersDetailFragment)
+                    .commit();
+        }else if(by.contains("story")){
+
+            String idStory=intent.getStringExtra("ID");
+
+            StoryDetailFragment storyDetailFragment=new StoryDetailFragment();
+            Bundle bundle=new Bundle();
+            bundle.putString("ID",idStory);
+            storyDetailFragment.setArguments(bundle);
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.detail_fragment_container, storyDetailFragment)
                     .commit();
         }
     }

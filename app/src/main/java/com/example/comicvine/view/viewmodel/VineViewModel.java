@@ -12,6 +12,7 @@ import com.example.comicvine.data.model.model_by_id.ResultsById;
 import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
 import com.example.comicvine.data.model.model_movies.ResultByMovies;
 import com.example.comicvine.data.model.model_series.ResultBySeries;
+import com.example.comicvine.data.model.model_story_by_id.ResultsStoryById;
 import com.example.comicvine.data.repository.CharactersRepo;
 import com.example.comicvine.data.repository.IssuesRepo;
 import com.example.comicvine.data.repository.MoviesRepo;
@@ -36,6 +37,7 @@ public class VineViewModel extends AndroidViewModel {
     private LiveData<List<ResultByMovies>> getAllMovies;
 
     private LiveData<ResultsById> byIdLiveData;
+    private LiveData<ResultsStoryById> getStorieById;
 
     private IssuesRepo issuesRepo;
     private CharactersRepo charactersRepo;
@@ -72,6 +74,11 @@ public class VineViewModel extends AndroidViewModel {
 
         byIdLiveData =issuesRepo.getIssuesById(id);
         Log.d("QQQ", "onResponse: " + "viewModel");
+    }
+
+    public void getStoryById(String id){
+
+        getStorieById=storiesRepo.getStoryiesById(id);
     }
 
     public void getCharacterbyName(String name){
@@ -131,5 +138,9 @@ public class VineViewModel extends AndroidViewModel {
 
     public LiveData<List<IssuesResults>> getGetIssuesByName() {
         return getIssuesByName;
+    }
+
+    public LiveData<ResultsStoryById> getGetStorieById() {
+        return getStorieById;
     }
 }

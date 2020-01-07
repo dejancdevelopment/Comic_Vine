@@ -1,6 +1,7 @@
 package com.example.comicvine.view.adapter.adapter_stories;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.comicvine.DetailActivity;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
 
@@ -51,6 +53,17 @@ implements Filterable {
 
         Glide.with(context).load(results.getImage().getMedium_url())
                 .into(holder.stories_image);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(context,DetailActivity.class);
+                intent.putExtra("ID","4045-"+results.getId());
+                intent.putExtra("BY","story");
+                context.startActivity(intent);
+            }
+        });
 
     }
 

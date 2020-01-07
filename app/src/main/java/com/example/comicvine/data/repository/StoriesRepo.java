@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.comicvine.BuildConfig;
 import com.example.comicvine.data.model.model_characters.ResponseByCharacters;
 import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
+import com.example.comicvine.data.model.model_story_by_id.ResponseStoryById;
+import com.example.comicvine.data.model.model_story_by_id.ResultsStoryById;
 import com.example.comicvine.data.retrofit.CallApi;
 import com.example.comicvine.data.retrofit.ClientRetrofit;
 
@@ -22,7 +24,8 @@ public class StoriesRepo {
     public static StoriesRepo INSTANCE;
     private String API_KEY= BuildConfig.apikey;
 
-    MutableLiveData<List<ResultsByCharacters>> setAllStories =new MutableLiveData<>();
+    private MutableLiveData<List<ResultsByCharacters>> setAllStories =new MutableLiveData<>();
+    private MutableLiveData<ResultsStoryById> setStoriesById =new MutableLiveData<>();
 
     public static StoriesRepo getInstance(Context context){
 
@@ -54,6 +57,25 @@ public class StoriesRepo {
         });
 
         return setAllStories;
+    }
+
+    public MutableLiveData<ResultsStoryById> getStoryiesById(String id) {
+
+        callApi.getStoriesByIdResponse(id,API_KEY,"json").enqueue(new Callback<ResponseStoryById>() {
+            @Override
+            public void onResponse(Call<ResponseStoryById> call, Response<ResponseStoryById> response) {
+
+                if (response.body() != null) {
+                    setStoriesById.setValue(response.body().getResultsStoryById());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseStoryById> call, Throwable t) {
+
+            }
+        });
+        return setStoriesById;
     }
 
     public void setCallApi(CallApi callApi) {

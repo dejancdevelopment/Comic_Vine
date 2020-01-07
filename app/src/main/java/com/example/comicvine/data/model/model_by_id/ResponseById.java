@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class ResponseById {
 
     @SerializedName("results")
+    private
     ResultsById resultList;
 
     public ResponseById(ResultsById resultList) {
