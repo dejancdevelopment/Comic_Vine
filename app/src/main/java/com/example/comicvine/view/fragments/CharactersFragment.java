@@ -38,6 +38,13 @@ public class CharactersFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_characters, container, false);
         filter_text = view.findViewById(R.id.filter_text_characters);
+        filter_text.setCursorVisible(false);
+        filter_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter_text.setCursorVisible(true);
+            }
+        });
         recyclerView = view.findViewById(R.id.characters_recycler_view);
 
         VineViewModel viewModel = ViewModelProviders.of(this).get(VineViewModel.class);

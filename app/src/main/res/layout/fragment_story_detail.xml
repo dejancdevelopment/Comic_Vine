@@ -7,58 +7,101 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="12dp"
-        app:cardBackgroundColor="@color/card_series_color"
-        app:cardCornerRadius="16sp">
+        android:layout_height="match_parent">
 
-        <ScrollView
+        <ProgressBar
+            android:id="@+id/progress_bar_story_detail"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:visibility="visible" />
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/story_by_id_name"
+            <LinearLayout
+                android:id="@+id/story_detail_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:textColor="@android:color/white"
-                android:textSize="21sp"
-                android:background="#333333"
-                android:textAlignment="center"
-                android:textStyle="bold|italic" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="@color/card_series_color"
+                    app:cardCornerRadius="16sp">
 
 
-            <ImageView
-                android:id="@+id/stories_by_id_image_"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_margin="8dp"
-                android:scaleType="centerCrop" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/story_by_id_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="16sp"
-                android:textColorLink="@android:color/white"
-                android:textStyle="bold|italic"
-                android:autoLink="web"
-                />
 
-        </LinearLayout>
+                        <TextView
+                            android:id="@+id/story_by_id_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:background="#333333"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/white"
+                            android:textSize="21sp"
+                            android:textStyle="bold|italic" />
 
-        </ScrollView>
 
-    </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:id="@+id/stories_by_id_image_"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:layout_margin="8dp"
+                            android:scaleType="centerCrop" />
+
+                        <TextView
+                            android:id="@+id/story_by_id_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textColorLink="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold|italic" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Related Links"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2.5dp"
+                    android:layout_margin="4dp"
+                    android:background="@android:color/holo_green_dark" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_story_issues"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+
 </LinearLayout>

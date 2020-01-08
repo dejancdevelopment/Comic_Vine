@@ -30,8 +30,8 @@ import java.util.List;
 public class MoviesFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    EditText filter_text;
-    MoviesAdapter adapter;
+    private EditText filter_text;
+    private MoviesAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +40,13 @@ public class MoviesFragment extends Fragment {
 
         recyclerView=view.findViewById(R.id.movies_recycler_view);
         filter_text=view.findViewById(R.id.filter_text_movies);
+        filter_text.setCursorVisible(false);
+        filter_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter_text.setCursorVisible(true);
+            }
+        });
         VineViewModel viewModel= ViewModelProviders.of(this).get(VineViewModel.class);
         viewModel.getGetAllMovies().observe(this, new Observer<List<ResultByMovies>>() {
             @Override

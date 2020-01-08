@@ -12,6 +12,7 @@ import com.example.comicvine.data.model.model_by_id.ResultsById;
 import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
 import com.example.comicvine.data.model.model_movies.ResultByMovies;
 import com.example.comicvine.data.model.model_series.ResultBySeries;
+import com.example.comicvine.data.model.model_series_by_id.ResultSeriesById;
 import com.example.comicvine.data.model.model_story_by_id.ResultsStoryById;
 import com.example.comicvine.data.repository.CharactersRepo;
 import com.example.comicvine.data.repository.IssuesRepo;
@@ -36,8 +37,10 @@ public class VineViewModel extends AndroidViewModel {
     private LiveData<List<ResultBySeries>> getAllSeries;
     private LiveData<List<ResultByMovies>> getAllMovies;
 
-    private LiveData<ResultsById> byIdLiveData;
+    private LiveData<ResultsById> getIssuesById;
     private LiveData<ResultsStoryById> getStorieById;
+    private LiveData<ResultSeriesById> getSeriesById;
+
 
     private IssuesRepo issuesRepo;
     private CharactersRepo charactersRepo;
@@ -72,7 +75,7 @@ public class VineViewModel extends AndroidViewModel {
 
     public void getIssueById(String id){
 
-        byIdLiveData =issuesRepo.getIssuesById(id);
+        getIssuesById =issuesRepo.getIssuesById(id);
         Log.d("QQQ", "onResponse: " + "viewModel");
     }
 
@@ -81,15 +84,20 @@ public class VineViewModel extends AndroidViewModel {
         getStorieById=storiesRepo.getStoryiesById(id);
     }
 
+    public void getSeriesById(String id){
+
+        getSeriesById=seriesRepo.getSetSeriesById(id);
+    }
+
     public void getCharacterbyName(String name){
         getCharacterByName=charactersRepo.getCharacterByName(name);
         getIssuesByName=charactersRepo.getCharacterIssuesBy(name);
     }
 
 
-    public LiveData<ResultsById> getByIdLiveData() {
+    public LiveData<ResultsById> getGetIssuesById() {
 
-        return byIdLiveData;
+        return getIssuesById;
     }
 
     public LiveData<List<IssuesResults>> getGetAllIssues() {
@@ -142,5 +150,9 @@ public class VineViewModel extends AndroidViewModel {
 
     public LiveData<ResultsStoryById> getGetStorieById() {
         return getStorieById;
+    }
+
+    public LiveData<ResultSeriesById> getGetSeriesById() {
+        return getSeriesById;
     }
 }

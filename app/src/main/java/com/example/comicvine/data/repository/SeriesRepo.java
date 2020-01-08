@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.comicvine.BuildConfig;
 import com.example.comicvine.data.model.model_series.ResponseBySeries;
 import com.example.comicvine.data.model.model_series.ResultBySeries;
+import com.example.comicvine.data.model.model_series_by_id.ResponseSeriesById;
+import com.example.comicvine.data.model.model_series_by_id.ResultSeriesById;
 import com.example.comicvine.data.retrofit.CallApi;
 import com.example.comicvine.data.retrofit.ClientRetrofit;
 
@@ -23,6 +25,7 @@ public class SeriesRepo {
     private String API_KEY= BuildConfig.apikey;
 
     MutableLiveData<List<ResultBySeries>> setAllSeries =new MutableLiveData<>();
+    MutableLiveData<ResultSeriesById> setSeriesById =new MutableLiveData<>();
 
     public static SeriesRepo getInstance(Context context){
 
@@ -54,6 +57,26 @@ public class SeriesRepo {
         });
 
        return setAllSeries;
+    }
+
+    public MutableLiveData<ResultSeriesById> getSetSeriesById (String id){
+
+        callApi.getSeriesByIdResponse(id,API_KEY,"json").enqueue(new Callback<ResponseSeriesById>() {
+            @Override
+            public void onResponse(Call<ResponseSeriesById> call, Response<ResponseSeriesById> response) {
+
+                if (response.body() != null) {
+                    setSeriesById.setValue(response.body().getSeriesByIdResult());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseSeriesById> call, Throwable t) {
+
+            }
+        });
+
+        return setSeriesById;
     }
 
     public void setCallApi(CallApi callApi) {

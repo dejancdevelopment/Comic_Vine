@@ -28,9 +28,9 @@ import java.util.List;
  */
 public class SeriesFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    EditText filter_text;
-    SeriesAdapter adapter;
+    private RecyclerView recyclerView;
+    private EditText filter_text;
+    private SeriesAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +39,13 @@ public class SeriesFragment extends Fragment {
 
         recyclerView=view.findViewById(R.id.series_recycler_view);
         filter_text=view.findViewById(R.id.filter_text_series);
+        filter_text.setCursorVisible(false);
+        filter_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter_text.setCursorVisible(true);
+            }
+        });
         VineViewModel viewModel= ViewModelProviders.of(this).get(VineViewModel.class);
         viewModel.getGetAllSeries().observe(this, new Observer<List<ResultBySeries>>() {
             @Override

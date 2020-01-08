@@ -23,7 +23,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.comicvine.DetailActivity;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_by_id.CharacterCredits;
 import com.example.comicvine.data.model.model_by_id.LocationCredits;
@@ -99,7 +98,7 @@ public class IssuesDetailFragment extends Fragment {
                     layout.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
 
-                    viewModel.getByIdLiveData().observe(IssuesDetailFragment.this, new Observer<ResultsById>() {
+                    viewModel.getGetIssuesById().observe(IssuesDetailFragment.this, new Observer<ResultsById>() {
                         @Override
                         public void onChanged(ResultsById resultsById) {
 

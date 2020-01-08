@@ -28,16 +28,23 @@ import java.util.List;
  */
 public class StoriesFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    EditText serach_text;
-    StoriesAdapter adapter;
+   private RecyclerView recyclerView;
+    private EditText filter_text;
+    private StoriesAdapter adapter;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_stories, container, false);
-        serach_text = view.findViewById(R.id.filter_text_stories);
+        filter_text = view.findViewById(R.id.filter_text_stories);
+        filter_text.setCursorVisible(false);
+        filter_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter_text.setCursorVisible(true);
+            }
+        });
         recyclerView = view.findViewById(R.id.recycler_view_stories);
 
 
@@ -52,7 +59,7 @@ public class StoriesFragment extends Fragment {
             }
         });
 
-        serach_text.addTextChangedListener(new TextWatcher() {
+        filter_text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 

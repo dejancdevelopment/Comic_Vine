@@ -5,6 +5,7 @@ import com.example.comicvine.data.model.model_by_id.ResponseById;
 import com.example.comicvine.data.model.model_characters.ResponseByCharacters;
 import com.example.comicvine.data.model.model_movies.ResponseByMovies;
 import com.example.comicvine.data.model.model_series.ResponseBySeries;
+import com.example.comicvine.data.model.model_series_by_id.ResponseSeriesById;
 import com.example.comicvine.data.model.model_story_by_id.ResponseStoryById;
 
 import retrofit2.Call;
@@ -62,9 +63,15 @@ public interface CallApi {
                                              @Query("limit") int limitNumber,
                                              @Query("format") String format);
 
+    @GET("series/{id}")
+    Call<ResponseSeriesById> getSeriesByIdResponse(@Query("id") String id,
+                                               @Query("api_key") String API_KEY,
+                                               @Query("format") String format);
+
     @GET("movies/")
     Call<ResponseByMovies> getMoviesResponse(@Query("api_key") String API_KEY,
                                              @Query("format") String format);
+
 
 
 //    @GET("issues/")
