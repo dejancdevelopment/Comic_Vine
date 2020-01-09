@@ -33,7 +33,7 @@ import com.example.comicvine.view.adapter.adapter_issues.CharactersByIdRecyclerV
 import com.example.comicvine.view.adapter.adapter_issues.CreatorsByIdRecyclerView;
 import com.example.comicvine.view.adapter.adapter_issues.LocationByIdRecyclerView;
 import com.example.comicvine.view.adapter.adapter_issues.TeamByIdRecyclerView;
-import com.example.comicvine.view.viewmodel.VineViewModel;
+import com.example.comicvine.view.viewmodel.IssuesViewModel;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -43,7 +43,7 @@ import java.util.Objects;
  */
 public class IssuesDetailFragment extends Fragment {
 
-    VineViewModel viewModel;
+    IssuesViewModel viewModel;
 
     private ImageView imageView;
     private TextView description;
@@ -86,7 +86,7 @@ public class IssuesDetailFragment extends Fragment {
 
             String id = getArguments().getString("ID");
 
-            viewModel = ViewModelProviders.of(this).get(VineViewModel.class);
+            viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
             viewModel.getIssueById(id);
             Log.d("QQQ", "onResponse: " + "activity");
 

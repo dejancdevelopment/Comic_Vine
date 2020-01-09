@@ -4,7 +4,6 @@ package com.example.comicvine.view.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.example.comicvine.R;
 import com.example.comicvine.view.adapter.ViewPagerAdapter;
-import com.example.comicvine.view.viewmodel.VineViewModel;
 
 
 /**

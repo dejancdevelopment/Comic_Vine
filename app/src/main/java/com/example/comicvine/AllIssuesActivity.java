@@ -22,7 +22,7 @@ import android.widget.ProgressBar;
 import com.example.comicvine.data.model.model_issues.IssuesResults;
 import com.example.comicvine.view.adapter.adapter_issues.IssuesAllLinearAdapter;
 import com.example.comicvine.view.adapter.adapter_issues.IssuesAllRecyclerView;
-import com.example.comicvine.view.viewmodel.VineViewModel;
+import com.example.comicvine.view.viewmodel.IssuesViewModel;
 
 import java.util.List;
 import java.util.Objects;
@@ -46,7 +46,7 @@ public class AllIssuesActivity extends AppCompatActivity {
         allIssuesRecycler = findViewById(R.id.all_issues_recycler);
         allIssuesRecycler.setLayoutManager(new GridLayoutManager(this, 3));
 
-       final VineViewModel viewModel = ViewModelProviders.of(this).get(VineViewModel.class);
+       final IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
 
        progressBar.setVisibility(View.VISIBLE);
        allIssuesRecycler.setVisibility(View.GONE);

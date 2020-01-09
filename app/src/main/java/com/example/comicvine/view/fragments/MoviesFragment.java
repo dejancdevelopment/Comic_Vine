@@ -20,7 +20,7 @@ import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_movies.ResultByMovies;
 
 import com.example.comicvine.view.adapter.adapter_movies.MoviesAdapter;
-import com.example.comicvine.view.viewmodel.VineViewModel;
+import com.example.comicvine.view.viewmodel.IssuesViewModel;
 
 import java.util.List;
 
@@ -47,7 +47,7 @@ public class MoviesFragment extends Fragment {
                 filter_text.setCursorVisible(true);
             }
         });
-        VineViewModel viewModel= ViewModelProviders.of(this).get(VineViewModel.class);
+        IssuesViewModel viewModel= ViewModelProviders.of(this).get(IssuesViewModel.class);
         viewModel.getGetAllMovies().observe(this, new Observer<List<ResultByMovies>>() {
             @Override
             public void onChanged(List<ResultByMovies> resultByMovies) {

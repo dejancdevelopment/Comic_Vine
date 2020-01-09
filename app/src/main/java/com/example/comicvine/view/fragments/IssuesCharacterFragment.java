@@ -9,17 +9,14 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.comicvine.R;
-import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
 import com.example.comicvine.data.model.model_issues.IssuesResults;
-import com.example.comicvine.view.adapter.adapter_characters.CharactersAdapter;
 import com.example.comicvine.view.adapter.adapter_issues.IssuesAllRecyclerView;
-import com.example.comicvine.view.viewmodel.VineViewModel;
+import com.example.comicvine.view.viewmodel.IssuesViewModel;
 
 import java.util.List;
 
@@ -45,7 +42,7 @@ public class IssuesCharacterFragment extends Fragment {
 
             String name = getArguments().getString("NAME_");
 
-            VineViewModel viewModel = ViewModelProviders.of(this).get(VineViewModel.class);
+            IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
 
             viewModel.getCharacterbyName(name);
             viewModel.getGetIssuesByName().observe(this, new Observer<List<IssuesResults>>() {

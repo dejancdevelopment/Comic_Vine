@@ -16,7 +16,7 @@ import android.widget.ProgressBar;
 import com.bumptech.glide.Glide;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
-import com.example.comicvine.view.viewmodel.VineViewModel;
+import com.example.comicvine.view.viewmodel.IssuesViewModel;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class PictureFragment extends Fragment {
 
             String name = getArguments().getString("NAME_");
 
-            VineViewModel viewModel = ViewModelProviders.of(this).get(VineViewModel.class);
+            IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
 
             viewModel.getCharacterbyName(name);
             viewModel.getGetCharacterByName().observe(this, new Observer<List<ResultsByCharacters>>() {

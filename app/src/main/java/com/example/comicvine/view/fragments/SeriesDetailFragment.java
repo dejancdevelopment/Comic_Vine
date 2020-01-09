@@ -1,14 +1,14 @@
 package com.example.comicvine.view.fragments;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -18,17 +18,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.comicvine.BuildConfig;
 import com.example.comicvine.R;
-import com.example.comicvine.data.model.model_episodes.EpisodesResult;
 import com.example.comicvine.data.model.model_series_by_id.ResultSeriesById;
-import com.example.comicvine.view.adapter.adapter_series.EpisodeAdapter;
-import com.example.comicvine.view.viewmodel.VineViewModel;
+import com.example.comicvine.view.viewmodel.IssuesViewModel;
 
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -36,11 +31,11 @@ import java.util.Objects;
  */
 public class SeriesDetailFragment extends Fragment {
 
-    private TextView title,year,episodes,description,go_to;
+    private TextView title,year,episodes,description,
+            first_episode_titile,first_episode_link,episode_publisher;
     private ImageView imageView;
     private ProgressBar progressBar;
-    private LinearLayout linearLayout,layoutClick,layoutRecycler;
-    private RecyclerView recyclerView;
+    private LinearLayout linearLayout;
 
 
     @Override
@@ -53,29 +48,25 @@ public class SeriesDetailFragment extends Fragment {
         linearLayout=view.findViewById(R.id.series_by_id_id_layout);
         linearLayout.setVisibility(View.GONE);
 
-        layoutClick=view.findViewById(R.id.layout_show_episodes);
-
-        layoutRecycler=view.findViewById(R.id.episodes_recycler_layout);
-        layoutRecycler.setVisibility(View.GONE);
-
         title=view.findViewById(R.id.series_by_id_title);
         year=view.findViewById(R.id.series_by_id_year);
         episodes=view.findViewById(R.id.series_by_id_number_of_episodes);
         description=view.findViewById(R.id.series_by_id_description);
-        go_to=view.findViewById(R.id.series_by_id_go_to);
         imageView=view.findViewById(R.id.series_by_id_image);
-        recyclerView=view.findViewById(R.id.episodes_recyclerView);
+        first_episode_titile=view.findViewById(R.id.episode_title);
+        first_episode_link=view.findViewById(R.id.episode_link);
+        episode_publisher=view.findViewById(R.id.episode_publisher_name);
 
         if(getArguments()!=null) {
 
             String id = getArguments().getString("ID");
 
-            VineViewModel viewModel = ViewModelProviders.of(this).get(VineViewModel.class);
+            IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
             viewModel.getSeriesById(id);
 
             viewModel.getGetSeriesById().observe(this, new Observer<ResultSeriesById>() {
                 @Override
-                public void onChanged(ResultSeriesById resultSeriesById) {
+                public void onChanged(final ResultSeriesById resultSeriesById) {
 
                     progressBar.setVisibility(View.GONE);
                     linearLayout.setVisibility(View.VISIBLE);
@@ -92,41 +83,31 @@ public class SeriesDetailFragment extends Fragment {
                     }else
                         description.setText(Html.fromHtml(resultSeriesById.getDescription()));
 
-                }
-            });
-        }
-
-        if (getArguments() != null) {
-
-            String name = getArguments().getString("NAME");
-
-            final VineViewModel viewModel = ViewModelProviders.of(SeriesDetailFragment.this).get(VineViewModel.class);
-            viewModel.getEpisodesByName(name);
-
-            layoutClick.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    viewModel.getGetEpisodesByName().observe(SeriesDetailFragment.this, new Observer<List<EpisodesResult>>() {
+                    first_episode_titile.setText(resultSeriesById.getLast_episode().getName());
+                    first_episode_titile.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onChanged(List<EpisodesResult> episodesResults) {
+                        public void onClick(View v) {
 
-                            layoutRecycler.setVisibility(View.VISIBLE);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                            EpisodeAdapter adapter = new EpisodeAdapter(episodesResults, getContext());
-                            recyclerView.setAdapter(adapter);
+                            //TODO to episode detail
+                        }
+                    });
 
-                            //TODO
+                    episode_publisher.setText(resultSeriesById.getPublisher().getName());
+                    first_episode_link.setText(resultSeriesById.getSite_detail_url());
+
+                    first_episode_link.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            Uri uri=Uri.parse(String.valueOf(resultSeriesById.getSite_detail_url()));
+                            Intent intent=new Intent(Intent.ACTION_VIEW,uri);
+                            startActivity(intent);
                         }
                     });
                 }
-
             });
-
         }
 
         return view;
     }
-
 }

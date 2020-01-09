@@ -23,7 +23,7 @@ import com.example.comicvine.data.repository.StoriesRepo;
 
 import java.util.List;
 
-public class VineViewModel extends AndroidViewModel {
+public class IssuesViewModel extends AndroidViewModel {
 
     private LiveData<List<IssuesResults>> getAllIssues;
     private LiveData<List<IssuesResults>> getAllVenom;
@@ -31,18 +31,21 @@ public class VineViewModel extends AndroidViewModel {
     private LiveData<List<IssuesResults>> getAllWolverine;
     private LiveData<List<IssuesResults>> getAllCaptainMarvel;
     private LiveData<List<IssuesResults>> getAllAvengers;
+
     private LiveData<List<IssuesResults>> getIssuesByName;
-    private LiveData<List<ResultsByCharacters>> getAllCharacters;
-    private LiveData<List<ResultsByCharacters>> getAllStories;
-    private LiveData<List<ResultBySeries>> getAllSeries;
-    private LiveData<List<ResultByMovies>> getAllMovies;
-
     private LiveData<ResultsById> getIssuesById;
-    private LiveData<ResultsStoryById> getStorieById;
-    private LiveData<ResultSeriesById> getSeriesById;
 
+    private LiveData<List<ResultsByCharacters>> getAllCharacters;
     private LiveData<List<ResultsByCharacters>> getCharacterByName;
+
+    private LiveData<List<ResultsByCharacters>> getAllStories;
+    private LiveData<ResultsStoryById> getStorieById;
+
+    private LiveData<List<ResultBySeries>> getAllSeries;
+    private LiveData<ResultSeriesById> getSeriesById;
     private LiveData<List<EpisodesResult>> getEpisodesByName;
+
+    private LiveData<List<ResultByMovies>> getAllMovies;
 
     private IssuesRepo issuesRepo;
     private CharactersRepo charactersRepo;
@@ -50,7 +53,7 @@ public class VineViewModel extends AndroidViewModel {
     private SeriesRepo seriesRepo;
     private MoviesRepo moviesRepo;
 
-    public VineViewModel(@NonNull Application application) {
+    public IssuesViewModel(@NonNull Application application) {
         super(application);
 
         issuesRepo=IssuesRepo.getInstance(application);

@@ -20,7 +20,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="12dp"
             app:cardBackgroundColor="@color/card_series_color"
             app:cardCornerRadius="16sp">
@@ -142,44 +142,83 @@
                         android:textSize="16sp"
                         android:textStyle="italic" />
 
-                    <LinearLayout
-                        android:id="@+id/layout_show_episodes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
-
-                        <TextView
-                            android:id="@+id/series_by_id_go_to"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="12dp"
-                            android:text="@string/episodes"
-                            android:textAlignment="textEnd"
-                            android:textColor="@android:color/white"
-                            android:textSize="12sp"
-                            android:textStyle="italic" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="12dp"
-                            android:src="@drawable/ic_arrow_drop_down" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/episodes_recycler_layout"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="16dp">
+                        android:text="Details"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/episodes_recyclerView"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/card_search_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp"
+                            android:text="Last Episode"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/episode_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/white"
+                            android:layout_marginTop="8dp"
+                            android:textSize="14sp"
+                            android:text="Publisher"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/episode_publisher_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="8dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardBackgroundColor="@color/card_movies_color"
+                            >
+
+                            <TextView
+                                android:id="@+id/episode_link"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_margin="4dp"
+                                android:textColor="@android:color/holo_green_dark"
+                                android:textSize="12sp"
+                                android:textStyle="italic" />
+                        </androidx.cardview.widget.CardView>
 
                     </LinearLayout>
 

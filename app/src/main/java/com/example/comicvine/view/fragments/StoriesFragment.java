@@ -19,7 +19,7 @@ import android.widget.EditText;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
 import com.example.comicvine.view.adapter.adapter_stories.StoriesAdapter;
-import com.example.comicvine.view.viewmodel.VineViewModel;
+import com.example.comicvine.view.viewmodel.IssuesViewModel;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class StoriesFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_stories);
 
 
-        VineViewModel viewModel = ViewModelProviders.of(this).get(VineViewModel.class);
+        IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
         viewModel.getGetAllStories().observe(this, new Observer<List<ResultsByCharacters>>() {
             @Override
             public void onChanged(List<ResultsByCharacters> resultsByCharacters) {

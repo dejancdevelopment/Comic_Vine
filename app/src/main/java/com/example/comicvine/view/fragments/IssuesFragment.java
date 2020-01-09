@@ -29,7 +29,7 @@ import com.example.comicvine.view.adapter.adapter_issues.Main_Issues_RecyclerAda
 import com.example.comicvine.view.adapter.adapter_venom.VenomRecyclerView;
 import com.example.comicvine.view.adapter.adapter_wolverine.WolverineManRecyclerView;
 import com.example.comicvine.view.animation.ZoomCenterCardLayoutManager;
-import com.example.comicvine.view.viewmodel.VineViewModel;
+import com.example.comicvine.view.viewmodel.IssuesViewModel;
 
 import java.util.List;
 
@@ -123,9 +123,9 @@ public class IssuesFragment extends Fragment {
         });
 
 
-        VineViewModel viewModel = ViewModelProviders
+        IssuesViewModel viewModel = ViewModelProviders
                 .of(this)
-                .get(VineViewModel.class);
+                .get(IssuesViewModel.class);
 
         new Handler().postDelayed(new Runnable() {
             @Override

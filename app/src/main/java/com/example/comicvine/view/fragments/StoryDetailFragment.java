@@ -1,8 +1,6 @@
 package com.example.comicvine.view.fragments;
 
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -13,12 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Html;
-import android.text.Layout;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +24,7 @@ import com.bumptech.glide.Glide;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_story_by_id.ResultsStoryById;
 import com.example.comicvine.view.adapter.adapter_stories.StoriesToIssuesAdapter;
-import com.example.comicvine.view.viewmodel.VineViewModel;
+import com.example.comicvine.view.viewmodel.IssuesViewModel;
 
 import java.util.Objects;
 
@@ -69,7 +62,7 @@ public class StoryDetailFragment extends Fragment {
 
             String id=getArguments().getString("ID");
 
-            VineViewModel viewModel= ViewModelProviders.of(this).get(VineViewModel.class);
+            IssuesViewModel viewModel= ViewModelProviders.of(this).get(IssuesViewModel.class);
             viewModel.getStoryById(id);
 
             viewModel.getGetStorieById().observe(this, new Observer<ResultsStoryById>() {
