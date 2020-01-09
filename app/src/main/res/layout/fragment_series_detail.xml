@@ -1,154 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".view.fragments.SeriesDetailFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <ProgressBar
+            android:id="@+id/series_by_id_progress_bar"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/series_by_id_progress_bar"
-            android:visibility="gone"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="12dp"
-        app:cardBackgroundColor="@color/card_series_color"
-        app:cardCornerRadius="16sp">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            app:cardBackgroundColor="@color/card_series_color"
+            app:cardCornerRadius="16sp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/series_by_id_id_layout"
-        android:layout_margin="8dp"
-        android:orientation="horizontal">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:textColor="@android:color/darker_gray"
-                android:gravity="center"
-                android:textSize="11sp"
-                android:text="Loading..."/>
-
-            <ImageView
-                android:layout_width="160dp"
-                android:layout_height="220dp"
-                android:scaleType="fitXY"
-                android:layout_marginBottom="4dp"
-                android:id="@+id/series_by_id_image"
-                />
-
-        </RelativeLayout>
-
-
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/series_by_id_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="4dp"
-                    android:inputType="textMultiLine"
-                    android:text="TITLE"
-                    android:textAlignment="textStart"
-                    android:textColor="@android:color/white"
-                    android:textSize="21sp"
-                    android:textStyle="bold"
-                    tools:ignore="TextViewEdits" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="year"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/series_by_id_year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" year"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
-
-
-
-            </LinearLayout>
+                android:layout_height="match_parent">
 
                 <LinearLayout
+                    android:id="@+id/series_by_id_id_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:text="@string/loading"
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="12sp" />
+
+                            <ImageView
+                                android:id="@+id/series_by_id_image"
+                                android:layout_width="160dp"
+                                android:layout_height="220dp"
+                                android:layout_marginBottom="4dp"
+                                android:scaleType="fitXY" />
+
+                        </RelativeLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/series_by_id_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:inputType="textMultiLine"
+                                android:textAlignment="textStart"
+                                android:textColor="@android:color/white"
+                                android:textSize="21sp"
+                                android:textStyle="bold"
+                                tools:ignore="TextViewEdits" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/year"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/series_by_id_year"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/darker_gray"
+                                    android:textSize="14sp" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/series_by_id_number_of_episodes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/darker_gray"
+                                    tools:ignore="TextViewEdits" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/episodes"
+                                    android:textColor="@android:color/white"
+                                    tools:ignore="TextViewEdits" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
 
                     <TextView
-                        android:id="@+id/series_by_id_number_of_episodes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        tools:ignore="TextViewEdits" />
+                        android:id="@+id/series_by_id_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/layout_show_episodes"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=" episodes"
-                        android:textColor="@android:color/white"
-                        tools:ignore="TextViewEdits" />
+                        android:gravity="end"
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <TextView
+                            android:id="@+id/series_by_id_go_to"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="12dp"
+                            android:text="@string/episodes"
+                            android:textAlignment="textEnd"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="italic" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:src="@drawable/ic_arrow_drop_down" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/episodes_recycler_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/episodes_recyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
+            </androidx.core.widget.NestedScrollView>
 
-                <TextView
-                    android:id="@+id/series_by_id_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="12dp"
-                    android:text="description"
-                    android:textColor="@android:color/holo_blue_dark"
-                    android:textSize="16dp"
-                    android:textStyle="italic" />
-
-
-                <TextView
-                    android:id="@+id/series_by_id_go_to"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textAlignment="textEnd"
-                    android:layout_margin="12dp"
-                    android:text="episodes >>"
-                    android:textColor="@android:color/white"
-                    android:textSize="12dp"
-                    android:textStyle="italic" />
-
-            </LinearLayout>
-
-    </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 

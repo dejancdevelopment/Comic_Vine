@@ -1,5 +1,6 @@
 package com.example.comicvine.data.retrofit;
 
+import com.example.comicvine.data.model.model_episodes.EpisodesResponse;
 import com.example.comicvine.data.model.model_issues.Response;
 import com.example.comicvine.data.model.model_by_id.ResponseById;
 import com.example.comicvine.data.model.model_characters.ResponseByCharacters;
@@ -29,14 +30,14 @@ public interface CallApi {
 
     @GET("issues/")
     Call<Response> getCharacterIssuesAppearance(@Query("api_key") String API_KEY,
-                                           @Query("sort") String sort,
-                                           @Query("filter") String sortBy,
-                                           @Query("format") String format);
+                                                @Query("sort") String sort,
+                                                @Query("filter") String sortBy,
+                                                @Query("format") String format);
 
     @GET("issue/{id}/")
-    Call<ResponseById> getIssueById (@Path ("id") String id,
-                                     @Query("api_key") String API_KEY,
-                                     @Query("format") String format);
+    Call<ResponseById> getIssueById(@Path("id") String id,
+                                    @Query("api_key") String API_KEY,
+                                    @Query("format") String format);
 
     @GET("characters/")
     Call<ResponseByCharacters> getCharactersResponse(@Query("api_key") String API_KEY,
@@ -46,17 +47,17 @@ public interface CallApi {
 
     @GET("characters/")
     Call<ResponseByCharacters> getCharactersByName(@Query("api_key") String API_KEY,
-                                                     @Query("filter") String name,
-                                                     @Query("format") String format);
+                                                   @Query("filter") String name,
+                                                   @Query("format") String format);
 
     @GET("story_arcs/")
     Call<ResponseByCharacters> getStoriesResponse(@Query("api_key") String API_KEY,
-                                                     @Query("format") String format);
+                                                  @Query("format") String format);
 
     @GET("story_arc/{id}")
-    Call<ResponseStoryById> getStoriesByIdResponse (@Path("id") String id,
-                                                    @Query("api_key") String API_KEY,
-                                                    @Query("format") String format);
+    Call<ResponseStoryById> getStoriesByIdResponse(@Path("id") String id,
+                                                   @Query("api_key") String API_KEY,
+                                                   @Query("format") String format);
 
     @GET("series_list/")
     Call<ResponseBySeries> getSeriesResponse(@Query("api_key") String API_KEY,
@@ -64,16 +65,18 @@ public interface CallApi {
                                              @Query("format") String format);
 
     @GET("series/{id}")
-    Call<ResponseSeriesById> getSeriesByIdResponse(@Query("id") String id,
-                                               @Query("api_key") String API_KEY,
-                                               @Query("format") String format);
+    Call<ResponseSeriesById> getSeriesByIdResponse(@Path("id") String id,
+                                                   @Query("api_key") String API_KEY,
+                                                   @Query("format") String format);
 
     @GET("movies/")
     Call<ResponseByMovies> getMoviesResponse(@Query("api_key") String API_KEY,
                                              @Query("format") String format);
 
-
-
+    @GET("episodes/")
+    Call<EpisodesResponse> getEpisodesByName(@Query("api_key") String API_KEY,
+                                             @Query("filter") String name,
+                                             @Query("format") String format);
 //    @GET("issues/")
 //    Call<Response> getIssuesResponse(@Query("api_key") String API_KEY,
 //                                     @Query("limit") int limitNumber,

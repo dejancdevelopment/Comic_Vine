@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.comicvine.data.model.model_episodes.EpisodesResult;
 import com.example.comicvine.data.model.model_issues.IssuesResults;
 import com.example.comicvine.data.model.model_by_id.ResultsById;
 import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
@@ -32,7 +33,6 @@ public class VineViewModel extends AndroidViewModel {
     private LiveData<List<IssuesResults>> getAllAvengers;
     private LiveData<List<IssuesResults>> getIssuesByName;
     private LiveData<List<ResultsByCharacters>> getAllCharacters;
-    private LiveData<List<ResultsByCharacters>> getCharacterByName;
     private LiveData<List<ResultsByCharacters>> getAllStories;
     private LiveData<List<ResultBySeries>> getAllSeries;
     private LiveData<List<ResultByMovies>> getAllMovies;
@@ -41,6 +41,8 @@ public class VineViewModel extends AndroidViewModel {
     private LiveData<ResultsStoryById> getStorieById;
     private LiveData<ResultSeriesById> getSeriesById;
 
+    private LiveData<List<ResultsByCharacters>> getCharacterByName;
+    private LiveData<List<EpisodesResult>> getEpisodesByName;
 
     private IssuesRepo issuesRepo;
     private CharactersRepo charactersRepo;
@@ -92,6 +94,11 @@ public class VineViewModel extends AndroidViewModel {
     public void getCharacterbyName(String name){
         getCharacterByName=charactersRepo.getCharacterByName(name);
         getIssuesByName=charactersRepo.getCharacterIssuesBy(name);
+    }
+
+    public void getEpisodesByName (String name){
+
+        getEpisodesByName=seriesRepo.getEpisodesByName(name);
     }
 
 
@@ -154,5 +161,9 @@ public class VineViewModel extends AndroidViewModel {
 
     public LiveData<ResultSeriesById> getGetSeriesById() {
         return getSeriesById;
+    }
+
+    public LiveData<List<EpisodesResult>> getGetEpisodesByName() {
+        return getEpisodesByName;
     }
 }

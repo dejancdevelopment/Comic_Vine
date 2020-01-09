@@ -61,6 +61,7 @@ implements Filterable {
 
                 Intent intent=new Intent(context, DetailActivity.class);
                 intent.putExtra("ID","4075-"+results.getId());
+                intent.putExtra("NAME",results.getName());
                 intent.putExtra("BY","series");
                 context.startActivity(intent);
             }

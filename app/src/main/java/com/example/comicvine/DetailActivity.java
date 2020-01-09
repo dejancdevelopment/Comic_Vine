@@ -62,10 +62,12 @@ public class DetailActivity extends AppCompatActivity {
         }else if(by.contains("series")){
 
             String idSeries=intent.getStringExtra("ID");
+            String nameSeries=intent.getStringExtra("NAME");
 
             SeriesDetailFragment seriesDetailFragment=new SeriesDetailFragment();
             Bundle bundle=new Bundle();
             bundle.putString("ID",idSeries);
+            bundle.putString("NAME",nameSeries);
             seriesDetailFragment.setArguments(bundle);
 
             getSupportFragmentManager().beginTransaction()
