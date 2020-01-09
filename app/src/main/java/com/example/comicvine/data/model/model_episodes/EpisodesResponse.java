@@ -7,13 +7,13 @@ import java.util.List;
 public class EpisodesResponse {
 
     @SerializedName("results")
-    List<EpisodesResult> episodesResultList;
+    private EpisodesResult episodesResultList;
 
-    public EpisodesResponse(List<EpisodesResult> episodesResultList) {
+    public EpisodesResponse(EpisodesResult episodesResultList) {
         this.episodesResultList = episodesResultList;
     }
 
-    public List<EpisodesResult> getEpisodesResultList() {
+    public EpisodesResult getEpisodesResultList() {
         return episodesResultList;
     }
 }

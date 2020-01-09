@@ -73,9 +73,9 @@ public interface CallApi {
     Call<ResponseByMovies> getMoviesResponse(@Query("api_key") String API_KEY,
                                              @Query("format") String format);
 
-    @GET("episodes/")
-    Call<EpisodesResponse> getEpisodesByName(@Query("api_key") String API_KEY,
-                                             @Query("filter") String name,
+    @GET("episode/{id}")
+    Call<EpisodesResponse> getEpisodeById(@Path("id") String id,
+                                          @Query("api_key") String API_KEY,
                                              @Query("format") String format);
 //    @GET("issues/")
 //    Call<Response> getIssuesResponse(@Query("api_key") String API_KEY,

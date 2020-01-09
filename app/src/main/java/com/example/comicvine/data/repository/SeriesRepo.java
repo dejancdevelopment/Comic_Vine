@@ -1,6 +1,7 @@
 package com.example.comicvine.data.repository;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -29,7 +30,7 @@ public class SeriesRepo {
 
     MutableLiveData<List<ResultBySeries>> setAllSeries =new MutableLiveData<>();
     MutableLiveData<ResultSeriesById> setSeriesById =new MutableLiveData<>();
-    MutableLiveData<List<EpisodesResult>> setEpisodesByName=new MutableLiveData<>();
+    MutableLiveData<EpisodesResult> setEpisodeById=new MutableLiveData<>();
 
     public static SeriesRepo getInstance(Context context){
 
@@ -83,14 +84,14 @@ public class SeriesRepo {
         return setSeriesById;
     }
 
-    public MutableLiveData<List<EpisodesResult>> getEpisodesByName(String name){
+    public MutableLiveData<EpisodesResult> getEpisodesById(String id){
 
-        callApi.getEpisodesByName(API_KEY,"name:"+name,"json").enqueue(new Callback<EpisodesResponse>() {
+        callApi.getEpisodeById(id,API_KEY,"json").enqueue(new Callback<EpisodesResponse>() {
             @Override
             public void onResponse(Call<EpisodesResponse> call, Response<EpisodesResponse> response) {
 
                 if (response.body() != null) {
-                    setEpisodesByName.setValue(response.body().getEpisodesResultList());
+                    setEpisodeById.setValue(response.body().getEpisodesResultList());
                 }
             }
 
@@ -100,9 +101,8 @@ public class SeriesRepo {
             }
         });
 
-        return setEpisodesByName;
+        return setEpisodeById;
     }
-
     private void setCallApi(CallApi callApi) {
         this.callApi = callApi;
     }

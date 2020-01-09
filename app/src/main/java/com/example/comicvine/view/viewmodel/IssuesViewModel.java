@@ -43,7 +43,7 @@ public class IssuesViewModel extends AndroidViewModel {
 
     private LiveData<List<ResultBySeries>> getAllSeries;
     private LiveData<ResultSeriesById> getSeriesById;
-    private LiveData<List<EpisodesResult>> getEpisodesByName;
+    private LiveData<EpisodesResult> getEpisodesById;
 
     private LiveData<List<ResultByMovies>> getAllMovies;
 
@@ -99,9 +99,9 @@ public class IssuesViewModel extends AndroidViewModel {
         getIssuesByName=charactersRepo.getCharacterIssuesBy(name);
     }
 
-    public void getEpisodesByName (String name){
+    public void getEpisodesByName (String id){
 
-        getEpisodesByName=seriesRepo.getEpisodesByName(name);
+        getEpisodesById =seriesRepo.getEpisodesById(id);
     }
 
 
@@ -166,7 +166,7 @@ public class IssuesViewModel extends AndroidViewModel {
         return getSeriesById;
     }
 
-    public LiveData<List<EpisodesResult>> getGetEpisodesByName() {
-        return getEpisodesByName;
+    public LiveData<EpisodesResult> getGetEpisodesById() {
+        return getEpisodesById;
     }
 }

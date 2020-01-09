@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.comicvine.view.fragments.CharactersDetailFragment;
+import com.example.comicvine.view.fragments.EpisodeFragment;
 import com.example.comicvine.view.fragments.IssuesDetailFragment;
 import com.example.comicvine.view.fragments.SeriesDetailFragment;
 import com.example.comicvine.view.fragments.StoryDetailFragment;
@@ -72,6 +73,18 @@ public class DetailActivity extends AppCompatActivity {
 
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.detail_fragment_container, seriesDetailFragment)
+                    .commit();
+        }else if(by.contains("episode")){
+
+            String idEpisode=intent.getStringExtra("ID");
+
+            EpisodeFragment episodeFragment=new EpisodeFragment();
+            Bundle bundle=new Bundle();
+            bundle.putString("ID",idEpisode);
+            episodeFragment.setArguments(bundle);
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.detail_fragment_container, episodeFragment)
                     .commit();
         }
     }

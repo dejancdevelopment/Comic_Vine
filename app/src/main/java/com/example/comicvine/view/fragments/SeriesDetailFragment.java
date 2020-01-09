@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.comicvine.DetailActivity;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_series_by_id.ResultSeriesById;
 import com.example.comicvine.view.viewmodel.IssuesViewModel;
@@ -88,8 +89,10 @@ public class SeriesDetailFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
 
-                            //TODO to episode detail
-                        }
+                            Intent intent=new Intent(getContext(), DetailActivity.class);
+                            intent.putExtra("ID","4070-"+resultSeriesById.getLast_episode().getId());
+                            intent.putExtra("BY","episode");
+                            startActivity(intent);                        }
                     });
 
                     episode_publisher.setText(resultSeriesById.getPublisher().getName());
