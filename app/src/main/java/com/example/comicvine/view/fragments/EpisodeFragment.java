@@ -20,7 +20,6 @@ import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_episodes.EpisodesResult;
 import com.example.comicvine.view.viewmodel.IssuesViewModel;
 
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -56,14 +55,13 @@ public class EpisodeFragment extends Fragment {
             String id=getArguments().getString("ID");
 
             IssuesViewModel viewModel= ViewModelProviders.of(this).get(IssuesViewModel.class);
-            viewModel.getEpisodesByName(id);
-
-            progressBar.setVisibility(View.GONE);
-            linearLayout.setVisibility(View.generateViewId());
+            viewModel.getEpisodesById(id);
 
             viewModel.getGetEpisodesById().observe(this, new Observer<EpisodesResult>() {
                 @Override
                 public void onChanged(EpisodesResult episodesResult) {
+                    progressBar.setVisibility(View.GONE);
+                    linearLayout.setVisibility(View.VISIBLE);
 
                     Glide.with(Objects.requireNonNull(getContext()))
                             .load(episodesResult.getImage()

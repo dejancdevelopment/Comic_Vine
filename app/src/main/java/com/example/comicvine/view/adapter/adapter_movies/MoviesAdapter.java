@@ -1,6 +1,7 @@
 package com.example.comicvine.view.adapter.adapter_movies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.comicvine.DetailActivity;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_movies.ResultByMovies;
 
@@ -51,6 +53,17 @@ implements Filterable {
         holder.deck.setText(Html.fromHtml(results.getDeck(),Html.FROM_HTML_MODE_LEGACY));
         Glide.with(context).load(results.getImage()
                 .getMedium_url()).into(holder.movie_image);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(context, DetailActivity.class);
+                intent.putExtra("BY","movie");
+                intent.putExtra("ID","4025-"+results.getId());
+                context.startActivity(intent);
+            }
+        });
 
     }
 

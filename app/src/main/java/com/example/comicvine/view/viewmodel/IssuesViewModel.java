@@ -11,6 +11,7 @@ import com.example.comicvine.data.model.model_episodes.EpisodesResult;
 import com.example.comicvine.data.model.model_issues.IssuesResults;
 import com.example.comicvine.data.model.model_by_id.ResultsById;
 import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
+import com.example.comicvine.data.model.model_movie_by_id.MovieByIdResult;
 import com.example.comicvine.data.model.model_movies.ResultByMovies;
 import com.example.comicvine.data.model.model_series.ResultBySeries;
 import com.example.comicvine.data.model.model_series_by_id.ResultSeriesById;
@@ -46,6 +47,7 @@ public class IssuesViewModel extends AndroidViewModel {
     private LiveData<EpisodesResult> getEpisodesById;
 
     private LiveData<List<ResultByMovies>> getAllMovies;
+    private LiveData<MovieByIdResult> getMovieById;
 
     private IssuesRepo issuesRepo;
     private CharactersRepo charactersRepo;
@@ -94,12 +96,17 @@ public class IssuesViewModel extends AndroidViewModel {
         getSeriesById=seriesRepo.getSetSeriesById(id);
     }
 
+    public void getMovieById(String id){
+
+        getMovieById=moviesRepo.getMovieById(id);
+    }
+
     public void getCharacterbyName(String name){
         getCharacterByName=charactersRepo.getCharacterByName(name);
         getIssuesByName=charactersRepo.getCharacterIssuesBy(name);
     }
 
-    public void getEpisodesByName (String id){
+    public void getEpisodesById(String id){
 
         getEpisodesById =seriesRepo.getEpisodesById(id);
     }
@@ -168,5 +175,9 @@ public class IssuesViewModel extends AndroidViewModel {
 
     public LiveData<EpisodesResult> getGetEpisodesById() {
         return getEpisodesById;
+    }
+
+    public LiveData<MovieByIdResult> getGetMovieById() {
+        return getMovieById;
     }
 }

@@ -2,18 +2,16 @@ package com.example.comicvine.data.model.model_episodes;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class EpisodesResponse {
 
     @SerializedName("results")
-    private EpisodesResult episodesResultList;
+    private EpisodesResult episodesResult;
 
     public EpisodesResponse(EpisodesResult episodesResultList) {
-        this.episodesResultList = episodesResultList;
+        this.episodesResult = episodesResultList;
     }
 
-    public EpisodesResult getEpisodesResultList() {
-        return episodesResultList;
+    public EpisodesResult getEpisodesResult() {
+        return episodesResult;
     }
 }

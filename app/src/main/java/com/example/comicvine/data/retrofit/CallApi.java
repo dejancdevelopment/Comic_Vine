@@ -4,6 +4,7 @@ import com.example.comicvine.data.model.model_episodes.EpisodesResponse;
 import com.example.comicvine.data.model.model_issues.Response;
 import com.example.comicvine.data.model.model_by_id.ResponseById;
 import com.example.comicvine.data.model.model_characters.ResponseByCharacters;
+import com.example.comicvine.data.model.model_movie_by_id.MovieByIdResponse;
 import com.example.comicvine.data.model.model_movies.ResponseByMovies;
 import com.example.comicvine.data.model.model_series.ResponseBySeries;
 import com.example.comicvine.data.model.model_series_by_id.ResponseSeriesById;
@@ -76,7 +77,12 @@ public interface CallApi {
     @GET("episode/{id}")
     Call<EpisodesResponse> getEpisodeById(@Path("id") String id,
                                           @Query("api_key") String API_KEY,
-                                             @Query("format") String format);
+                                          @Query("format") String format);
+
+    @GET("movie/{id}")
+    Call<MovieByIdResponse> getMovieById(@Path("id") String id,
+                                         @Query("api_key") String API_KEY,
+                                         @Query("format") String format);
 //    @GET("issues/")
 //    Call<Response> getIssuesResponse(@Query("api_key") String API_KEY,
 //                                     @Query("limit") int limitNumber,

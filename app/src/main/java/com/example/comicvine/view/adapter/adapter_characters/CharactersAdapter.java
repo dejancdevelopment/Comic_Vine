@@ -27,7 +27,6 @@ implements Filterable {
 
     List<ResultsByCharacters> mList;
     List<ResultsByCharacters> searchList;
-    FragmentManager fragmentManager;
     Context context;
 
 

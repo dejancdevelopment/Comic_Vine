@@ -1,12 +1,10 @@
 package com.example.comicvine.data.repository;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.comicvine.BuildConfig;
-import com.example.comicvine.data.model.model_characters.ResponseByCharacters;
 import com.example.comicvine.data.model.model_episodes.EpisodesResponse;
 import com.example.comicvine.data.model.model_episodes.EpisodesResult;
 import com.example.comicvine.data.model.model_series.ResponseBySeries;
@@ -84,14 +82,14 @@ public class SeriesRepo {
         return setSeriesById;
     }
 
-    public MutableLiveData<EpisodesResult> getEpisodesById(String id){
+    public MutableLiveData<EpisodesResult> getEpisodesById (String id){
 
         callApi.getEpisodeById(id,API_KEY,"json").enqueue(new Callback<EpisodesResponse>() {
             @Override
             public void onResponse(Call<EpisodesResponse> call, Response<EpisodesResponse> response) {
 
                 if (response.body() != null) {
-                    setEpisodeById.setValue(response.body().getEpisodesResultList());
+                    setEpisodeById.setValue(response.body().getEpisodesResult());//TODO
                 }
             }
 
