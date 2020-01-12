@@ -63,9 +63,8 @@ public class SeriesDetailFragment extends Fragment {
             String id = getArguments().getString("ID");
 
             IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
-            viewModel.getSeriesById(id);
 
-            viewModel.getGetSeriesById().observe(this, new Observer<ResultSeriesById>() {
+            viewModel.getGetSeriesById(id).observe(this, new Observer<ResultSeriesById>() {
                 @Override
                 public void onChanged(final ResultSeriesById resultSeriesById) {
 

@@ -3,7 +3,6 @@ package com.example.comicvine.view.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.comicvine.AllIssuesActivity;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_issues.IssuesResults;
-import com.example.comicvine.view.adapter.adapter_avengers.AvengersManRecyclerView;
-import com.example.comicvine.view.adapter.adapter_captain_m.CaptainMarvelManRecyclerView;
-import com.example.comicvine.view.adapter.adapter_iron_man.IronManRecyclerView;
 import com.example.comicvine.view.adapter.adapter_issues.Main_Issues_RecyclerAdapter;
-import com.example.comicvine.view.adapter.adapter_venom.VenomRecyclerView;
-import com.example.comicvine.view.adapter.adapter_wolverine.WolverineManRecyclerView;
 import com.example.comicvine.view.animation.ZoomCenterCardLayoutManager;
 import com.example.comicvine.view.viewmodel.IssuesViewModel;
 
@@ -49,13 +43,7 @@ public class IssuesFragment extends Fragment {
             seeAllCaptainMarvel,
             seeAllAvengers;
 
-
     private Main_Issues_RecyclerAdapter adapterView;
-    private VenomRecyclerView venomAdapter;
-    private IronManRecyclerView ironAdapter;
-    private WolverineManRecyclerView wolverineAdapter;
-    private CaptainMarvelManRecyclerView captainMarvelAdapter;
-    private AvengersManRecyclerView avengersAdapter;
 
     ProgressBar progressBar;
     LinearLayout linearLayout;
@@ -127,17 +115,7 @@ public class IssuesFragment extends Fragment {
                 .of(this)
                 .get(IssuesViewModel.class);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                progressBar.setVisibility(View.GONE);
-                linearLayout.setVisibility(View.VISIBLE);
-
-            }
-        },2000);
-
-        viewModel.getGetAllIssues().observe(this, new Observer<List<IssuesResults>>() {
+        viewModel.getAllIssues().observe(this, new Observer<List<IssuesResults>>() {
             @Override
             public void onChanged(List<IssuesResults> issuesResults) {
 
@@ -200,35 +178,51 @@ public class IssuesFragment extends Fragment {
         recyclerView.setLayoutManager(new ZoomCenterCardLayoutManager
                 (getContext(), LinearLayoutManager.HORIZONTAL,false));
         recyclerView.setAdapter(adapterView);
+        showProgerBar();
     }
     private void getRecyclerViewVenom (List<IssuesResults> list) {
-        venomAdapter = new VenomRecyclerView(list,getContext());
-        recyclerViewVenom.setLayoutManager
-                (new ZoomCenterCardLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        recyclerViewVenom.setAdapter(venomAdapter);
+        adapterView = new Main_Issues_RecyclerAdapter(list,getContext());
+        recyclerViewVenom.setLayoutManager(new ZoomCenterCardLayoutManager
+                (getContext(), LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewVenom.setAdapter(adapterView);
+        showProgerBar();
+
     }
     private void getRecyclerViewIronMan (List<IssuesResults> list) {
-        ironAdapter = new IronManRecyclerView(list,getContext());
+        adapterView = new Main_Issues_RecyclerAdapter(list,getContext());
         recyclerViewIron.setLayoutManager
                 (new ZoomCenterCardLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        recyclerViewIron.setAdapter(ironAdapter);
+        recyclerViewIron.setAdapter(adapterView);
+        showProgerBar();
+
     }
     private void getRecyclerViewWolverine (List<IssuesResults> list) {
-        wolverineAdapter = new WolverineManRecyclerView (list,getContext());
+        adapterView = new Main_Issues_RecyclerAdapter(list,getContext());
         recyclerViewWolverine.setLayoutManager
                 (new ZoomCenterCardLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        recyclerViewWolverine.setAdapter(wolverineAdapter);
+        recyclerViewWolverine.setAdapter(adapterView);
+        showProgerBar();
+
     }
     private void getRecyclerViewCaptainMarvel (List<IssuesResults> list) {
-        captainMarvelAdapter = new CaptainMarvelManRecyclerView (list,getContext());
+        adapterView = new Main_Issues_RecyclerAdapter(list,getContext());
         recyclerCaptainMarvel.setLayoutManager
                 (new ZoomCenterCardLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        recyclerCaptainMarvel.setAdapter(captainMarvelAdapter);
+        recyclerCaptainMarvel.setAdapter(adapterView);
+        showProgerBar();
+
     }
     private void getRecyclerViewAvengers (List<IssuesResults> list) {
-        avengersAdapter = new AvengersManRecyclerView (list,getContext());
+        adapterView = new Main_Issues_RecyclerAdapter(list,getContext());
         recyclerAvengers.setLayoutManager
                 (new ZoomCenterCardLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        recyclerAvengers.setAdapter(avengersAdapter);
+        recyclerAvengers.setAdapter(adapterView);
+        showProgerBar();
+
+    }
+
+    private void showProgerBar(){
+        progressBar.setVisibility(View.GONE);
+        linearLayout.setVisibility(View.VISIBLE);
     }
 }

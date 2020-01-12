@@ -2,6 +2,7 @@ package com.example.comicvine.data.repository;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.comicvine.BuildConfig;
@@ -22,26 +23,25 @@ public class StoriesRepo {
 
     private CallApi callApi;
     public static StoriesRepo INSTANCE;
-    private String API_KEY= BuildConfig.apikey;
+    private String API_KEY = BuildConfig.apikey;
 
-    private MutableLiveData<List<ResultsByCharacters>> setAllStories =new MutableLiveData<>();
-    private MutableLiveData<ResultsStoryById> setStoriesById =new MutableLiveData<>();
+    private MutableLiveData<List<ResultsByCharacters>> setAllStories = new MutableLiveData<>();
+    private MutableLiveData<ResultsStoryById> setStoriesById = new MutableLiveData<>();
 
-    public static StoriesRepo getInstance(Context context){
+    public static StoriesRepo getInstance(Context context) {
 
-        if(INSTANCE==null){
-            INSTANCE=new StoriesRepo();
+        if (INSTANCE == null) {
+            INSTANCE = new StoriesRepo();
 
-            CallApi callApi= ClientRetrofit.getInstance().getCallApi();
+            CallApi callApi = ClientRetrofit.getInstance().getCallApi();
             INSTANCE.setCallApi(callApi);
         }
         return INSTANCE;
-
     }
 
     public MutableLiveData<List<ResultsByCharacters>> getAllStories() {
 
-        callApi.getStoriesResponse(API_KEY,"json").enqueue(new Callback<ResponseByCharacters>() {
+        callApi.getStoriesResponse(API_KEY, "json").enqueue(new Callback<ResponseByCharacters>() {
             @Override
             public void onResponse(Call<ResponseByCharacters> call, Response<ResponseByCharacters> response) {
 
@@ -61,7 +61,7 @@ public class StoriesRepo {
 
     public MutableLiveData<ResultsStoryById> getStoryiesById(String id) {
 
-        callApi.getStoriesByIdResponse(id,API_KEY,"json").enqueue(new Callback<ResponseStoryById>() {
+        callApi.getStoriesByIdResponse(id, API_KEY, "json").enqueue(new Callback<ResponseStoryById>() {
             @Override
             public void onResponse(Call<ResponseStoryById> call, Response<ResponseStoryById> response) {
 

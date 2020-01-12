@@ -5,8 +5,10 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.comicvine.BuildConfig;
+import com.example.comicvine.R;
 import com.example.comicvine.data.dbase.MyDao;
 import com.example.comicvine.data.dbase.RoomDataBase;
 import com.example.comicvine.data.model.model_issues.IssuesResults;
@@ -15,6 +17,7 @@ import com.example.comicvine.data.model.model_by_id.ResponseById;
 import com.example.comicvine.data.model.model_by_id.ResultsById;
 import com.example.comicvine.data.retrofit.CallApi;
 import com.example.comicvine.data.retrofit.ClientRetrofit;
+import com.example.comicvine.data.utils.NetworkUtils;
 
 import java.util.List;
 
@@ -27,27 +30,26 @@ public class IssuesRepo {
     private CallApi callApi;
     private MyDao myDao;
     public static IssuesRepo INSTANCE;
-
-    private String API_KEY= BuildConfig.apikey;
-
+    private String API_KEY = BuildConfig.apikey;
     private Context context;
 
-    private LiveData<List<IssuesResults>> getAllIssuesDb;
-    private MutableLiveData<List<IssuesResults>> allIssues=new MutableLiveData<>();
-    private MutableLiveData<List<IssuesResults>> venomAllMutableData = new MutableLiveData<>();
-    private MutableLiveData<List<IssuesResults>> ironAllManMutableData = new MutableLiveData<>();
-    private MutableLiveData<List<IssuesResults>> wolverineAllManMutableData = new MutableLiveData<>();
-    private MutableLiveData<List<IssuesResults>> captainMarvelAllMutableData = new MutableLiveData<>();
-    private MutableLiveData<List<IssuesResults>> avengersAllMarvelMutableData = new MutableLiveData<>();
-    private MutableLiveData<ResultsById> byIdMutableData = new MutableLiveData<>();
-//    private IssuesRepo(Context context) {
-//        this.context = context;
-//    }
+    private MutableLiveData<List<IssuesResults>> getAllIssuesDb;
+    private MutableLiveData<List<IssuesResults>> allIssues;
+    private MutableLiveData<List<IssuesResults>> venomAllMutableData;
+    private MutableLiveData<List<IssuesResults>> ironAllManMutableData;
+    private MutableLiveData<List<IssuesResults>> wolverineAllManMutableData;
+    private MutableLiveData<List<IssuesResults>> captainMarvelAllMutableData;
+    private MutableLiveData<List<IssuesResults>> avengersAllMarvelMutableData;
+    private MutableLiveData<ResultsById> byIdMutableData;
+
+    private IssuesRepo(Context context) {
+        this.context = context;
+    }
 
     public static IssuesRepo getInstance(Context context) {
 
         if (INSTANCE == null) {
-            INSTANCE = new IssuesRepo();
+            INSTANCE = new IssuesRepo(context);
 
             CallApi callApi = ClientRetrofit.getInstance().getCallApi();
             INSTANCE.setCallApi(callApi);
@@ -59,47 +61,60 @@ public class IssuesRepo {
     }
 
     public MutableLiveData<List<IssuesResults>> getAllIssues() {
+        allIssues = new MutableLiveData<>();
 
-        callApi.getAllIssuesResponse(API_KEY,"cover_date:desc","json").enqueue(new Callback<Response>() {
+        callApi.getAllIssuesResponse(API_KEY, "cover_date:desc", "json").enqueue(new Callback<Response>() {
             @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+            public void onResponse(Call<Response> call, final retrofit2.Response<Response> response) {
 
                 if (response.body() != null) {
                     allIssues.setValue(response.body().getResultList());
                 }
+
+                RoomDataBase.dataBaseExecutor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        myDao.setAllIssuesToDao(response.body().getResultList());
+                    }
+                });
+
             }
+
             @Override
             public void onFailure(Call<Response> call, Throwable t) {
+
             }
         });
 
-        return  allIssues;
+        return allIssues;
     }
 
     public MutableLiveData<List<IssuesResults>> getAllVenom() {
+        venomAllMutableData = new MutableLiveData<>();
 
-       callApi.getAllIssuesByCharacter(API_KEY,"cover_date:desc","name:venom","json")
-               .enqueue(new Callback<Response>() {
-           @Override
-           public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+        callApi.getAllIssuesByCharacter(API_KEY, "cover_date:desc", "name:venom", "json")
+                .enqueue(new Callback<Response>() {
+                    @Override
+                    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
 
-               if (response.body() != null) {
-                   venomAllMutableData.setValue(response.body().getResultList());
-               }
-           }
+                        if (response.body() != null) {
+                            venomAllMutableData.setValue(response.body().getResultList());
+                        }
+                    }
 
-           @Override
-           public void onFailure(Call<Response> call, Throwable t) {
+                    @Override
+                    public void onFailure(Call<Response> call, Throwable t) {
 
-           }
-       });
+                    }
+                });
 
-      return venomAllMutableData;
+        return venomAllMutableData;
     }
 
     public MutableLiveData<List<IssuesResults>> getAllIronMan() {
-
-        callApi.getAllIssuesByCharacter(API_KEY,"cover_date:desc","name:iron_man","json")
+        ironAllManMutableData=new MutableLiveData<>();
+        callApi.getAllIssuesByCharacter(API_KEY, "cover_date:desc", "name:iron_man", "json")
                 .enqueue(new Callback<Response>() {
                     @Override
                     public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
@@ -119,8 +134,9 @@ public class IssuesRepo {
     }
 
     public MutableLiveData<List<IssuesResults>> getAllWolverine() {
+        wolverineAllManMutableData=new MutableLiveData<>();
 
-        callApi.getAllIssuesByCharacter(API_KEY,"cover_date:desc","name:wolverine","json")
+        callApi.getAllIssuesByCharacter(API_KEY, "cover_date:desc", "name:wolverine", "json")
                 .enqueue(new Callback<Response>() {
                     @Override
                     public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
@@ -140,8 +156,9 @@ public class IssuesRepo {
     }
 
     public MutableLiveData<List<IssuesResults>> getAllCaptainMarvel() {
+        captainMarvelAllMutableData=new MutableLiveData<>();
 
-        callApi.getAllIssuesByCharacter(API_KEY,"cover_date:desc","name:captain_marvel","json")
+        callApi.getAllIssuesByCharacter(API_KEY, "cover_date:desc", "name:captain_marvel", "json")
                 .enqueue(new Callback<Response>() {
                     @Override
                     public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
@@ -160,9 +177,10 @@ public class IssuesRepo {
         return captainMarvelAllMutableData;
     }
 
-    public MutableLiveData<List<IssuesResults>> getAllAvengers () {
+    public MutableLiveData<List<IssuesResults>> getAllAvengers() {
+        avengersAllMarvelMutableData=new MutableLiveData<>();
 
-        callApi.getAllIssuesByCharacter(API_KEY,"cover_date:desc","name:avengers","json")
+        callApi.getAllIssuesByCharacter(API_KEY, "cover_date:desc", "name:avengers", "json")
                 .enqueue(new Callback<Response>() {
                     @Override
                     public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
@@ -181,9 +199,10 @@ public class IssuesRepo {
         return avengersAllMarvelMutableData;
     }
 
-    public MutableLiveData<ResultsById> getIssuesById (String id){
+    public MutableLiveData<ResultsById> getIssuesById(String id) {
+        byIdMutableData=new MutableLiveData<>();
 
-        callApi.getIssueById(id,API_KEY,"json").enqueue(new Callback<ResponseById>() {
+        callApi.getIssueById(id, API_KEY, "json").enqueue(new Callback<ResponseById>() {
             @Override
             public void onResponse(Call<ResponseById> call, retrofit2.Response<ResponseById> response) {
 
@@ -204,28 +223,6 @@ public class IssuesRepo {
         return byIdMutableData;
     }
 
-//    public MutableLiveData<List<IssuesResults>> getPromos() {//TODO not working json parser problem
-//
-//        callApi.getPromos(API_KEY,"json").enqueue(new Callback<Response>() {
-//            @Override
-//            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-//
-//                promosMutableData.setValue(response.body().getResultList());
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Response> call, Throwable t) {
-//
-//                Log.d("PROMOS", "onFailure: " + t);
-//
-//            }
-//        });
-//
-//        return promosMutableData;
-//    }
-
-
     //****
     //TODO ROOM
 //    public LiveData<List<IssuesResults>> getIssuesIfResponse(){
@@ -245,9 +242,11 @@ public class IssuesRepo {
 //
 //      return getAllIssuesDb =myDao.getAllIssuesFromDao();
 //    }
-//    public LiveData<List<IssuesResults>> getGetAllIssuesDb() {
-//        return getAllIssuesDb;
-//    }
+
+
+    public LiveData<List<IssuesResults>> getGetAllIssuesDb() {
+        return getAllIssuesDb;
+    }
 
     private void setCallApi(CallApi callApi) {
         this.callApi = callApi;
@@ -256,4 +255,5 @@ public class IssuesRepo {
     private void setMyDao(MyDao myDao) {
         this.myDao = myDao;
     }
+
 }

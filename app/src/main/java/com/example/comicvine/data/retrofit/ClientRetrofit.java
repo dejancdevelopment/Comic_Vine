@@ -11,7 +11,7 @@ public class ClientRetrofit {
 
     public static ClientRetrofit getInstance(){
 
-        if(INSTANCE==null){
+        if(INSTANCE  == null){
             INSTANCE=new ClientRetrofit();
             Retrofit retrofit=new Retrofit.Builder()
                     .baseUrl(BASE_URL)

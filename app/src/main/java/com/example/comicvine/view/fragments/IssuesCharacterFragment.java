@@ -44,8 +44,7 @@ public class IssuesCharacterFragment extends Fragment {
 
             IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
 
-            viewModel.getCharacterbyName(name);
-            viewModel.getGetIssuesByName().observe(this, new Observer<List<IssuesResults>>() {
+            viewModel.getGetIssuesByName(name).observe(this, new Observer<List<IssuesResults>>() {
                 @Override
                 public void onChanged(List<IssuesResults> issuesResults) {
 

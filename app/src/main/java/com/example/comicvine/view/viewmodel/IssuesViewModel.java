@@ -1,7 +1,6 @@
 package com.example.comicvine.view.viewmodel;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -26,29 +25,6 @@ import java.util.List;
 
 public class IssuesViewModel extends AndroidViewModel {
 
-    private LiveData<List<IssuesResults>> getAllIssues;
-    private LiveData<List<IssuesResults>> getAllVenom;
-    private LiveData<List<IssuesResults>> getAllIronMan;
-    private LiveData<List<IssuesResults>> getAllWolverine;
-    private LiveData<List<IssuesResults>> getAllCaptainMarvel;
-    private LiveData<List<IssuesResults>> getAllAvengers;
-
-    private LiveData<List<IssuesResults>> getIssuesByName;
-    private LiveData<ResultsById> getIssuesById;
-
-    private LiveData<List<ResultsByCharacters>> getAllCharacters;
-    private LiveData<List<ResultsByCharacters>> getCharacterByName;
-
-    private LiveData<List<ResultsByCharacters>> getAllStories;
-    private LiveData<ResultsStoryById> getStorieById;
-
-    private LiveData<List<ResultBySeries>> getAllSeries;
-    private LiveData<ResultSeriesById> getSeriesById;
-    private LiveData<EpisodesResult> getEpisodesById;
-
-    private LiveData<List<ResultByMovies>> getAllMovies;
-    private LiveData<MovieByIdResult> getMovieById;
-
     private IssuesRepo issuesRepo;
     private CharactersRepo charactersRepo;
     private StoriesRepo storiesRepo;
@@ -59,125 +35,75 @@ public class IssuesViewModel extends AndroidViewModel {
         super(application);
 
         issuesRepo=IssuesRepo.getInstance(application);
-        getAllIssues=issuesRepo.getAllIssues();
-        getAllVenom=issuesRepo.getAllVenom();
-        getAllIronMan=issuesRepo.getAllIronMan();
-        getAllWolverine=issuesRepo.getAllWolverine();
-        getAllCaptainMarvel=issuesRepo.getAllCaptainMarvel();
-        getAllAvengers=issuesRepo.getAllAvengers();
-
         charactersRepo=CharactersRepo.getInstance(application);
-        getAllCharacters=charactersRepo.getAllCharacters();
-
         storiesRepo=StoriesRepo.getInstance(application);
-        getAllStories=storiesRepo.getAllStories();
-
         seriesRepo=SeriesRepo.getInstance(application);
-        getAllSeries=seriesRepo.getAllSeries();
-
         moviesRepo=MoviesRepo.getInstance(application);
-        getAllMovies=moviesRepo.getAllMovies();
-
     }
 
-    public void getIssueById(String id){
-
-        getIssuesById =issuesRepo.getIssuesById(id);
-        Log.d("QQQ", "onResponse: " + "viewModel");
+    public LiveData<ResultsById> getGetIssuesById(String id) {
+        return issuesRepo.getIssuesById(id);
     }
 
-    public void getStoryById(String id){
-
-        getStorieById=storiesRepo.getStoryiesById(id);
-    }
-
-    public void getSeriesById(String id){
-
-        getSeriesById=seriesRepo.getSetSeriesById(id);
-    }
-
-    public void getMovieById(String id){
-
-        getMovieById=moviesRepo.getMovieById(id);
-    }
-
-    public void getCharacterbyName(String name){
-        getCharacterByName=charactersRepo.getCharacterByName(name);
-        getIssuesByName=charactersRepo.getCharacterIssuesBy(name);
-    }
-
-    public void getEpisodesById(String id){
-
-        getEpisodesById =seriesRepo.getEpisodesById(id);
-    }
-
-
-    public LiveData<ResultsById> getGetIssuesById() {
-
-        return getIssuesById;
-    }
-
-    public LiveData<List<IssuesResults>> getGetAllIssues() {
-        return getAllIssues;
+    public LiveData<List<IssuesResults>> getAllIssues() {
+        return issuesRepo.getAllIssues();
     }
 
     public LiveData<List<IssuesResults>> getGetAllVenom() {
-        return getAllVenom;
+        return issuesRepo.getAllVenom();
     }
 
     public LiveData<List<IssuesResults>> getGetAllIronMan() {
-        return getAllIronMan;
+        return issuesRepo.getAllIronMan();
     }
 
     public LiveData<List<IssuesResults>> getGetAllWolverine() {
-        return getAllWolverine;
+        return issuesRepo.getAllWolverine();
     }
-
     public LiveData<List<IssuesResults>> getGetAllCaptainMarvel() {
-        return getAllCaptainMarvel;
+        return issuesRepo.getAllCaptainMarvel();
     }
-
     public LiveData<List<IssuesResults>> getGetAllAvengers() {
-        return getAllAvengers;
+        return issuesRepo.getAllAvengers();
     }
 
     public LiveData<List<ResultsByCharacters>> getGetAllCharacters() {
-        return getAllCharacters;
+        return charactersRepo.getAllCharacters();
     }
 
     public LiveData<List<ResultsByCharacters>> getGetAllStories() {
-        return getAllStories;
+        return storiesRepo.getAllStories();
     }
 
     public LiveData<List<ResultBySeries>> getGetAllSeries() {
-        return getAllSeries;
+        return seriesRepo.getAllSeries();
     }
 
     public LiveData<List<ResultByMovies>> getGetAllMovies() {
-        return getAllMovies;
+        return moviesRepo.getAllMovies();
     }
 
-    public LiveData<List<ResultsByCharacters>> getGetCharacterByName() {
-        return getCharacterByName;
+    public LiveData<List<ResultsByCharacters>> getGetCharacterByName(String name) {
+        return charactersRepo.getCharacterByName(name);
     }
 
-    public LiveData<List<IssuesResults>> getGetIssuesByName() {
-        return getIssuesByName;
+    public LiveData<List<IssuesResults>> getGetIssuesByName(String name) {
+        return charactersRepo.getCharacterIssuesBy(name);
     }
 
-    public LiveData<ResultsStoryById> getGetStorieById() {
-        return getStorieById;
+    public LiveData<ResultsStoryById> getGetStorieById(String id) {
+        return storiesRepo.getStoryiesById(id);
     }
 
-    public LiveData<ResultSeriesById> getGetSeriesById() {
-        return getSeriesById;
+    public LiveData<ResultSeriesById> getGetSeriesById(String id) {
+        return seriesRepo.getSetSeriesById(id);
     }
 
-    public LiveData<EpisodesResult> getGetEpisodesById() {
-        return getEpisodesById;
+    public LiveData<EpisodesResult> getGetEpisodesById(String id) {
+        return seriesRepo.getEpisodesById(id);
     }
 
-    public LiveData<MovieByIdResult> getGetMovieById() {
-        return getMovieById;
+    public LiveData<MovieByIdResult> getGetMovieById(String id) {
+        return moviesRepo.getMovieById(id);
     }
 }

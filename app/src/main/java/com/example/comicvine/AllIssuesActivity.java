@@ -65,7 +65,7 @@ public class AllIssuesActivity extends AppCompatActivity {
                     if (allIssues.contains("allIssues")) {
                         Objects.requireNonNull(getSupportActionBar()).setTitle("Featured");
 
-                        viewModel.getGetAllIssues()
+                        viewModel.getAllIssues()
                                 .observe(AllIssuesActivity.this, new Observer<List<IssuesResults>>() {
                             @Override
                             public void onChanged(List<IssuesResults> issuesResults) {

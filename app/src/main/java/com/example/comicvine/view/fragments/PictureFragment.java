@@ -43,8 +43,7 @@ public class PictureFragment extends Fragment {
 
             IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
 
-            viewModel.getCharacterbyName(name);
-            viewModel.getGetCharacterByName().observe(this, new Observer<List<ResultsByCharacters>>() {
+            viewModel.getGetCharacterByName(name).observe(this, new Observer<List<ResultsByCharacters>>() {
                 @Override
                 public void onChanged(List<ResultsByCharacters> resultsByCharacters) {
 

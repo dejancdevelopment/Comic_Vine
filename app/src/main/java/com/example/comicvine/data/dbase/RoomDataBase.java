@@ -11,13 +11,19 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.comicvine.data.model.model_issues.IssuesResults;
 
-@Database(entities = IssuesResults.class,version = 2)
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+@Database(entities = IssuesResults.class,version = 1,exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class RoomDataBase extends RoomDatabase {
 
     public abstract MyDao myDao();
 
     private static RoomDataBase INSTANCE;
+    private static final int NUMBER_OF_THREADS = 4;
+    public static final ExecutorService dataBaseExecutor= Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public  static synchronized RoomDataBase getInstance(Context context){
 

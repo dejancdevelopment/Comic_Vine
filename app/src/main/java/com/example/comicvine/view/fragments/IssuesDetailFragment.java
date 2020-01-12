@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,12 +83,9 @@ public class IssuesDetailFragment extends Fragment {
 
         if(getArguments()!=null) {
 
-            String id = getArguments().getString("ID");
+            final String id = getArguments().getString("ID");
 
             viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
-            viewModel.getIssueById(id);
-            Log.d("QQQ", "onResponse: " + "activity");
-
 
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -98,7 +94,7 @@ public class IssuesDetailFragment extends Fragment {
                     layout.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
 
-                    viewModel.getGetIssuesById().observe(IssuesDetailFragment.this, new Observer<ResultsById>() {
+                    viewModel.getGetIssuesById(id).observe(IssuesDetailFragment.this, new Observer<ResultsById>() {
                         @Override
                         public void onChanged(ResultsById resultsById) {
 

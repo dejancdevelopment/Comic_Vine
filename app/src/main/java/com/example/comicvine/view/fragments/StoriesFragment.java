@@ -31,6 +31,7 @@ public class StoriesFragment extends Fragment {
    private RecyclerView recyclerView;
     private EditText filter_text;
     private StoriesAdapter adapter;
+    private IssuesViewModel viewModel;
 
 
     @Override
@@ -48,7 +49,7 @@ public class StoriesFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_stories);
 
 
-        IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
         viewModel.getGetAllStories().observe(this, new Observer<List<ResultsByCharacters>>() {
             @Override
             public void onChanged(List<ResultsByCharacters> resultsByCharacters) {
@@ -79,5 +80,4 @@ public class StoriesFragment extends Fragment {
 
         return view;
     }
-
 }

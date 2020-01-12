@@ -55,9 +55,8 @@ public class EpisodeFragment extends Fragment {
             String id=getArguments().getString("ID");
 
             IssuesViewModel viewModel= ViewModelProviders.of(this).get(IssuesViewModel.class);
-            viewModel.getEpisodesById(id);
 
-            viewModel.getGetEpisodesById().observe(this, new Observer<EpisodesResult>() {
+            viewModel.getGetEpisodesById(id).observe(this, new Observer<EpisodesResult>() {
                 @Override
                 public void onChanged(EpisodesResult episodesResult) {
                     progressBar.setVisibility(View.GONE);
