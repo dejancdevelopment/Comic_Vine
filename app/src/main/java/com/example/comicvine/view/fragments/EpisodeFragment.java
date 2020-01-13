@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_episodes.EpisodesResult;
-import com.example.comicvine.view.viewmodel.IssuesViewModel;
+import com.example.comicvine.view.viewmodel.SeriesViewModel;
 
 import java.util.Objects;
 
@@ -54,11 +54,11 @@ public class EpisodeFragment extends Fragment {
 
             String id=getArguments().getString("ID");
 
-            IssuesViewModel viewModel= ViewModelProviders.of(this).get(IssuesViewModel.class);
-
+            SeriesViewModel viewModel=ViewModelProviders.of(this).get(SeriesViewModel.class);
             viewModel.getGetEpisodesById(id).observe(this, new Observer<EpisodesResult>() {
                 @Override
                 public void onChanged(EpisodesResult episodesResult) {
+
                     progressBar.setVisibility(View.GONE);
                     linearLayout.setVisibility(View.VISIBLE);
 
@@ -71,11 +71,8 @@ public class EpisodeFragment extends Fragment {
 
                     link.setText(episodesResult.getSite_detail_url());
 
-
-
                 }
             });
-
         }
         return view;
     }

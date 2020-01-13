@@ -19,7 +19,7 @@ import android.widget.EditText;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
 import com.example.comicvine.view.adapter.adapter_characters.CharactersAdapter;
-import com.example.comicvine.view.viewmodel.IssuesViewModel;
+import com.example.comicvine.view.viewmodel.CharactersViewModel;
 
 import java.util.List;
 
@@ -47,15 +47,14 @@ public class CharactersFragment extends Fragment {
         });
         recyclerView = view.findViewById(R.id.characters_recycler_view);
 
-        IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
-        viewModel.getGetAllCharacters().observe(this, new Observer<List<ResultsByCharacters>>() {
+        CharactersViewModel viewModel1=ViewModelProviders.of(this).get(CharactersViewModel.class);
+        viewModel1.getGetAllCharacters().observe(this, new Observer<List<ResultsByCharacters>>() {
             @Override
             public void onChanged(List<ResultsByCharacters> resultsByCharacters) {
 
                 adapter = new CharactersAdapter(resultsByCharacters, getContext());
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 recyclerView.setAdapter(adapter);
-
             }
         });
 

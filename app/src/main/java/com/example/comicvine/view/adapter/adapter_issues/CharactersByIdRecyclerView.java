@@ -1,6 +1,7 @@
 package com.example.comicvine.view.adapter.adapter_issues;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.comicvine.DetailActivity;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_by_id.CharacterCredits;
 
@@ -35,9 +37,20 @@ public class CharactersByIdRecyclerView extends RecyclerView.Adapter<CharactersB
     @Override
     public void onBindViewHolder(@NonNull CharactersByIdRecyclerView.MyHolder holder, int position) {
 
-        CharacterCredits characterCredits=mList.get(position);
+        final CharacterCredits characterCredits=mList.get(position);
 
         holder.cName.setText(characterCredits.getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(context, DetailActivity.class);
+                intent.putExtra("BY","name");
+                intent.putExtra("NAME",characterCredits.getName());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

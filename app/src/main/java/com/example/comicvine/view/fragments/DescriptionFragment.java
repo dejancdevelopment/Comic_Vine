@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
-import com.example.comicvine.view.viewmodel.IssuesViewModel;
+import com.example.comicvine.view.viewmodel.CharactersViewModel;
 
 import java.util.List;
 
@@ -39,15 +39,13 @@ public class DescriptionFragment extends Fragment {
 
             String name = getArguments().getString("NAME_");
 
-            IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
-
-            viewModel.getGetCharacterByName(name).observe(this, new Observer<List<ResultsByCharacters>>() {
+            CharactersViewModel viewModel1=ViewModelProviders.of(this).get(CharactersViewModel.class);
+            viewModel1.getGetCharacterByName(name).observe(this, new Observer<List<ResultsByCharacters>>() {
                 @Override
                 public void onChanged(List<ResultsByCharacters> resultsByCharacters) {
 
                     nameText.setText(resultsByCharacters.get(0).getName());
                     descrText.setText(Html.fromHtml(resultsByCharacters.get(0).getDescription(), Html.FROM_HTML_MODE_LEGACY));
-
                 }
             });
 

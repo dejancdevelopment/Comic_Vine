@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.comicvine.DetailActivity;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_series_by_id.ResultSeriesById;
-import com.example.comicvine.view.viewmodel.IssuesViewModel;
+import com.example.comicvine.view.viewmodel.SeriesViewModel;
 
 import java.util.Objects;
 
@@ -62,8 +62,8 @@ public class SeriesDetailFragment extends Fragment {
 
             String id = getArguments().getString("ID");
 
-            IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
 
+            SeriesViewModel viewModel=ViewModelProviders.of(this).get(SeriesViewModel.class);
             viewModel.getGetSeriesById(id).observe(this, new Observer<ResultSeriesById>() {
                 @Override
                 public void onChanged(final ResultSeriesById resultSeriesById) {
@@ -106,10 +106,10 @@ public class SeriesDetailFragment extends Fragment {
                             startActivity(intent);
                         }
                     });
+
                 }
             });
         }
-
         return view;
     }
 }

@@ -24,7 +24,7 @@ import com.bumptech.glide.Glide;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_story_by_id.ResultsStoryById;
 import com.example.comicvine.view.adapter.adapter_stories.StoriesToIssuesAdapter;
-import com.example.comicvine.view.viewmodel.IssuesViewModel;
+import com.example.comicvine.view.viewmodel.StoriesViewModel;
 
 import java.util.Objects;
 
@@ -62,40 +62,37 @@ public class StoryDetailFragment extends Fragment {
 
             String id=getArguments().getString("ID");
 
-            IssuesViewModel viewModel= ViewModelProviders.of(this).get(IssuesViewModel.class);
+           StoriesViewModel viewModel = ViewModelProviders.of(this).get(StoriesViewModel.class);
+           viewModel.getGetStorieById(id).observe(this, new Observer<ResultsStoryById>() {
+               @Override
+               public void onChanged(ResultsStoryById resultsStoryById) {
 
-            viewModel.getGetStorieById(id).observe(this, new Observer<ResultsStoryById>() {
-                @Override
-                public void onChanged(ResultsStoryById resultsStoryById) {
+                   layout.setVisibility(View.VISIBLE);
+                   progressBar.setVisibility(View.GONE);
 
+                   Glide.with(Objects.requireNonNull(getContext())).load(resultsStoryById
+                           .getImage().getMedium_url())
+                           .into(imageView);
+                   title.setText(resultsStoryById.getName());
 
-                    layout.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.GONE);
-
-                    Glide.with(Objects.requireNonNull(getContext())).load(resultsStoryById
-                            .getImage().getMedium_url())
-                            .into(imageView);
-                    title.setText(resultsStoryById.getName());
-
-                    if (Build.VERSION.SDK_INT >= 24) {
-                        description.setText(Html.fromHtml(resultsStoryById.
-                                getDescription(),Html.FROM_HTML_MODE_LEGACY));
+                   if (Build.VERSION.SDK_INT >= 24) {
+                       description.setText(Html.fromHtml(resultsStoryById.
+                               getDescription(),Html.FROM_HTML_MODE_LEGACY));
 //                        description.setMovementMethod(LinkMovementMethod.getInstance());
 
-                    } else {
-                        description.setText(Html.fromHtml(resultsStoryById.
-                                getDescription()));
+                   } else {
+                       description.setText(Html.fromHtml(resultsStoryById.
+                               getDescription()));
 //                        description.setMovementMethod(LinkMovementMethod.getInstance());
-                    }
+                   }
 
-                    StoriesToIssuesAdapter adapter=new StoriesToIssuesAdapter(
-                            resultsStoryById.getIssues(),getContext());
-                    relatedIsssuesRecycler.setAdapter(adapter);
-                }
-            });
+                   StoriesToIssuesAdapter adapter=new StoriesToIssuesAdapter(
+                           resultsStoryById.getIssues(),getContext());
+                   relatedIsssuesRecycler.setAdapter(adapter);
+
+               }
+           });
         }
-
         return view;
     }
-
 }

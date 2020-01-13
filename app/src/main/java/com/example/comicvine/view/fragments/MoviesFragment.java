@@ -20,7 +20,7 @@ import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_movies.ResultByMovies;
 
 import com.example.comicvine.view.adapter.adapter_movies.MoviesAdapter;
-import com.example.comicvine.view.viewmodel.IssuesViewModel;
+import com.example.comicvine.view.viewmodel.MoviesViewModel;
 
 import java.util.List;
 
@@ -47,7 +47,8 @@ public class MoviesFragment extends Fragment {
                 filter_text.setCursorVisible(true);
             }
         });
-        IssuesViewModel viewModel= ViewModelProviders.of(this).get(IssuesViewModel.class);
+
+        MoviesViewModel viewModel=ViewModelProviders.of(this).get(MoviesViewModel.class);
         viewModel.getGetAllMovies().observe(this, new Observer<List<ResultByMovies>>() {
             @Override
             public void onChanged(List<ResultByMovies> resultByMovies) {
@@ -57,7 +58,6 @@ public class MoviesFragment extends Fragment {
                 recyclerView.setAdapter(adapter);
             }
         });
-
 
         filter_text.addTextChangedListener(new TextWatcher() {
             @Override

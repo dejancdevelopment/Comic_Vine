@@ -19,7 +19,7 @@ import android.widget.EditText;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_series.ResultBySeries;
 import com.example.comicvine.view.adapter.adapter_series.SeriesAdapter;
-import com.example.comicvine.view.viewmodel.IssuesViewModel;
+import com.example.comicvine.view.viewmodel.SeriesViewModel;
 
 import java.util.List;
 
@@ -46,7 +46,8 @@ public class SeriesFragment extends Fragment {
                 filter_text.setCursorVisible(true);
             }
         });
-        IssuesViewModel viewModel= ViewModelProviders.of(this).get(IssuesViewModel.class);
+
+        SeriesViewModel viewModel=ViewModelProviders.of(this).get(SeriesViewModel.class);
         viewModel.getGetAllSeries().observe(this, new Observer<List<ResultBySeries>>() {
             @Override
             public void onChanged(List<ResultBySeries> resultBySeries) {

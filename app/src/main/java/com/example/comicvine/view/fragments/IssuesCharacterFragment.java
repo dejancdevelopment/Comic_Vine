@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_issues.IssuesResults;
 import com.example.comicvine.view.adapter.adapter_issues.IssuesAllRecyclerView;
-import com.example.comicvine.view.viewmodel.IssuesViewModel;
+import com.example.comicvine.view.viewmodel.CharactersViewModel;
 
 import java.util.List;
 
@@ -42,14 +42,13 @@ public class IssuesCharacterFragment extends Fragment {
 
             String name = getArguments().getString("NAME_");
 
-            IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
-
-            viewModel.getGetIssuesByName(name).observe(this, new Observer<List<IssuesResults>>() {
+            CharactersViewModel viewModel1=ViewModelProviders.of(this).get(CharactersViewModel.class);
+            viewModel1.getGetIssuesByName(name).observe(this, new Observer<List<IssuesResults>>() {
                 @Override
                 public void onChanged(List<IssuesResults> issuesResults) {
-
-                    IssuesAllRecyclerView adapter=new IssuesAllRecyclerView(issuesResults,getContext());
+                    IssuesAllRecyclerView adapter = new IssuesAllRecyclerView(issuesResults, getContext());
                     recyclerView.setAdapter(adapter);
+
                 }
             });
 

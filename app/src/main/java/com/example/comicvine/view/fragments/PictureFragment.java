@@ -16,9 +16,10 @@ import android.widget.ProgressBar;
 import com.bumptech.glide.Glide;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_characters.ResultsByCharacters;
-import com.example.comicvine.view.viewmodel.IssuesViewModel;
+import com.example.comicvine.view.viewmodel.CharactersViewModel;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,18 +42,19 @@ public class PictureFragment extends Fragment {
 
             String name = getArguments().getString("NAME_");
 
-            IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
-
-            viewModel.getGetCharacterByName(name).observe(this, new Observer<List<ResultsByCharacters>>() {
+            CharactersViewModel viewModel1=ViewModelProviders.of(this).get(CharactersViewModel.class);
+            viewModel1.getGetCharacterByName(name).observe(this, new Observer<List<ResultsByCharacters>>() {
                 @Override
                 public void onChanged(List<ResultsByCharacters> resultsByCharacters) {
 
-                    Glide.with(getContext()).load(resultsByCharacters.get(0).getImage().getScreen_large_url())
+                    Glide.with(Objects.requireNonNull(getContext()))
+                            .load(resultsByCharacters.get(0)
+                                    .getImage()
+                                    .getScreen_large_url())
                             .into(imageView);
 
                     progressBar.setVisibility(View.GONE);
                     imageView.setVisibility(View.VISIBLE);
-
                 }
             });
         }

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.comicvine.R;
 import com.example.comicvine.data.model.model_movie_by_id.MovieByIdResult;
 import com.example.comicvine.data.model.model_movie_by_id.MovieCharacters;
-import com.example.comicvine.view.viewmodel.IssuesViewModel;
+import com.example.comicvine.view.viewmodel.MoviesViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,12 +32,10 @@ import java.util.Objects;
  */
 public class MovieByIdFragment extends Fragment {
 
-    TextView name, date, runtime, description, characters, link_movie;
-    ImageView imageView;
-    ProgressBar progressBar;
-    LinearLayout linearLayout;
-
-    private static final String TAG = "MovieByIdFragment";
+    private TextView name, date, runtime, description, characters, link_movie;
+    private ImageView imageView;
+    private ProgressBar progressBar;
+    private LinearLayout linearLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,8 +59,7 @@ public class MovieByIdFragment extends Fragment {
 
             String id = getArguments().getString("ID");
 
-            IssuesViewModel viewModel = ViewModelProviders.of(this).get(IssuesViewModel.class);
-
+            MoviesViewModel viewModel=ViewModelProviders.of(this).get(MoviesViewModel.class);
             viewModel.getGetMovieById(id).observe(this, new Observer<MovieByIdResult>() {
                 @Override
                 public void onChanged(final MovieByIdResult movieByIdResult) {
@@ -82,10 +78,10 @@ public class MovieByIdFragment extends Fragment {
 
                     List<MovieCharacters> movie = new ArrayList<>(movieByIdResult.getCharacters());
 
-                    StringBuilder stringBuilder = new StringBuilder();
+                    final StringBuilder stringBuilder = new StringBuilder();
                     for (MovieCharacters movieCharacters : movie) {
 
-                        stringBuilder.append(movieCharacters.getName() + "\n");
+                        stringBuilder.append(movieCharacters.getName()).append("\n");
                     }
 
                     characters.setText(stringBuilder.toString());
@@ -103,12 +99,7 @@ public class MovieByIdFragment extends Fragment {
 
                 }
             });
-
-
         }
-
-
         return view;
     }
-
 }
