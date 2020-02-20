@@ -39,11 +39,10 @@ public class Main_Issues_RecyclerAdapter extends RecyclerView.Adapter<Main_Issue
     public void onBindViewHolder(@NonNull Main_Issues_RecyclerAdapter.MyHolder holder, int position) {
 
         final IssuesResults results=mList.get(holder.getAdapterPosition());
-        RequestOptions requestOptions=new RequestOptions().placeholder(R.drawable.ic_launcher_background);
 
         holder.cTitle.setText(results.getVolume().getName()+ "\n\n");
         holder.iNumber.setText(results.getIssue_number());
-        Glide.with(context).setDefaultRequestOptions(requestOptions).load(results.getImage().getMedium_url()).into(holder.cImage);
+        Glide.with(context).load(results.getImage().getMedium_url()).into(holder.cImage);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
